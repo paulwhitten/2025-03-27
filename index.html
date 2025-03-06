@@ -1,0 +1,472 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+		<!-- remove uppercase text transform from headings -->
+		<style>
+			.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+						  text-transform: none;
+				  }
+			.smallest {
+				font-size: 15px;
+			}
+			.smaller {
+				font-size: 18px;
+			}
+			.medium {
+				font-size: 25px;
+			}
+			.mid {
+				font-size: 30px;
+			}
+			.large {
+				font-size: 35px;
+			}
+			table, td, th, img {
+				border: 2px solid white;
+				border-collapse: collapse;
+				text-align: left;
+  				vertical-align: middle;
+				padding: 0px;
+				border-spacing: 0px;
+			}
+			.container{
+    			display: flex;
+			}
+			.col{
+    			flex: 1;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- title slide -->
+				<section>
+					<h3>
+						Explainable AI Architectures:
+					</h3>
+					<h4>
+						Methods, Applications, Examples, and Results
+					</h4>
+
+					<p class="medium"><a href="https:case.edu">Case Western Reserve University</a></p>
+				
+					<p class="medium"><a href="https://engineering.case.edu/">Case School of Engineering</a></p>
+
+					<p class="medium"><a href="https://engineering.case.edu/electrical-computer-and-systems-engineering">Electrical, Computer, and Systems Engineering</a></p>
+					
+					<div class="medium"><a href=mailto:pcw@case.edu>Paul Whitten</a>
+					
+					<p class="medium"><a href="https://paulwhitten.github.io/xai_arch_presentation/">2025-03-27</a></p>
+
+				</section>
+
+				<section>
+					<h2>Outline</h2>
+					<ul>
+						<li>Introduction</li>
+						<li>Problem</li>
+						<li>Contributions</li>
+						<li>Data Processing</li>
+						<li>Property-Based Explainable Architecture</li>
+						<li>Case-Based Explainable Architecture</li>
+						<li>Explainable Examples</li>
+						<li>Conclusion</li>
+					</ul>
+				</section>
+
+				
+				<section>
+					<h2>Introduction</h2>
+					<ul class="large">
+						<li>Hardware (HW) trojans injected into Intellectual Property (IP)</li>
+						<li>Third party vendors and processes could introduce trojans</li>
+						<li>Existing Machine Learning (ML) techniques to detect trojans</li>
+						<li>ML cannot effectively explain or justify decisions</li>
+						<li>Goal is to introduce and compare:</li>
+						<ul>
+							<li>Explainable property-based architecture</li>
+							<li>Explainable case-based architecture</li>
+						</ul>
+					</ul>
+					<aside class="notes">
+						<p>HW trojans are identified as a concern for trusted systems</p>
+						<p>Avenues to inject trojans are through adoption of third party intellectual property</p>
+						<p>Processes, vendors, and third party involvement in digital design and production</p>
+						<p>Existing techniques have been posed to identify HW trojans through static analysis of gate-level netlists</p>
+						<p>Some techniques use machine learning to recognize trojans</p>
+						<p>ML cannot justify or explain decisions</p>
+						<p>Goal of this work is to introduce and compare</p>
+						<p>Explainable property based architecture</p>
+						<p>Explainable case based architecture</p>
+					</aside>
+				</section>
+
+				<section>
+					<h3>CIA Impact Model</h3>
+
+					<hr>
+
+					<div class="container">
+						<div class="col" style="border-right:1px solid #000;height:300px">
+							<ul class="mid">
+								<li>Hardware Trojan compromises:
+								</li>
+								<ul>
+									<li>Confidentiality</li>
+									<li>Integrity</li>
+									<li>Availability</li>
+								</ul>
+								of a hardware IP block
+							</ul>
+						</div>
+
+						<div class="col">
+							<img src="./images/cia-model.svg" background="white">
+						</div>
+					</div>
+
+					<aside class="notes">
+						<p>HW trojan used to weaken the intellectual property of a hardware design</p>
+						<p>HW trojan does this by compromising the confidentiality, integrity, availability of a system</p>
+						<p>Confidentiality HW trojan could leak sensitive information from the system</p>
+						<p>Availability HW trojan could disrupt the regular operation of HW</p>
+						<p>Integrity HW trojan could intentionally corrupt information in the system</p>
+				</section>
+
+				<section>
+					<h3>Rare Event Hardware Trojan</h3>
+					
+					<hr>
+
+					<img src="./images/trojan-model.svg" background="white">
+
+					<aside class="notes">
+						<p>Rare Event Confidentiality HW trojan in this diagram designed to leak sensitive information on primary output</p>
+						<p>Dashed lines on left represent additional levels of logic gates</p>
+						<p>To make the trojan difficult to detect, intentionally rare input patterns trigger the trojan payload</p>
+						<p>Example for n inputs only 1 in 2^n input patterns trigger the trojan</p>
+						<p>Trigger results in the mux leaking sensitive information on primary out</p>
+					</aside>
+				</section>
+
+				<section>
+					<h2>Problem</h2>
+					<ul class="mid">
+						<li>Static trojan detection using netlist features</li>
+						<ol>
+							<li>LGFi - Logic gate fanin</li>
+							<li>FFi - Flip-flop input</li>
+							<li>FFo - Flip-flop output</li>
+							<li>PI - Primary input</li>
+							<li>PO - Primary output</li>
+						</ol>
+						<li>Highly imbalanced dataset</li>
+						<li>ML trained to make decisions</li>
+						<li>Trust in the decisions is lacking - <b>Need Explanations</b></li>
+					</ul>
+					<aside class="notes">
+						<p>The problem we approach in this work is the static detection of HW trojans from gate level netlists</p>
+						<p>We do so using the following five features.</p>
+						<p>LGFi - number of logic gate inputs two levels from a net</p>
+						<p>FFi - the number of levels to the nearest flip-flop input</p>
+						<p>FFo - the number of logic levels to the nearest flip-flop output</p>
+						<p>PI - The logic level from a primary input</p>
+						<p>PO - The logic level to a primary output</p>
+						<p>Highly imbalanced dataset 250:1 (normal:trojan nets)</p>
+						<p>Machine learning used to make decisions</p>
+						<p>Trust in decision making is lacking.  We need explanations to establish trust</p>
+					</aside>
+				</section>
+
+				<section>
+					<h2>Contributions</h2>
+					<ul class="mid">
+						<li>Flow for processing netlists and extracting features</li>
+						<li>Property-based explainable architecture</li>
+						<li>Case-based explainable architecture</li>
+						<li>Results of explainable architecture</li>
+						<li>Contrast and comparison of explainable architectures</li>
+					</ul>
+					<aside class="notes">
+						<p></p>
+					</aside>
+				</section>
+
+				<section>
+					<h3>Data Processing</h3>
+
+					<hr>
+
+					<div class="container">
+						
+						<div class="col">
+							<img src="./images/data-processing.svg" background="white" height="400">
+						</div>
+
+						<div class="col" style="border-left:1px solid #000;height:480px">
+							<p class="mid">Training and Test</p>
+							<ul class="mid">
+								<li>15 Trust-hub netlists - 52k entries</li>
+								<li>80% used for training</li>
+								<li>20% used for test</li>
+							</ul>
+							<hr>
+							<p class="mid">Data Shape</p>
+							<ul class="mid">
+								<li>Max - &lt;LGFi, ffi, ffo, PI, PO&gt;<br>&lt;42, 10, 15, 10, 15&gt;</li>
+								<li>Duplicates - 96% ~ 41:2</li>
+								<li>Trojan: Non-Trojan - 1:250</li>
+							</ul>
+						</div>
+
+					</div>
+					<aside class="notes">
+						<p>Diagram depicts the flow of data processing from the verilog netlists</p>
+						<p>Circuitgraph is used to parse the netlists</p>
+						<p>A directed graph is constructed</p>
+						<p>five features are extracted</p>
+						<p>Processed 15 of the trust-hum netlists to gather 52,000 samples representing nets in the netlist</p>
+						<p>A random 80% used for training and 20% used to test</p>
+					</aside>
+				</section>
+
+				<section>
+					<h4>Property-Based Explainable Architecture</h4>
+
+					<div class="r-stack">
+
+						<img
+						class="fragment fade-out"
+						data-fragment-index="0"
+						src="./images/general-property-based-xai-arch.svg" background="white" height="350"/>
+
+						<img
+						class="fragment current-visible"
+						data-fragment-index="0"
+						src="./images/property-based-xai-arch.svg" background="white" height="350"/>
+
+					</div>
+
+					<p class="mid">Property = grouping of features</p>
+
+					<aside class="notes">
+						<p>Depicts a general property based explainable architecture</p>
+						<p>Property is a grouping of features that can help explain decision</p> 
+						<p>Input from left</p>
+						<p>First phase is where combination property transforms of the features occurs</p>
+						<p>along with Machine learning analysis to make local decisions</p>
+						<p>Decision making process considers local decisions and suggests a global answer</p>
+						<p>XAI block considers property decisions and provides justification in terms of properties contributing to the decision</p>
+						<p>Knowledgebase is used to gauge effectiveness of properties.</p>
+						<p>A particular implementation of the architecture for 5 properties is depicted.  Note 31 properties.</p>
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h4>Property Explainable Example</h4>
+						
+						<p class="mid">Sample</p>
+
+						<img src="./images/example.png" height="80">
+
+						<hr>
+
+						<p class="mid">Output</p>
+
+						<img src="./images/property-example.png">
+
+						
+						<aside class="notes">
+							<p>Property based explainable example from the test set is depicted in this slide</p>
+							<p>The particular values for the 5 features are depicted at the top</p>
+							<p>The sample is a trojan shown in the last column and value of 1</p>
+							<p>Output of the system is depicted in the bottom.</p>
+							<p>A trojan was predicted with 99.6% confidence</p>
+							<p>The properties contributing to the decision are listed in descending order of weight</p>
+							<p>Exlainability is low at 41%  We will see why from the next slide.  Note that all properties are fairly high</p>
+						</aside>
+					</section>
+
+					<section>
+						<h4>Properties</h4>
+						
+						
+						<img src="./images/properties.png" height="500">
+
+						
+						<aside class="notes">
+							<p>This table shows the 31 properties in the system and associated features</p>
+							<p>Identifier in the first column, features in second explainability in third</p>
+							<p>We argue that a property with few features is highly explainable and therefore has a high explability value</p>
+							<p>While many or all features have very low explainability</p>
+							<p>The explainability of 41% from the last slide is a result of combining properties with high feature counts and low explainability in the decision</p>
+						</aside>
+					</section>
+
+				</section>
+
+
+				<section>
+					<h4>Case-Based Explainable Architecture</h4>
+					<img src="./images/case-based-xai-arch.svg" background="white" height="300">
+					<aside class="notes">
+						<p>This diagram depicts the case based architecture</p>
+						<p>Consists of a training index that assists in rapid retrieval of similar cases from the training set</p>
+						<p>and an inference engine implemented as a Support Vector Machine</p>
+						<p>Note that the inference and training index are fairly isolated.  They operate in parallel with relation</p>
+						<p>The explanation block composes case based information by relating neighboring cases from training.</p>
+					</aside>
+				</section>
+
+				<section>
+					<h4>Case Explainable Example</h4>
+					
+					<p>Sample</p>
+
+					<img src="./images/example.png" height="70">
+
+					<hr>
+
+					<p class="mid">Output</p>
+
+					<!--<div class="container">
+
+						<div class="col" width="100"> -->
+						<p class="medium">SVM - Trojan</p>
+						<!--</div> -->
+
+						<!--<div class="col"> -->
+						<img src="./images/case-example.png" height="250">
+						<!--</div> -->
+
+					<!--</div> -->
+
+					
+					<aside class="notes">
+						<p>This slide depicts the same test sample we saw earlier.</p>
+						<p>The inference engine recognized as a trojan.</p>
+						<p>The output of the case based system is below</p>
+						<p>Four neighboring groups were extracted and are listed by proximity, euclidean distance</p>
+						<p>Distance is the first column, feature values of the group is next, ratio of trojan "t" to non-trojan "n" is shown</p>
+						<p>The next two columns are trojan weight and non-trojan weight</p>
+						<p>A balancing factor is used to overcome the data imbalance</p>
+						<p>In addition to this information, the particular cases from training can be presented with their original context.</p>
+					</aside>
+				</section>
+
+
+				<section>
+					<h2>Conclusion</h2>
+
+					<ul class="mid">
+						<li>Explainable properties difficult to elicit from low dimensional space</li>
+						<li>Marginal explainability in property-based architecture</li>
+						<li>Property-based is a system<br>vs. case-based has distinct inference and neighbor</li>
+						<li>Case-based architecture had 94.7% correspondence with inference engine</li>
+						<li>Case-based outperformed the property-based architecture</li>
+					</ul>
+
+					<aside class="notes">
+						<p>Using only five features made it hard to extract explainable properties</p>
+						<p>Marginal explainability - low explainability metrics in property based architecture due to large number of features in property</p>
+						<p>Property base system had positives in that it behaved as a system.  Negative in case based was inference separate from cases and neighbor weighting</p>
+						<p>Case-based architecture agreed with the SVM inference engine a very high percentage of time</p>
+						<p>Cases and references gave compelling rationale for decisions.  Better than combinations of features.</p>
+					</aside>
+					
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				//width: 1280,
+				//height: 720,
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ],
+
+				slideNumber: true
+			});
+		</script>
+
+
+		<!--
+			header footer
+			https://stackoverflow.com/questions/34706859/set-header-and-footer-reveal-js-presentation
+		-->
+
+		<style type="text/css">
+			/* 1. Style header/footer <div> so they are positioned as desired. */
+			#header-left {
+				position: absolute;
+				top: 0%;
+				left: 2%;
+			}
+			#header-right {
+				position: absolute;
+				top: 3%;
+				right: 2%;
+			}
+			#footer-left {
+				position: absolute;
+				bottom: 0%;
+				left: 0%;
+			}
+		</style>
+		
+		 
+		<div id="hidden" style="display:none;">
+			<div id="header">
+				<div id="header-left"><img src="./images/CWRU-seal.jpg" width="150" height="137"></div>
+
+				<!-- style="padding:0px; display: block; line-height: 0px; font-size: 0px; border:0px;" -->
+				
+
+			</div>
+		</div>
+
+		
+		
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript">
+			// 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+			var header = $('#header').html();
+			if ( window.location.search.match( /print-pdf/gi ) ) {
+				Reveal.addEventListener( 'ready', function( event ) {
+					$('.slide-background').append(header);
+				});
+			}
+			else {
+				$('div.reveal').append(header);
+		   }
+		</script>
+
+	</body>
+</html>

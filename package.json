@@ -1,0 +1,21 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "monitor": "pm2 start index.js -i 1 -n monitor_html -- -i index.html -o reveal.js-master && pm2 start index.js -i 1 -n monitor_markdown -- -i slides.md -o reveal.js-master",
+    "stopMonitor": "pm2 delete monitor_html && pm2 delete monitor_markdown",
+    "getReveal": "curl -L https://github.com/hakimel/reveal.js/archive/master.zip --output master.zip; unzip master.zip",
+    "start": "cp index.html reveal.js-master; cp -r images reveal.js-master; cd reveal.js-master; npm install; npm start -- --port=8001",
+    "clean": "rm -rf reveal.js-master"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "shx": "^0.3.4"
+  }
+}
