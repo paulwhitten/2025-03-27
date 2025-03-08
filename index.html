@@ -81,10 +81,11 @@
 						<li>Introduction</li>
 						<li>Problem</li>
 						<li>Contributions</li>
-						<li>Data Processing</li>
-						<li>Property-Based Explainable Architecture</li>
-						<li>Case-Based Explainable Architecture</li>
-						<li>Explainable Examples</li>
+						<li>Background</li>
+						<li>Property-Based Explainable Method</li>
+						<li>Case-Based Explainable Method</li>
+						<li>Explainable Examples of Handwritten Characters</li>
+						<li>Explainable Detection of Hardware Trojans</li>
 						<li>Conclusion</li>
 					</ul>
 				</section>
@@ -113,34 +114,75 @@
 					</aside>
 				</section>
 
-				
-				<!-- Intro from HW trojan
 				<section>
-					<h2>Introduction</h2>
+					<h2>Motivation</h2>
 					<ul class="large">
-						<li>Hardware (HW) trojans injected into Intellectual Property (IP)</li>
-						<li>Third party vendors and processes could introduce trojans</li>
-						<li>Existing Machine Learning (ML) techniques to detect trojans</li>
-						<li>ML cannot effectively explain or justify decisions</li>
-						<li>Goal is to introduce and compare:</li>
+						<li>Pervasive use of AI, especially Machine Learning (ML)</li>
+						<li>ML model is an opaque box</li>
+						<li>Public Risk - ML cannot explain the decision making process</li>
 						<ul>
-							<li>Explainable property-based architecture</li>
-							<li>Explainable case-based architecture</li>
+							<li class="medium">Example, explain a set of weights in a NN to justify an automated decision.</li>
 						</ul>
+						<li>Society and legislation calling for explainable AI</li>
+						<li>Lack of metrics addressing explainability.</li>
 					</ul>
 					<aside class="notes">
-						<p>HW trojans are identified as a concern for trusted systems</p>
-						<p>Avenues to inject trojans are through adoption of third party intellectual property</p>
-						<p>Processes, vendors, and third party involvement in digital design and production</p>
-						<p>Existing techniques have been posed to identify HW trojans through static analysis of gate-level netlists</p>
-						<p>Some techniques use machine learning to recognize trojans</p>
-						<p>ML cannot justify or explain decisions</p>
-						<p>Goal of this work is to introduce and compare</p>
-						<p>Explainable property based architecture</p>
-						<p>Explainable case based architecture</p>
+						<p></p>
+						<p>Pervasive use of AI in many applications.  Especially machine learning</p>
+						<p>With this there is some risk because ML acts as an opaque box and cannot be explained.</p>
+						<p>Many are calling for systems that explain decisions</p>
+						<p>No metrics for addressing the explainability of a system</p>
 					</aside>
 				</section>
-				-->
+
+				<section>
+					<h2>Problem Statement</h2>
+					<ul>
+						<li>Neural Network (NN) weights cannot explain the inference in a NN</li>
+						<li>XAI systems are an attempt to explain the inference by a trained NN</li>
+						<li>Handwritten character recognition is used as a
+						benchmark for XAI. Recognize a character class, c, which
+						is a particular digit or letter</li>
+					</ul>
+					<p>
+						MNIST and EMNIST
+						<td height="40"><img src="./images/mnist/0-2.png" width="40" height="40" style="border:0px;"></td>
+						<td height="40"><img src="./images/mnist/3_1_0.png" width="40" height="40" style="border:0px;"></td>
+						<td height="40"><img src="./images/2-2.png" width="40" height="40" style="border:0px;"></td>
+						<td height="40"><img src="./images/18_6_1.png" width="40" height="40" style="border:0px;"></td>
+						<td height="40"><img src="./images/8-3.png" width="40" height="40" style="border:0px;"></td>
+						and
+						<td height="40"><img src="./images/14_24_0.png" width="40" height="40" style="border:0px;"></td>
+						<td height="40"><img src="./images/6_26_0.png" width="40" height="40" style="border:0px;"></td>
+						<td height="40"><img src="./images/122_35_4.png" width="40" height="40" style="border:0px;"></td>
+						<td height="40"><img src="./images/21_14_0.png" width="40" height="40" style="border:0px;"></td>
+						<td height="40"><img src="./images/60_37_0.png" width="40" height="40" style="border:0px;"></td>
+					</p>
+					<aside class="notes">
+						<p>Weights of a neural network cannot explain decisions.</p>
+						<p>XAI is an attempt to explain inference by trained neural netowrks</p>
+						<p>Use handwritten characters from MNIST and extended MNIST to benchmark results.</p>
+						<p>Problem is to recognize a character class, d</p>
+					</aside>
+				</section>
+
+				<section>
+					<h3></h3>
+					<img src="./images/traditional_ml_xai_future.svg">
+				</section>
+
+				<section>
+					<h2>Contributions</h2>
+					<ul>
+						<li>An explainable architecture is introduced based on partitioning by using property transforms.</li>
+						<li>Explainability and unexplainability are used to improve performance. A metric Ex<sub>d</sub> is introduced to characterize explainability.</li>
+						<li>Comparison of classic AI evaluation metrics and improved results in the explainable architecture using the E<sub>PARS</sub> metric for effectiveness.</li>
+					</ul>
+					<aside class="notes">
+						<p></p>
+					</aside>
+				</section>
+
 
 				<section>
 					<h3>CIA Impact Model</h3>
