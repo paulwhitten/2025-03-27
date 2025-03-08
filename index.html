@@ -92,58 +92,40 @@
 
 				<section>
 					<h2>Introduction</h2>
-					<ul class="large">
-						<li>Artificial Intelligence (AI) Especially Machine Learning (ML) used widely</li>
-						<li>Lack of trust in AI as many systems act as an opaque box</li>
-						<li>ML cannot effectively explain or justify decisions</li>
-						<li>Explainable AI popularity</li>
-						<li>Goal is to introduce and compare:</li>
-						<ul>
-							<li>Explainable property-based architecture</li>
-							<li>Explainable case-based architecture</li>
-						</ul>
-					</ul>
-					<aside class="notes">
-						<p>AI and ML are used widely in business, medicine, technology, transportation</p>
-						<p>There is a lack of trust in AI.</p>
-						<p>ML cannot justify or explain decisions</p>
-						<p>Evidenced by DARPA program for explainable AI (XAI) and extensive GDPR discussions arguing a right to explanations</p>
-						<p>Goal of this work is to introduce and compare</p>
-						<p>Explainable property based architecture</p>
-						<p>Explainable case based architecture</p>
-					</aside>
-				</section>
-
-				<section>
-					<h2>Motivation</h2>
-					<ul class="large">
-						<li>Pervasive use of AI, especially Machine Learning (ML)</li>
-						<li>ML model is an opaque box</li>
-						<li>Public Risk - ML cannot explain the decision making process</li>
-						<ul>
-							<li class="medium">Example, explain a set of weights in a NN to justify an automated decision.</li>
-						</ul>
-						<li>Society and legislation calling for explainable AI</li>
-						<li>Lack of metrics addressing explainability.</li>
-					</ul>
-					<aside class="notes">
-						<p></p>
-						<p>Pervasive use of AI in many applications.  Especially machine learning</p>
-						<p>With this there is some risk because ML acts as an opaque box and cannot be explained.</p>
-						<p>Many are calling for systems that explain decisions</p>
-						<p>No metrics for addressing the explainability of a system</p>
-					</aside>
-				</section>
-
-				<section>
-					<h2>Problem Statement</h2>
 					<ul>
-						<li>Neural Network (NN) weights cannot explain the inference in a NN</li>
-						<li>XAI systems are an attempt to explain the inference by a trained NN</li>
-						<li>Handwritten character recognition is used as a
-						benchmark for XAI. Recognize a character class, c, which
-						is a particular digit or letter</li>
+						<li>Artificial Intelligence (AI) and Machine Learning (ML) used widely<br>Applications: Business, Medicine, Transportation</li>
+						<li>Lack of trust in AI - ML is an opaque box</li>
+						<li>ML cannot effectively explain or justify decisions</li>
+						<li>Explainable AI (XAI) popularity</li>
 					</ul>
+					<aside class="notes">
+						<p>
+							AI and in particular ML are used widely in business, medicine, technology, transportation.
+							Performance of ML can surpass human performance.
+						</p>
+						<p>There is a lack of trust in AI as many models act as a black box.</p>
+						<p>ML cannot justify or explain decisions</p>
+						<p>
+							Evidenced by DARPA program for explainable AI (XAI) and extensive GDPR discussions arguing a right to explanations
+							XAI research increase in popularity over recent years.
+						</p>
+					</aside>
+				</section>
+
+				<section>
+					<h2>Problem</h2>
+					<ul>
+						<li>There is a lack of trust in ML Systems</li>
+						<li>Neural Network (NN) weights cannot explain the inference in a NN</li>
+						<li>XAI systems are an attempt to explain the inference by a trained NN and increase trust in ML systems</li>
+						
+					</ul>
+					<!--
+
+					<li>Handwritten character recognition is used as a
+						benchmark for XAI.<br>Recognize a character class, c, which
+						is a particular digit or letter</li> 
+
 					<p>
 						MNIST and EMNIST
 						<td height="40"><img src="./images/mnist/0-2.png" width="40" height="40" style="border:0px;"></td>
@@ -158,6 +140,7 @@
 						<td height="40"><img src="./images/21_14_0.png" width="40" height="40" style="border:0px;"></td>
 						<td height="40"><img src="./images/60_37_0.png" width="40" height="40" style="border:0px;"></td>
 					</p>
+					-->
 					<aside class="notes">
 						<p>Weights of a neural network cannot explain decisions.</p>
 						<p>XAI is an attempt to explain inference by trained neural netowrks</p>
@@ -169,24 +152,256 @@
 				<section>
 					<h3></h3>
 					<img src="./images/traditional_ml_xai_future.svg">
-				</section>
 
-				<section>
-					<h3></h3>
-					<img src="./images/method-intro-dot.svg" height="660">
-				</section>
-
-				<section>
-					<h2>Contributions</h2>
-					<ul>
-						<li>An explainable architecture is introduced based on partitioning by using property transforms.</li>
-						<li>Explainability and unexplainability are used to improve performance. A metric Ex<sub>d</sub> is introduced to characterize explainability.</li>
-						<li>Comparison of classic AI evaluation metrics and improved results in the explainable architecture using the E<sub>PARS</sub> metric for effectiveness.</li>
-					</ul>
 					<aside class="notes">
-						<p></p>
+						<p>Diagram is adapted from a DARPA program on XAI</p>
+						<p>Traditional AI at the top of the diagram shows the traditional ML AI flow</p>
+						<p>A system is trained to provide a decision or recommendation</p>
+						<p>A user is left with important unanswered questions causing a lack of trust.</p>
+						<p>The bottom XAI digram is the hope for future XAI systems</p>
+						<p>An explainable model and explainable interface help to answer questions.</p>
+						<p>
+							The user is presented with explanations and data to assist rather than
+							only a decision in traditional AI systems.
+						</p>
 					</aside>
 				</section>
+
+				<section>
+					<section>
+						<div class="container">
+							<div class="col" style="border-right:1px solid #000;height:700px">
+
+								<h3>Contributions</h3>
+								<ul class="mid">
+									<li>Property-Based Explainable (PBE) Method and Architecture</li>
+									<li>Case-Based Explainable (CBE) Method and Architecture</li>
+									<li>Explainability metric - Ex<sub>c</sub></li>
+									<li>Combining explainable and unexplainable components</li>
+									<li>Metric for Effectiveness of a model - E(j, c)</li>
+									<li>A new metric for model performance - E<sub>PARS</sub></li>
+									<li>Communicating when a model can fail - FDR</li>
+									<li>Correspondence metric - Corr</li>
+								</ul>
+							</div>
+
+
+						<div class="col">
+							<img src="./images/method-intro-dot.svg" height="700">
+						</div>
+
+						<aside class="notes">
+							<p>The diagram on the right shows a concept map of this work.</p>
+							<p>Listed on the left are some contributions</p>
+							<p>Two methods and explainable architectures are presented. Property and case based.</p>
+							<p>Each method has strengths with type of data and in applying the methods</p>
+							<p>Metrics for explainability of property based</p>
+							<p>Combining explainable components with unexplainable to improve performance</p>
+							<p>Metric to gauge the effectiveness of a model, j, for a particular class, c</p>
+							<p>The epars metric for such effectiveness that is resilient to data imbalance</p>
+							<p>Using data in the knowledgbase from training and testing such as the confusion matrix to show when a system may fail using the false discovery rate.</p>
+							<p>A correspondence metric used in the CBE to show when the training cases agree.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h3>Contributions - Continued</h3>
+						<ul>
+							<li>Four IEEE Conference papers and presentations</li>
+							<ul>
+								<li><a href="https://doi.org/10.1109/NAECON49338.2021.9696413">Explainable Artificial Intelligence Methodology for Handwritten Applications</a></li>
+								<li><a href="https://doi.org/10.1109/CCWC57344.2023.10099288">Explainable Neural Network Recognition of Handwritten Characters</a></li>
+								<li><a href="https://doi.org/10.1109/ICMI60790.2024.10586116">An AI Architecture with the Capability to Explain Recognition Results</a></li>
+								<li><a href="https://doi.org/10.1109/NAECON61878.2024.10670684">An AI Architecture with the Capability to Classify and Explain Hardware Trojans</a></li>
+							</ul>
+						</ul>
+						<aside class="notes">
+							<p></p>
+						</aside>
+					</section>
+
+					<section>
+						<img src="./images/method-intro-dot.svg" height="700">
+					</section>
+				</section>
+
+				<section>
+					
+					<section>
+						<h3>Background</h3>
+						<br>
+						Related Work
+					</section>
+
+					<section>
+ 						<img src="./images/ai_taxonomy.svg">
+
+						<aside class="notes">
+							<p>This diagram presents a taxonomy of AI based on capability and function</p>
+							<p>Capabilities are weak,  strong, and super</p>
+							<p>Weak can perform purpose built tasks</p>
+							<p>General can perform at or near human levels</p>
+							<p>Super can perform above human levels of cognition</p>
+							<p>Among the weak or also known as Narrow AI there is additional functionality based on reactive or limited memory functionality</p>
+							<p>Reactive is least can perform singular tasks state is immediate no data saved - chess playing, classification</p>
+							<p>Limited memory has more than immediate state save data from past - LLM, Generative AI, Autonomous vehicle</p>
+							<p>Theory of mind is considering relation to others and how others feel</p>
+							<p>Self aware elements of consciousness and awareness of its own existence.</p>
+						</aside>
+					</section>
+
+					<section>
+						<img src="./images/ai_taxonomy_algorithms.svg">
+
+						<aside class="notes">
+							<p>AI can further be decomposed by algorithm type</p>
+							<p>Symbolic AI - expert systems and agents</p>
+							<p>Learning systems - Supervised, Unsupervised, Reinforcement</p>
+							<p>Supervised learning involves adding feedback to the learning process</p>
+							<p>Unsupervised uses no feedback</p>
+							<p>Reinforcement learning involves providing a notion of rewards if positive or punishments if negative. </p>
+							<p>This work primarily focuses on Supervised learning methods.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h3>Artificial Neuron Model</h3>
+						<img src="./images/modern_neuron_model.svg">
+						<aside class="notes">
+							<p>Evolution of the artificial neuron occurred over time from 1943 McCollough Pitts and Rosenblatt perceptrons</p>
+							<p>Input signals come in from the left as x</p>
+							<p>Associated with each input is a weight, w</p>
+							<p>The product of weight and input are summed in summing junction as s</p>
+							<p>Activation function receives the s and performs a calculation of output</p>
+							<p>Types of activation functions can vary based on desired characteristics.</p> 
+						</aside>
+					</section>
+
+					<section>
+						<h3>Activation Functions</h3>
+						<hr>
+						<div class="container">
+
+							<div class="col" style="border-right:1px solid #000;height:500px">
+								<h4>Sigmoid</h4>
+								<br>
+
+								<div class="medium">
+									\[
+										\sigma(x) = \frac{1}{1 + e^{-x}}
+									\]
+								</div>
+
+								<img src="./images/sigmoid.png">
+
+
+							</div>
+
+							<div class="col" style="border-right:1px solid #000;height:500px">
+								<h4>Hyperbolic Tangent</h4>
+
+								<div class="medium">
+									\[
+										tanh(x) = \frac{e^x - e^{-x}}{e^x+e^{-x}}
+									\]
+									<br>
+								</div>
+
+								<img src="./images/tanh.png">
+
+							</div>
+
+							<div class="col">
+								<h4>Rectified Linear Unit</h4>
+								
+								<div class="medium">
+									\[
+										relu(x) =
+										\begin{cases}
+											0,& x \leq 0 \\
+											x,& x > 0
+										\end{cases}
+									\]
+								</div>
+
+								<img src="./images/relu.png">
+
+							</div>
+
+						</div>
+					</section>
+
+
+					<section>
+						<h3>Multi-layer Feed Forward Neural Network</h3>
+						<img src="./images/multi_layer_ff_nn.svg">
+					</section>
+
+					<section>
+						<h3>LeNet-5 CNN Neural Network</h3>
+						<img src="./images/LeNet-5_architecture.svg.png">
+					</section>
+
+					<section>
+						<h3>ResNet</h3>
+						<img src="./images/resnet.svg" height="600  ">
+					</section>
+
+					<section>
+						<h3>XAI Popularity</h3>
+
+						<img src="./images/popularity_phrase_xai.png">
+
+						<aside class="notes">
+							<b>This chart shows yearly results of searching the term "explainable artificial intelligence" for the indicated years since 2010</b>
+							<b>Note the log y scale</b>
+							<b>14,700 results for 2024</b>
+							<b>9,500 for 2023</b>
+							<b>6000 for 2022</b>
+							<b>Back to 10 in 2010</b>
+						</aside>
+					</section>
+
+					<section>
+						<h3>
+							XAI Research
+						</h3>
+						<ul class="mid">
+							<li>1999 - Case-Based Explanation of Non-Case-Based Learning Methods - Caruana et al.</li>
+							<li>2018 - Explainable neural networks based on additive index models - Vaughan et al.</li>
+							<li>2106 - Why should I Trust you - LIME - Marco Tulio Ribeiro et al.</li>
+							<li>Salience maps</li>
+						</ul>
+						<hr>
+						<p class="mid">
+							LIME superpixel mask for classification as a Bernese mountain dog
+						</p>
+						<img src="./images/lime_image1.png"> <img src="./images/lime_image1_mask.png">
+						<aside class="notes">
+							<p>In this 1999 work, medical researchers pose using case based explanations.</p>
+							<p>Provided distance metrics in learned model from activation of hidden units</p>
+							<p>In Vaughan's 2018 work involved layering distinct NNs trained on transforms of the inputs. A layer then505
+								combines the outputs of the distinct NNs to perform a prediction</p>
+							<p>LIME is an important work for local interpretable model agnostic explanations.</p>
+							<p>
+								In LIME an image is divided into superpixels and for an input sample the data is perturbed
+								to ascertain the superpixels important for the classification.
+							</p>
+						</aside>
+					</section>
+
+				</section>
+
+
+
+
+
+
+
+
+
+
+
 
 
 				<section>
