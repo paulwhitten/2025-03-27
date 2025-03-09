@@ -370,7 +370,6 @@
 							<li>1999 - Case-Based Explanation of Non-Case-Based Learning Methods - Caruana et al.</li>
 							<li>2018 - Explainable neural networks based on additive index models - Vaughan et al.</li>
 							<li>2106 - Why should I Trust you - LIME - Marco Tulio Ribeiro et al.</li>
-							<li>Salience maps</li>
 						</ul>
 						<hr>
 						<p class="mid">
@@ -387,6 +386,19 @@
 								In LIME an image is divided into superpixels and for an input sample the data is perturbed
 								to ascertain the superpixels important for the classification.
 							</p>
+						</aside>
+					</section>
+
+					<section>
+						<h3>XAI Research - Continued</h3>
+						<ul class="mid">
+							<li>2017 - A Unified Approach to Interpreting Model Predictions Lundberg et al. - SHAP</li>
+							<img src="./images/shap_MNIST_Example_3_0.png">
+						</ul>
+						<aside class="notes">
+							<p>Shapley Additive Explanations - SHAP in 2018 Lundberg.</p>
+							<p>Using Shapley values as measures of feature importance.</p>
+
 						</aside>
 					</section>
 
@@ -700,7 +712,25 @@
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ],
 
-				slideNumber: true
+				slideNumber: true,
+
+
+				notes_pointer: {
+					pointer: {
+						size: 15,  // in pixels (scaled like the rest of reveal.js)
+						color: 'rgba(255, 0, 0, 0.8)',  // something valid for css background-color
+						key: 'A'
+					},
+					notes: {
+						key: 'S'
+					}
+				},
+
+
+				dependencies: [
+					{src: 'plugins/reveal.js-notes-pointer/notes-pointer.js', async: true}
+				]
+
 			});
 		</script>
 
