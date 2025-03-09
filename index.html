@@ -47,6 +47,20 @@
 			.col{
     			flex: 1;
 			}
+
+			table {
+			border:2px solid black;
+			border-collapse: collapse;
+			}
+			th {
+			border:2px solid black;
+			border-collapse: collapse;
+			}
+			td {
+			border:2px solid black;
+			text-align: center;
+			border-collapse: collapse;
+			}
 		</style>
 
 	</head>
@@ -397,8 +411,181 @@
 						</ul>
 						<aside class="notes">
 							<p>Shapley Additive Explanations - SHAP in 2018 Lundberg.</p>
-							<p>Using Shapley values as measures of feature importance.</p>
+							<p>Using Shapley values from cooperative game theory as measures of marginal feature importance.</p>
+							<p>Image shows five samples the original image on the left</p>
+							<p>The ten decimal digits are in columns. The red color shows positive, matching pixels in the image for feature importance.</p>
+							<p>Blue color shows negative or detracting values for pixels.</p>
+							<p>More red in the image shows where the match and the pixels that matter.</p>
+							<p>Notes: Shapely values from marginal contribution of each feature from cooperative game theory</p>
+						</aside>
+					</section>
 
+					<section>
+						<h3>Performance Metrics -  Confusion Matrix</h3>
+
+						<div class="mid">
+							<table  style="border: none; text-align: center;">
+								<tr>
+									<th style="border: none;"></th>
+									<th style="width:75px; border: none;"></th>
+									<th scope="row" colspan="4" style="background-color: lightgray; text-align: center;">Occupation<br>of Father</th>
+								</tr>
+							<tr>
+								<th style="border: none;"></th>
+								<th style="border: none;"></th>
+								<th style="background-color: papayawhip; width:75px;">Army</th>
+								<th style="background-color: papayawhip; width:75px;">Art</th>
+								<th style="background-color: papayawhip; width:75px;">Law</th>
+								<th style="background-color: papayawhip; width:75px;">Medicine</th>
+							</tr>
+							<tr>
+								<th scope="col" rowspan="4" style="background-color: lightgray;">Occupation<br>of Son</th>
+								<th style="background-color: papayawhip;">Army</th>
+								<td style="text-align: center;">26</td>
+								<td style="text-align: center;">2</td>
+								<td style="text-align: center;">3</td>
+								<td style="text-align: center;">0</td>
+							</tr>
+							<tr>
+								<th style="background-color: papayawhip; width:75px;">Art</th>
+								<td style="text-align: center;">0</td>
+								<td style="text-align: center;">51</td>
+								<td style="text-align: center;">5</td>
+								<td style="text-align: center;">4</td>
+							</tr>
+							<tr>
+								<th style="background-color: papayawhip; width:75px;">Law</th>
+								<td style="text-align: center;">3</td>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">18</td>
+								<td style="text-align: center;">0</td>
+							</tr>
+							<tr style="border-bottom: 2px solid black;">
+								<th style="background-color: papayawhip; width:75px;">Medicine</th>
+								<td style="text-align: center;">0</td>
+								<td style="text-align: center;">0</td>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">20</td>
+							</tr>
+							</table>
+						</div>
+
+						<aside class="notes">
+							<p>Confusion matrix introduced in 1904 by Karl Pearson as a contingency matrix.</p>
+							<p>Visual representation of performance of a classifier.</p>
+							<p>This confusion matrix is adapted from Pearson's work to show how the occupation of a father predicts the vocation of a son</p>
+							<p>Predicted classes are vocations and are typically in columns</p>
+							<p>The actual classes are the vocations in rows</p>
+							<p>Cells in the matrix indicate counts</p>
+							<p>The negative diagonal at the confluence of the same class indicates a successful prediction</p>
+							<p>An confusion matrix for an ideal classifier should have counts in the diagonal and no counts elsewhere</p>
+						</aside>
+
+					</section>
+
+					<section>
+						<h3>Confusion Matrix - One Versus Others</h3>
+						<div class="container">
+							<div class="col">
+
+								<table  style="border: none;">
+									<tr>
+										<th style="border: none;"></th>
+										<th style="width:25px; border: none;"></th>
+										<th scope="row" colspan="4" style="background-color: lightgray; text-align: center;">Predicted<br>Classes</th>
+									</tr>
+								<tr>
+									<th style="border: none;"></th>
+									<th style="border: none;"></th>
+									<th style="background-color: papayawhip; text-align: center;">a</th>
+									<th style="background-color: papayawhip; text-align: center;">b</th>
+									<th style="background-color: papayawhip; text-align: center;">c</th>
+									<th style="background-color: papayawhip; text-align: center;">d</th>
+								</tr>
+								<tr>
+									<th scope="col" rowspan="4" style="background-color: lightgray;">Actual<br>Classes</th>
+									<th style="background-color: papayawhip;">a</th>
+									<td style="background-color: lightblue;">TN</td>
+									<td style="background-color: orange;">FP</td>
+									<td style="background-color: lightblue;">TN</td>
+									<td style="background-color: lightblue;">TN</td>
+								</tr>
+								<tr>
+									<th style="background-color: papayawhip;">b</th>
+									<td style="background-color: yellow;">FN</td>
+									<td style="background-color: lightgreen;">TP</td>
+									<td style="background-color: yellow;">FN</td>
+									<td style="background-color: yellow;">FN</td>
+								</tr>
+								<tr>
+									<th style="background-color: papayawhip;">c</th>
+									<td style="background-color: lightblue;">TN</td>
+									<td style="background-color: orange;">FP</td>
+									<td style="background-color: lightblue;">TN</td>
+									<td style="background-color: lightblue;">TN</td>
+								</tr>
+								<tr style="border-bottom: 2px solid black;">
+									<th style="background-color: papayawhip;">d</th>
+									<td style="background-color: lightblue;">TN</td>
+									<td style="background-color: orange;">FP</td>
+									<td style="background-color: lightblue;">TN</td>
+									<td style="background-color: lightblue;">TN</td>
+								</tr>
+								</table>
+
+							</div>
+
+							<div class="col">
+								<br><br><br><br>
+								<table class="mid">
+									<tr>
+										<th style="background-color: lightgray;">Legend</th>
+									</tr>
+									<tr>
+										<td style="background-color: lightgreen;">True Positives (TP)</td>
+									</tr>
+									<tr>
+										<td style="background-color: lightblue;">True Negatives (TN)</td>
+									</tr>
+									<tr>
+										<td style="background-color: orange;">False Positives (FP)</td>
+									</tr>
+									<tr>
+										<td style="background-color: yellow;">False Negatives (FN)</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<aside class="notes">
+							<p>The confusion matrix here has four classes a through d</p>
+							<p>This particular confusion matrix is focused on class b and using one versus others</p>
+							<p>True Positives are a correct result in predicting the positive b result</p>
+							<p>True Negatives are a correct result of predicting something other than a b</p>
+							<p>False Positives are an incorrect result of mistakenly predicting other classes as a b</p>
+							<p>False Negatives are an incorrect result of predicting an actual b as something else</p>
+						</aside>
+
+					</section>
+
+					<section>
+						<h3>Performance Metrics - Continued</h3>
+
+						<ul>
+							<li>Accuracy = $\frac{TP + TN}{TP+TN+FP+FN}$</li>
+							<br>
+							<li>Precision = $\frac{TP}{TP+FP}$</li>
+							<br>
+							<li>Recall = $\frac{TP}{TP+FN}$</li>
+							<br>
+							<li>Specificity = $\frac{TN}{TN+FP}$</li>
+						</ul>
+
+						<aside class="notes">
+							<p>Accuracy represents correct results over all samples</p>
+							<p>Precision tells us of all the predictions for a class, how many were correct.</p>
+							<p>Recall tells us how many items of an actual class were correctly identified</p>
+							<p>Specificity indicates how well correct negative values are identified from all negative values.</p>
 						</aside>
 					</section>
 
