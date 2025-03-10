@@ -1,4 +1,4 @@
-
+# presentation
 
 Problem with zscaler
 
@@ -28,4 +28,10 @@ npm ERR! A complete log of this run can be found in: /Users/pcwhitt1/.npm/_logs/
 
 ```
 export NODE_EXTRA_CA_CERTS=/Users/pcwhitt1/Downloads/ZscalerRootCertificate/ZscalerRootCertificate.pem
+```
+
+Generating pdf
+
+```
+decktape --size='2048x1536' http://localhost:8000 presentation-01.pdf
 ```

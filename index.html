@@ -15,9 +15,9 @@
 
 		<!-- remove uppercase text transform from headings -->
 		<style>
-			.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
-						  text-transform: none;
-				  }
+			.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .reveal h7 {
+				text-transform: none;
+			}
 			.smallest {
 				font-size: 15px;
 			}
@@ -239,7 +239,7 @@
 					</section>
 				</section>
 
-				<section>
+				<!--<section>-->
 					
 					<section>
 						<h3>Background</h3>
@@ -484,7 +484,7 @@
 					</section>
 
 					<section>
-						<h3>Confusion Matrix - One Versus Others</h3>
+						<h3>Performance Metrics - Confusion Matrix - One Versus Others</h3>
 						<div class="container">
 							<div class="col">
 
@@ -561,7 +561,7 @@
 							<p>The confusion matrix here has four classes a through d</p>
 							<p>This particular confusion matrix is focused on class b and using one versus others</p>
 							<p>True Positives are a correct result in predicting the positive b result</p>
-							<p>True Negatives are a correct result of predicting something other than a b</p>
+							<p>True Negatives are a correct result of predicting something other than b</p>
 							<p>False Positives are an incorrect result of mistakenly predicting other classes as a b</p>
 							<p>False Negatives are an incorrect result of predicting an actual b as something else</p>
 						</aside>
@@ -571,26 +571,413 @@
 					<section>
 						<h3>Performance Metrics - Continued</h3>
 
-						<ul>
-							<li>Accuracy = $\frac{TP + TN}{TP+TN+FP+FN}$</li>
-							<br>
-							<li>Precision = $\frac{TP}{TP+FP}$</li>
-							<br>
-							<li>Recall = $\frac{TP}{TP+FN}$</li>
-							<br>
-							<li>Specificity = $\frac{TN}{TN+FP}$</li>
-						</ul>
+						<div class="container">
+
+							<div class="col" style="border-right:1px solid #000;height:600px">
+
+								<br><br>
+
+								<ul class="large">
+									<li>Accuracy = $\frac{TP+TN}{TP+TN+FP+FN}$</li>
+									<br>
+									<li>Precision = $\frac{TP}{TP+FP}$</li>
+									<br>
+									<li>Recall = $\frac{TP}{TP+FN}$</li>
+									<br>
+									<li>Specificity = $\frac{TN}{TN+FP}$</li>
+								</ul>
+
+								<!--
+								<hr>
+
+								<div class="smaller">
+									<table  style="border: none;">
+										<tr>
+											<th style="border: none;"></th>
+											<th style="width:25px; border: none;"></th>
+											<th scope="row" colspan="4" style="background-color: lightgray; text-align: center;">Predicted<br>Classes</th>
+										</tr>
+									<tr>
+										<th style="border: none;"></th>
+										<th style="border: none;"></th>
+										<th style="background-color: papayawhip; text-align: center;">a</th>
+										<th style="background-color: papayawhip; text-align: center;">b</th>
+										<th style="background-color: papayawhip; text-align: center;">c</th>
+										<th style="background-color: papayawhip; text-align: center;">d</th>
+									</tr>
+									<tr>
+										<th scope="col" rowspan="4" style="background-color: lightgray;">Actual<br>Classes</th>
+										<th style="background-color: papayawhip;">a</th>
+										<td style="background-color: lightblue;">TN</td>
+										<td style="background-color: orange;">FP</td>
+										<td style="background-color: lightblue;">TN</td>
+										<td style="background-color: lightblue;">TN</td>
+									</tr>
+									<tr>
+										<th style="background-color: papayawhip;">b</th>
+										<td style="background-color: yellow;">FN</td>
+										<td style="background-color: lightgreen;">TP</td>
+										<td style="background-color: yellow;">FN</td>
+										<td style="background-color: yellow;">FN</td>
+									</tr>
+									<tr>
+										<th style="background-color: papayawhip;">c</th>
+										<td style="background-color: lightblue;">TN</td>
+										<td style="background-color: orange;">FP</td>
+										<td style="background-color: lightblue;">TN</td>
+										<td style="background-color: lightblue;">TN</td>
+									</tr>
+									<tr style="border-bottom: 2px solid black;">
+										<th style="background-color: papayawhip;">d</th>
+										<td style="background-color: lightblue;">TN</td>
+										<td style="background-color: orange;">FP</td>
+										<td style="background-color: lightblue;">TN</td>
+										<td style="background-color: lightblue;">TN</td>
+									</tr>
+									</table>
+									</div>
+									-->
+
+							</div>
+
+							<div class="col">
+
+								<p class="large">Imbalance Ratio (IR)</p>
+
+								<div class="mid">
+								\[
+									IR = \frac{N_{maj}}{N_{min}}
+								\]
+								</div>
+
+								<p class="mid">If IR > 1 the data set is imbalanced</p>
+
+								<hr>
+
+								<ul class="large">
+									<li>AUC</li>
+									<p></p>
+									<li>F1-Score</li>
+									<p></p>
+									<li>Cohen's Kappa</li>
+									<p></p>
+									<li>Matthew's Correlation Coefficient</li>
+								</ul>
+
+							</div>
+
+						</div>
 
 						<aside class="notes">
 							<p>Accuracy represents correct results over all samples</p>
 							<p>Precision tells us of all the predictions for a class, how many were correct.</p>
-							<p>Recall tells us how many items of an actual class were correctly identified</p>
+							<p>Recall aka sensitivity tells us how many items of an actual class were correctly identified</p>
 							<p>Specificity indicates how well correct negative values are identified from all negative values.</p>
+							<p>Imbalance ratio tells us how well the data is balanced.  It is the cardinality of majority class over cardinality of minority class</p>
+							<p>If the imbalance ratio is greater than 1, the data is said to be imbalanced and there are metrics that are resilient to data imbalance</p>
+							<p>AUC - receiver operating characteristic curve.  ROC is plot of TPR (recall) against FPR</p>
+							<p>F-1 score is the harmonic mean of recall and precision. Harmonic mean reciprocal of arithmetic mean</p>
+							<p>Cohen's Kappa was first used to characterize agreement between observers of a psychological experiment.</p>
+							<p>Cohen's Kappa =  (probability of agreement - probability of random agreement) / (1 - probability of random agreement)</p>
+							<p>MCC is Pearson's phi coefficient</p>
 						</aside>
 					</section>
 
+
+					<section>
+						<h3>Handwritten Character Datasets</h3>
+
+						<hr>
+
+						<p>Widely used for <b>BENCHMARKING</b> ML architectures</p>
+
+						<ul>
+							<li>
+								MNIST - 70,000 decimal digits contributed by students and census bureau workers<br>
+								<img src="./images/mnist_samples/0-0.png" width="60"> <img src="./images/mnist_samples/1-0.png" width="60">
+								<img src="./images/mnist_samples/2-0.png" width="60"> <img src="./images/mnist_samples/3-0.png" width="60">
+								<img src="./images/mnist_samples/4-0.png" width="60"> <img src="./images/mnist_samples/5-0.png" width="60">
+								<img src="./images/mnist_samples/6-0.png" width="60"> <img src="./images/mnist_samples/7-0.png" width="60">
+								<img src="./images/mnist_samples/8-0.png" width="60"> <img src="./images/mnist_samples/9-0.png" width="60">
+
+							</li>
+							<li>
+								EMNIST - Over 800,000 handwritten characters digits, uppercase characters, lowercase characters<br>
+								<img src="./images/emnist_samples/10-0.png" width="60"> <img src="./images/emnist_samples/11-0.png" width="60">
+								<img src="./images/emnist_samples/12-0.png" width="60"> <img src="./images/emnist_samples/13-0.png" width="60">
+								<img src="./images/emnist_samples/14-0.png" width="60"> <img src="./images/emnist_samples/15-0.png" width="60">
+								<img src="./images/emnist_samples/16-0.png" width="60"> <img src="./images/emnist_samples/17-0.png" width="60">
+								<img src="./images/emnist_samples/18-0.png" width="60"> <img src="./images/emnist_samples/19-0.png" width="60"><br>
+								<img src="./images/emnist_samples/36-0.png" width="60"> <img src="./images/emnist_samples/37-0.png" width="60">
+								<img src="./images/emnist_samples/38-0.png" width="60"> <img src="./images/emnist_samples/39-0.png" width="60">
+								<img src="./images/emnist_samples/40-0.png" width="60"> <img src="./images/emnist_samples/41-0.png" width="60">
+								<img src="./images/emnist_samples/42-0.png" width="60"> <img src="./images/emnist_samples/43-0.png" width="60">
+								<img src="./images/emnist_samples/44-0.png" width="60"> <img src="./images/emnist_samples/45-0.png" width="60">
+							</li>
+						</ul>
+						
+						<aside class="notes">
+							<p>Modified National Institute of Standards and Technology database</p>
+							<p>Extended Modified National Institute of Standards and Technology database</p>
+							<p>Best error rates in 2004 of ML on MNIST were around 0.4%</p>
+							<p>Current best error rates on MNIST are about 0.2%</p>
+						</aside>
+
+					</section>
+
+
+				<!--</section>-->
+
+
+
+				<section>
+					<h3>Property-Based Explainable Method</h3>
+
+					<hr>
+
+					<div class="large">
+						<p><b>Intent:</b> Produce a system that can explain
+						decisions to a user in plain terms by reasoning about the
+						system's decisions in relation to explainable
+						properties.</p>
+
+						<p>
+							<b>Explainable Property:</b>
+
+								An attribute of an input sample that may
+								differentiate between classes and provide rationale
+								for a classification decision to a user.
+						</p>
+						<p>
+							<b>Property Transform:</b>
+
+							a property transformation is a function to modify an
+							input sample to bring out an explainable property in the
+							resulting output. A property transformation aims to
+							highlight or exemplify explainable properties in the
+							input.
+						</p>
+					</div>
+
 				</section>
 
+				<section>
+
+					<section>
+
+						<h7>Property-Based Explainable Method Flow</h7>
+
+						<img src="./images/pbe-flow-lr.png">
+
+					</section>
+					
+
+					<section>
+						<h5>Property-Based Explainability MNIST</h5>
+						<h7>Properties and Transforms</h7>
+						
+						<div class="container">
+							<div class="col">
+							<table class="smaller">
+								<tr>
+									<th>Property</th>
+									<th>Transform</th>
+									<th>Image</th>
+									<th>Trans.</th>
+								</tr>
+								<tr>
+									<td>Stroke</td>
+									<td>Skeleton</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/4-11.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/4-11-skel.png" width="40" height="40"></td>
+								</tr>
+								<tr>
+									<td>Circle</td>
+									<td>Hough Circle</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/6-17.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/6-17-circle.png" width="40" height="40"></td>
+								</tr>
+								<tr>
+									<td>Circle</td>
+									<td>Hough Ellipse</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/0-3.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/0-3-ellipse.png" width="40" height="40"></td>
+								</tr>
+								<tr>
+									<td>Circle</td>
+									<td>Multiple Circle and Ellipse</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/8-4.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/8-4-ellipse-circle.png" width="40" height="40"></td>
+								</tr>
+								<tr>
+									<td>Crossings</td>
+									<td>Intersection</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/4-2.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/4-2-crossing.png" width="40" height="40"></td>
+								</tr>
+							</table>
+							</div>
+	
+							<div class="col">
+							<table class="smaller">
+								<tr>
+									<th>Property</th>
+									<th>Transform</th>
+									<th>Image</th>
+									<th>Trans.</th>
+								</tr>
+								<tr>
+									<td>Endpoints</td>
+									<td>Endpoints</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/2-2.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/2-2-endpoint.png" width="40" height="40"></td>
+								</tr>
+								<tr>
+									<td>Enclosed Region</td>
+									<td>Flood Fill</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/0-2.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/0-2-fill.png" width="40" height="40"></td>
+								</tr>
+								<tr>
+									<td>Enclosed Region</td>
+									<td>Convex Hull</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/0-0-12.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/0-0-12-ch.png" width="40" height="40"></td>
+								</tr>
+								<tr>
+									<td>Line</td>
+									<td>Hough Line</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/7-20.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/7-20-line.png" width="40" height="40"></td>
+								</tr>
+								<tr>
+									<td>Corner</td>
+									<td>Harris Corner</td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/3-18.png" width="40" height="40"></td>
+									<td height="40"><img src="./images/mnist_prop_trans_examples/3-18-corner.png" width="40" height="40"></td>
+								</tr>
+							</table>
+							</div>
+						</div>
+	
+						<aside class="notes">
+							<p>This slide details MNIST transform examples</p>
+							<p>Table divided into two columns for better layout in slide.</p>
+							<p>first column is the property name, second is transform.  Last two columns are the original input
+								and finally th transformed input</p>
+							<p>Several of the transforms are simple digital image processing techniques</p>
+							<p>Stroke property, path followed by the writing implement, achieved by taking the morphological skeleton, one pixel wide
+								connected representation</p>
+							<p>A few transforms related to circles due to matching some digits - small circles like 6 and 9 , multiple circles like 8 - ellipse for zero</p>
+							<p>Crossings/intersection which uses the skeleton and takes any points with more than 2 neighbors</p>
+							<p>Endpoints which is also based on the skeleton and takes points with 1 neighbor.</p>
+							<p>Enclosed regions which use 2 transforms flood fill and convex hull</p>
+							<p>Lines in images via the hough line</p>
+							<p>Inflection points or corners with the harris corner detection algorithm</p>
+						</aside>
+	
+					</section>
+
+					<section>
+						<h7>Transform Training Data</h7>
+						<img src="./images/property-trans-training-db-dot.svg">
+					</section>
+
+					<section>
+						<h7>Train ML Models</h7>
+						<br>
+						<img src="./images/property-ml-training-dot.svg" height="500">
+					</section>
+
+					<section>
+						<h7>Build Knowledgebase</h7>
+						<br>
+						<img src="./images/property-ml-kb-dot.svg" height="500">
+					</section>
+
+					<section>
+						<h3>Voting Scheme</h3>
+
+						<ul class="large">
+							<li>
+								<b>Effectiveness:</b>
+								Characterizes how well an inference engine performs.
+								The effectiveness of an inference engine, $j$, to
+								correctly recognize an item of class $c$ is
+								expressed as $E(j,c)$.
+							</li>
+							<p></p>
+							<li>
+								<b>Voting:</b>
+								Selecting among potentially conflicting opinions from
+								inference engines.
+							</li>
+						</p>
+
+						<aside class="notes">
+							<p>A good choice of effectiveness metric depends on how balanced the data is. Good choices of effectiveness metrics are
+								those resilient to data imbalance</p>
+							<p>Effectiveness metrics can be calculated from data stored in the knowledgebase from processing the training data.</p>
+							<p>Use a probabilistic voting scheme based on effectiveness</p>
+						</aside>
+
+					</section>
+
+					<section>
+						<h3>Voting Scheme - Continued</h3>
+
+						<h7>Weighted Effectiveness, $WE(c)$ for a class $c$</h7>
+						 \[
+						 	WE(c)=\sum_j E(j, c)
+						 \]
+						 <h7>Confidence, $Conf(c)$, for a class $c$</h7>
+						 \[
+						 	Conf(c)=\frac{WE(c)}{\sum\limits_kWE(k)}
+						 \]
+
+						 <aside class="notes">
+							<p>Weighted effectiveness for a class c is the sum of effectiveness of the inference engines that voted for c</p>
+							<p>Confidence for a class c is the weighted effectiveness of c over the weighted effectiveness for all classes that received a vote</p>
+							<p>The class with the greatest confidence wins the vote.</p>
+						 </aside>
+
+					</section>
+
+					<section>
+						<h3>Explainability</h3>
+
+						<ul class="mid">
+							<li>Some properties and transforms have lacking performance</li>
+							<li>Addition of unexplainable inference to improve performance</li>
+							<li>Need a means of quantifying explainability, $Ex(c)$, for a class $c$</li>
+							<li>Each property transform, $j$, has a an explainbility metric $0 \le X_j \le 1$ </li>
+						</ul>
+
+						\[
+						Ex(c)=\frac{\sum{E(j,c)X_j}}{\sum{E(j,c)}}
+						\]
+
+						<aside class="notes">
+							<p>Some property transforms have mediocre results.</p>
+							<p>An unexplainable component (no property no transform) can be added to the system to improve performance</p>
+							<p>Explainability of a property and transform with associated inference engine  j is an assigned metric X_j based on relation to an explainable property.</p>
+							<p>Explainability of a class c is the sum of product of effectiveness and explainability of the transform for the properties voting for c over the sum of all effectiveness for properties voting for c</p>
+						</aside>
+						
+					</section>
+
+					<section>
+
+						<h5>Explanation Routine - XAI Block</h5>
+
+						<ul>
+							<li>Assemble the textual rationale composed of</li>
+							<li>The winning vote with confidence and explainability</li>
+							<li>Present alternatives voted for with confidence and axplainability</li>
+							<li>Common failures based on historical FDR</li>
+						</ul>
+
+					</section>
 
 
 
@@ -602,6 +989,238 @@
 
 
 
+
+
+
+
+
+
+
+
+
+				</section>
+				
+				<section>
+
+					<h7>Property-Based Explainable Architecture</h7>
+
+					<img src="./images/xai-pipeline.svg">
+
+				</section>
+
+				<section>
+
+					<h3>Explainable Results: Character <img src="./images/test-C-1.png" width="56" height="56"></h3>
+
+					<table class="smaller">
+						<tr>
+							<th rules="none" colspan="3"></th>
+							<th colspan="4">Effectiveness</th>
+							<th colspan="4">Explainability</th>
+						</tr>
+						<tr>
+							<th>F<sub>j</sub></th>
+							<th>Property</th>
+							<th>Vote</th>
+							<th>E(j,C)</th>
+							<th>E(j,T)</th>
+							<th>E(j,U)</th>
+							<th>E(j,X)</th>
+							<th>$X_j$</th>
+							<th>$X_j$</th>
+							<th>$X_j$</th>
+							<th>$X_j$</th>
+						</tr>
+						<tr>
+							<td>F<sub>1</sub></td>
+							<td>Stroke</td>
+							<td>C</td>
+							<td>0.964</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>2</sub></td>
+							<td>Circle</td>
+							<td>C</td>
+							<td>0.114</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>3</sub></td>
+							<td>Crossing</td>
+							<td>C</td>
+							<td>0.056</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>4</sub></td>
+							<td>Ellipse</td>
+							<td>T</td>
+							<td></td>
+							<td>0.009</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>5</sub></td>
+							<td>Ell-Cir</td>
+							<td>C</td>
+							<td>0.131</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>6</sub></td>
+							<td>Endpoint</td>
+							<td>C</td>
+							<td>0.574</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>7</sub></td>
+							<td>Enc. Reg.</td>
+							<td>X</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>0.005</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+						</tr>
+						<tr>
+							<td>F<sub>8</sub></td>
+							<td>Line</td>
+							<td>U</td>
+							<td></td>
+							<td></td>
+							<td>0.244</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>9</sub></td>
+							<td>Con. Hull</td>
+							<td>C</td>
+							<td>0.603</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>10</sub></td>
+							<td>Corner</td>
+							<td>C</td>
+							<td>0.369</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1.0</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F<sub>11</sub></td>
+							<td>Unexp.</td>
+							<td>C</td>
+							<td>0.989</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>0.0</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="3" class="smallest">Weight / $\sum{E(j,c)X_j}$</td>
+							<td>3.801</td>
+							<td>0.009</td>
+							<td>0.244</td>
+							<td>0.005</td>
+							<td>2.812</td>
+							<td>0.009</td>
+							<td>0.244</td>
+							<td>0.005</td>
+						</tr>
+						<tr>
+							<td colspan="3">Confidence/Expl</td>
+							<td>73.6%</td>
+							<td>0.02%</td>
+							<td>6.02%</td>
+							<td>0.01%</td>
+							<td>74.0%</td>
+							<td>100%</td>
+							<td>100%</td>
+							<td>100%</td>
+						</tr>
+					</table>
+
+				</section>
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<section>
+					<h1>TODO</h1>
+				</section>
 
 				<section>
 					<h3>CIA Impact Model</h3>
@@ -892,8 +1511,12 @@
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
+				//width: 1920,
+				//height: 1080,
 				//width: 1280,
 				//height: 720,
+				//width: 1440,
+				//height: 900,
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
