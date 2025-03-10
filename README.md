@@ -1,4 +1,8 @@
-# presentation
+# 2025-03-27 presentation
+
+Presentaion for thesis defense.
+
+## notes
 
 Problem with zscaler
 
