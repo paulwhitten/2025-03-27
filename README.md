@@ -1,6 +1,12 @@
 # 2025-03-27 presentation
 
-Presentaion for thesis defense.
+Presentation for thesis defense.
+
+Slides are hosted at:
+
+https://paulwhitten.github.io/2025-03-27/
+
+
 
 ## notes
 
