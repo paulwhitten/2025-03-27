@@ -25,6 +25,6 @@ fs.watchFile(options['input'], (eventType, fileName) => {
       } else {
          console.log("copied")
       }
-      console.log("event:", eventType, "fileName:", fileName);
+      //console.log("event:", eventType, "fileName:", fileName);
    });
 });
