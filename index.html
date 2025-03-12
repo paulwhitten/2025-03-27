@@ -98,8 +98,8 @@
 						<li>Background</li>
 						<li>Property-Based Explainable Method</li>
 						<li>Case-Based Explainable Method</li>
-						<li>Explainable Examples of Handwritten Characters</li>
-						<li>Explainable Detection of Hardware Trojans</li>
+						<li>Handwritten Character Results</li>
+						<li>Hardware Trojan Results</li>
 						<li>Conclusion</li>
 					</ul>
 				</section>
@@ -362,6 +362,12 @@
 					</section>
 
 					<section>
+						<h3>Support Vector Machines</h3>
+
+						TODO
+					</section>
+
+					<section>
 						<h3>XAI Popularity</h3>
 
 						<img src="./images/popularity_phrase_xai.png">
@@ -569,118 +575,135 @@
 					</section>
 
 					<section>
-						<h3>Performance Metrics - Continued</h3>
 
-						<div class="container">
+						<section>
+							<h3>Performance Metrics - Continued</h3>
 
-							<div class="col" style="border-right:1px solid #000;height:600px">
+							<div class="container">
 
-								<br><br>
+								<div class="col" style="border-right:1px solid #000;height:600px">
 
-								<ul class="large">
-									<li>Accuracy = $\frac{TP+TN}{TP+TN+FP+FN}$</li>
-									<br>
-									<li>Precision = $\frac{TP}{TP+FP}$</li>
-									<br>
-									<li>Recall = $\frac{TP}{TP+FN}$</li>
-									<br>
-									<li>Specificity = $\frac{TN}{TN+FP}$</li>
-								</ul>
+									<br><br>
 
-								<!--
-								<hr>
+									<ul class="large">
+										<li>Accuracy = $\frac{TP+TN}{TP+TN+FP+FN}$</li>
+										<br>
+										<li>Precision = $\frac{TP}{TP+FP}$</li>
+										<br>
+										<li>Recall = $\frac{TP}{TP+FN}$</li>
+										<br>
+										<li>Specificity = $\frac{TN}{TN+FP}$</li>
+										<br>
+										<li>FDR = $\frac{FP}{FP+TP}$</li>
+									</ul>
 
-								<div class="smaller">
-									<table  style="border: none;">
+									<!--
+									<hr>
+
+									<div class="smaller">
+										<table  style="border: none;">
+											<tr>
+												<th style="border: none;"></th>
+												<th style="width:25px; border: none;"></th>
+												<th scope="row" colspan="4" style="background-color: lightgray; text-align: center;">Predicted<br>Classes</th>
+											</tr>
 										<tr>
 											<th style="border: none;"></th>
-											<th style="width:25px; border: none;"></th>
-											<th scope="row" colspan="4" style="background-color: lightgray; text-align: center;">Predicted<br>Classes</th>
+											<th style="border: none;"></th>
+											<th style="background-color: papayawhip; text-align: center;">a</th>
+											<th style="background-color: papayawhip; text-align: center;">b</th>
+											<th style="background-color: papayawhip; text-align: center;">c</th>
+											<th style="background-color: papayawhip; text-align: center;">d</th>
 										</tr>
-									<tr>
-										<th style="border: none;"></th>
-										<th style="border: none;"></th>
-										<th style="background-color: papayawhip; text-align: center;">a</th>
-										<th style="background-color: papayawhip; text-align: center;">b</th>
-										<th style="background-color: papayawhip; text-align: center;">c</th>
-										<th style="background-color: papayawhip; text-align: center;">d</th>
-									</tr>
-									<tr>
-										<th scope="col" rowspan="4" style="background-color: lightgray;">Actual<br>Classes</th>
-										<th style="background-color: papayawhip;">a</th>
-										<td style="background-color: lightblue;">TN</td>
-										<td style="background-color: orange;">FP</td>
-										<td style="background-color: lightblue;">TN</td>
-										<td style="background-color: lightblue;">TN</td>
-									</tr>
-									<tr>
-										<th style="background-color: papayawhip;">b</th>
-										<td style="background-color: yellow;">FN</td>
-										<td style="background-color: lightgreen;">TP</td>
-										<td style="background-color: yellow;">FN</td>
-										<td style="background-color: yellow;">FN</td>
-									</tr>
-									<tr>
-										<th style="background-color: papayawhip;">c</th>
-										<td style="background-color: lightblue;">TN</td>
-										<td style="background-color: orange;">FP</td>
-										<td style="background-color: lightblue;">TN</td>
-										<td style="background-color: lightblue;">TN</td>
-									</tr>
-									<tr style="border-bottom: 2px solid black;">
-										<th style="background-color: papayawhip;">d</th>
-										<td style="background-color: lightblue;">TN</td>
-										<td style="background-color: orange;">FP</td>
-										<td style="background-color: lightblue;">TN</td>
-										<td style="background-color: lightblue;">TN</td>
-									</tr>
-									</table>
-									</div>
-									-->
+										<tr>
+											<th scope="col" rowspan="4" style="background-color: lightgray;">Actual<br>Classes</th>
+											<th style="background-color: papayawhip;">a</th>
+											<td style="background-color: lightblue;">TN</td>
+											<td style="background-color: orange;">FP</td>
+											<td style="background-color: lightblue;">TN</td>
+											<td style="background-color: lightblue;">TN</td>
+										</tr>
+										<tr>
+											<th style="background-color: papayawhip;">b</th>
+											<td style="background-color: yellow;">FN</td>
+											<td style="background-color: lightgreen;">TP</td>
+											<td style="background-color: yellow;">FN</td>
+											<td style="background-color: yellow;">FN</td>
+										</tr>
+										<tr>
+											<th style="background-color: papayawhip;">c</th>
+											<td style="background-color: lightblue;">TN</td>
+											<td style="background-color: orange;">FP</td>
+											<td style="background-color: lightblue;">TN</td>
+											<td style="background-color: lightblue;">TN</td>
+										</tr>
+										<tr style="border-bottom: 2px solid black;">
+											<th style="background-color: papayawhip;">d</th>
+											<td style="background-color: lightblue;">TN</td>
+											<td style="background-color: orange;">FP</td>
+											<td style="background-color: lightblue;">TN</td>
+											<td style="background-color: lightblue;">TN</td>
+										</tr>
+										</table>
+										</div>
+										-->
 
-							</div>
-
-							<div class="col">
-
-								<p class="large">Imbalance Ratio (IR)</p>
-
-								<div class="mid">
-								\[
-									IR = \frac{N_{maj}}{N_{min}}
-								\]
 								</div>
 
-								<p class="mid">If IR > 1 the data set is imbalanced</p>
+								<div class="col">
 
-								<hr>
+									<p class="large">Imbalance Ratio (IR)</p>
 
-								<ul class="large">
-									<li>AUC</li>
-									<p></p>
-									<li>F1-Score</li>
-									<p></p>
-									<li>Cohen's Kappa</li>
-									<p></p>
-									<li>Matthew's Correlation Coefficient</li>
-								</ul>
+									<div class="mid">
+									\[
+										IR = \frac{N_{maj}}{N_{min}}
+									\]
+									</div>
+
+									<p class="mid">If IR > 1 the data set is imbalanced</p>
+
+									<hr>
+
+									<ul class="large">
+										<li>AUC</li>
+										<p></p>
+										<li>F1-Score</li>
+										<p></p>
+										<li>Cohen's Kappa</li>
+										<p></p>
+										<li>Matthew's Correlation Coefficient</li>
+									</ul>
+
+								</div>
 
 							</div>
 
-						</div>
+							<aside class="notes">
+								<p>Accuracy represents correct results over all samples</p>
+								<p>Precision tells us of all the predictions for a class, how many were correct.</p>
+								<p>Recall aka sensitivity tells us how many items of an actual class were correctly identified</p>
+								<p>Specificity indicates how well correct negative values are identified from all negative values.</p>
+								<p>False Discovery Rate or FDR give us a way of characterizing the predictions we get wrong and is useful in telling how we have been shown to fail.</p>
+								<p>Imbalance ratio tells us how well the data is balanced.  It is the cardinality of majority class over cardinality of minority class</p>
+								<p>If the imbalance ratio is greater than 1, the data is said to be imbalanced and there are metrics that are resilient to data imbalance</p>
+								<p>AUC - receiver operating characteristic curve.  ROC is plot of TPR (recall) against FPR</p>
+								<p>F-1 score is the harmonic mean of recall and precision. Harmonic mean reciprocal of arithmetic mean</p>
+								<p>Cohen's Kappa was first used to characterize agreement between observers of a psychological experiment.</p>
+								<p>Cohen's Kappa =  (probability of agreement - probability of random agreement) / (1 - probability of random agreement)</p>
+								<p>MCC is Pearson's phi coefficient</p>
+							</aside>
+						</section>
 
-						<aside class="notes">
-							<p>Accuracy represents correct results over all samples</p>
-							<p>Precision tells us of all the predictions for a class, how many were correct.</p>
-							<p>Recall aka sensitivity tells us how many items of an actual class were correctly identified</p>
-							<p>Specificity indicates how well correct negative values are identified from all negative values.</p>
-							<p>Imbalance ratio tells us how well the data is balanced.  It is the cardinality of majority class over cardinality of minority class</p>
-							<p>If the imbalance ratio is greater than 1, the data is said to be imbalanced and there are metrics that are resilient to data imbalance</p>
-							<p>AUC - receiver operating characteristic curve.  ROC is plot of TPR (recall) against FPR</p>
-							<p>F-1 score is the harmonic mean of recall and precision. Harmonic mean reciprocal of arithmetic mean</p>
-							<p>Cohen's Kappa was first used to characterize agreement between observers of a psychological experiment.</p>
-							<p>Cohen's Kappa =  (probability of agreement - probability of random agreement) / (1 - probability of random agreement)</p>
-							<p>MCC is Pearson's phi coefficient</p>
-						</aside>
+						<section>
+							<h7>AUC</h7>
+
+							<img src="./images/skel-fill_auc_4.png" height="300">
+							<img src="./images/ellipse-circle_auc_4.png" height="300">
+							<img src="./images/chull_auc_4.png" height="300">
+
+						</section>
+
+
 					</section>
 
 
@@ -725,51 +748,136 @@
 
 					</section>
 
+					<section> <!--Background Hardware Trojan-->
+
+						<section>
+							<h3>Background Hardware Trojans</h3>
+						</section>
+
+						<section>
+							<h3>CIA Impact Model</h3>
+		
+							<hr>
+		
+							<div class="container">
+								<div class="col" style="border-right:1px solid #000;height:300px">
+									<ul class="mid">
+										<li>Hardware Trojan compromises:
+										</li>
+										<ul>
+											<li>Confidentiality</li>
+											<li>Integrity</li>
+											<li>Availability</li>
+										</ul>
+										of a hardware IP block
+									</ul>
+								</div>
+		
+								<div class="col">
+									<img src="./images/cia-model.svg" background="white">
+								</div>
+							</div>
+		
+							<aside class="notes">
+								<p>HW trojan used to weaken the intellectual property of a hardware design</p>
+								<p>HW trojan does this by compromising the confidentiality, integrity, availability of a system</p>
+								<p>Confidentiality HW trojan could leak sensitive information from the system</p>
+								<p>Availability HW trojan could disrupt the regular operation of HW</p>
+								<p>Integrity HW trojan could intentionally corrupt information in the system</p>
+						</section>
+		
+						<section>
+							<h3>Rare Event Hardware Trojan</h3>
+							
+							<hr>
+		
+							<img src="./images/trojan-model.svg" background="white">
+		
+							<aside class="notes">
+								<p>Rare Event Confidentiality HW trojan in this diagram designed to leak sensitive information on primary output</p>
+								<p>Dashed lines on left represent additional levels of logic gates</p>
+								<p>To make the trojan difficult to detect, intentionally rare input patterns trigger the trojan payload</p>
+								<p>Example for n inputs only 1 in 2^n input patterns trigger the trojan</p>
+								<p>Trigger results in the mux leaking sensitive information on primary out</p>
+							</aside>
+						</section>
+		
+						<section>
+							<h2>Problem</h2>
+							<ul class="mid">
+								<li>Static trojan detection using netlist features</li>
+								<ol>
+									<li>LGFi - Logic gate fanin</li>
+									<li>FFi - Flip-flop input</li>
+									<li>FFo - Flip-flop output</li>
+									<li>PI - Primary input</li>
+									<li>PO - Primary output</li>
+								</ol>
+								<li>Highly imbalanced dataset</li>
+								<li>ML trained to make decisions</li>
+								<li>Trust in the decisions is lacking - <b>Need Explanations</b></li>
+							</ul>
+							<aside class="notes">
+								<p>The problem we approach in this work is the static detection of HW trojans from gate level netlists</p>
+								<p>We do so using the following five features.</p>
+								<p>LGFi - number of logic gate inputs two levels from a net</p>
+								<p>FFi - the number of levels to the nearest flip-flop input</p>
+								<p>FFo - the number of logic levels to the nearest flip-flop output</p>
+								<p>PI - The logic level from a primary input</p>
+								<p>PO - The logic level to a primary output</p>
+								<p>Highly imbalanced dataset 250:1 (normal:trojan nets)</p>
+								<p>Machine learning used to make decisions</p>
+								<p>Trust in decision making is lacking.  We need explanations to establish trust</p>
+							</aside>
+						</section>
+					</section> <!--Background Hardware Trojan-->
+
 
 				<!--</section>-->
 
-				<section>
-					<h3>Methods</h3>
-				</section>
 
-
-
-				<section>
-					<h3>Property-Based Explainable Method</h3>
-
-					<hr>
-
-					<div class="large">
-						<p><b>Intent:</b> Produce a system that can explain
-						decisions to a user in plain terms by reasoning about the
-						system's decisions in relation to explainable
-						properties.</p>
-
-						<p>
-							<b>Explainable Property:</b>
-
-								An attribute of an input sample that may
-								differentiate between classes and provide rationale
-								for a classification decision to a user.
-						</p>
-						<p>
-							<b>Property Transform:</b>
-
-							a property transformation is a function to modify an
-							input sample to bring out an explainable property in the
-							resulting output. A property transformation aims to
-							highlight or exemplify explainable properties in the
-							input.
-						</p>
-					</div>
-
-				</section>
-
-				<section>
+				<section> <!-- Property Based Method -->
 
 					<section>
 
-						<h7>Property-Based Explainable Method Flow</h7>
+						<h3>Property-Based Explainable Method</h3>
+
+					</section>
+
+					<section>
+						<h3>Property-Based Explainable Method</h3>
+	
+						<hr>
+	
+						<div class="large">
+							<p><b>Intent:</b> Produce a system that can explain
+							decisions to a user in plain terms by reasoning about the
+							system's decisions in relation to explainable
+							properties.</p>
+	
+							<p>
+								<b>Explainable Property:</b>
+	
+									An attribute of an input sample that may
+									differentiate between classes and provide rationale
+									for a classification decision to a user.
+							</p>
+							<p>
+								<b>Property Transform:</b>
+	
+								a property transformation is a function to modify an
+								input sample to bring out an explainable property in the
+								resulting output. A property transformation aims to
+								highlight or exemplify explainable properties in the
+								input.
+							</p>
+						</div>
+	
+					</section>
+
+					<section>
+
+						<h7>Property-Based Explainable Method - Flow</h7>
 
 						<img src="./images/pbe-flow-lr.png">
 
@@ -983,699 +1091,843 @@
 
 					</section>
 
+					<section>
 
+						<h7>Property-Based Explainable Architecture</h7>
+	
+						<img src="./images/xai-pipeline.svg">
+	
+					</section>
 
+				</section> <!-- Property Based Method -->
 
+				<section> <!-- Case Based Method -->
 
+					<section>
 
+						<h3>Case-Based Explainable Method</h3>
 
+					</section>
 
+					<section>
+						<h3>Case-Based Explainable Method</h3>
+	
+						<hr>
+	
+						<div class="large">
+							<p>
+								<b>Intent:</b> Produce a system that can explain
+							decisions to a user by providing evidence about like training cases.</p>
+	
+							<p>
+								<b>Inspiration:</b> Work by Caruana et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2232607/">Case-based explanation of non-case-based learning methods</a>.
+								In providing an answer
+							</p>
 
+							<p>
+								Consider training samples as cases. Similar cases that the model was trained on should support a decision.
+							</p>
+							<p>
+								Not explaining the model behavior but what was used to train the model that is like an input.
+							</p>
 
+						</div>
+	
+					</section>
 
+					<section>
 
+						<h7>Case-Based Explainable Method - Flow</h7>
 
+						<br><br>
 
+						<img src="./images/cbe-flow-lr.svg">
 
+					</section>
 
+					<section>
 
+						<div class="container">
 
+							<div class="col" style="border-right:1px solid #000;height:300px">
 
+								<h7>Train ML Model</h7>
 
-				</section>
-				
-				<section>
+								<br>
 
-					<h7>Property-Based Explainable Architecture</h7>
+								<img src="./images/case-train-ml-dot.svg">
 
-					<img src="./images/xai-pipeline.svg">
+							</div>
 
-				</section>
+							<div class="col">
+
+								<h7>Training Index</h7>
+
+								<br>
+
+								<img src="./images/case-training-index.svg">
+
+							</div>
+
+						</div>
+
+						<hr>
+							<h7>Query Scheme</h7>
+
+							<img src="./images/case-query-routine.svg">
+
+					</section>
+
+					<section>
+
+						<h7>Explanation Routine</h7>
+
+						<br>
+
+						<img src="./images/case-explanation.svg" height="200">
+
+						<hr>
+
+						<h7> Weight of Neighbors and Correspondence</h7>
+						
+						<div class="mid">
+
+							<p>
+								$WN(c) = \sum_{i=1}^{c_i \in k} \frac{bf(c)}{(d_i+1.0)^2}$
+							</p>
+							<p></p>
+							<p>
+								$Corr(c) = \frac{WN(c)}{\sum_{j=1}^{c_j \in k}{WN(c_j)}}$
+							</p>
+
+						</div>
+
+					</section>
+
+					<section>
+
+						<h7>Case-Based Explainable Architecture</h7>
+
+						<br><br>
+
+						<img src="./images/cbe-arch.svg" height="400">
+
+					</section>
+
+				</section> <!-- Case Based Method -->
+			
 
 				<section>
 
 					<section>
-						<h3>Explainable Results: Character <img src="./images/test-C-1.png" width="56" height="56"></h3>
-
-						<table class="smaller">
-							<tr>
-								<th rules="none" colspan="3"></th>
-								<th colspan="4">Effectiveness</th>
-								<th colspan="4">Explainability</th>
-							</tr>
-							<tr>
-								<th>F<sub>j</sub></th>
-								<th>Property</th>
-								<th>Vote</th>
-								<th>E(j,C)</th>
-								<th>E(j,T)</th>
-								<th>E(j,U)</th>
-								<th>E(j,X)</th>
-								<th>$Ex(C)$</th>
-								<th>$Ex(T)$</th>
-								<th>$Ex(U)$</th>
-								<th>$Ex(X)$</th>
-							</tr>
-							<tr>
-								<td>F<sub>1</sub></td>
-								<td>Stroke</td>
-								<td>C</td>
-								<td>0.964</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>2</sub></td>
-								<td>Circle</td>
-								<td>C</td>
-								<td>0.114</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>3</sub></td>
-								<td>Crossing</td>
-								<td>C</td>
-								<td>0.056</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>4</sub></td>
-								<td>Ellipse</td>
-								<td>T</td>
-								<td></td>
-								<td>0.009</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>5</sub></td>
-								<td>Ell-Cir</td>
-								<td>C</td>
-								<td>0.131</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>6</sub></td>
-								<td>Endpoint</td>
-								<td>C</td>
-								<td>0.574</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>7</sub></td>
-								<td>Enc. Reg.</td>
-								<td>X</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>0.005</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-							</tr>
-							<tr>
-								<td>F<sub>8</sub></td>
-								<td>Line</td>
-								<td>U</td>
-								<td></td>
-								<td></td>
-								<td>0.244</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>9</sub></td>
-								<td>Con. Hull</td>
-								<td>C</td>
-								<td>0.603</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>10</sub></td>
-								<td>Corner</td>
-								<td>C</td>
-								<td>0.369</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>11</sub></td>
-								<td>Unexp.</td>
-								<td>C</td>
-								<td>0.989</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>0.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3" class="smallest">Weight / $\sum{E(j,c)X_j}$</td>
-								<td>3.801</td>
-								<td>0.009</td>
-								<td>0.244</td>
-								<td>0.005</td>
-								<td>2.812</td>
-								<td>0.009</td>
-								<td>0.244</td>
-								<td>0.005</td>
-							</tr>
-							<tr>
-								<td colspan="3">Confidence/Expl</td>
-								<td>73.6%</td>
-								<td>0.02%</td>
-								<td>6.02%</td>
-								<td>0.01%</td>
-								<td>74.0%</td>
-								<td>100%</td>
-								<td>100%</td>
-								<td>100%</td>
-							</tr>
-						</table>
+						<h3>Handwritten Character Results</h3>
 					</section>
 
 					<section>
-						<h3>TODO Another example Explainable Results: TODO <img src="./images/test-C-1.png" width="56" height="56"></h3>
-
-						<table class="smaller">
-							<tr>
-								<th rules="none" colspan="3"></th>
-								<th colspan="4">Effectiveness</th>
-								<th colspan="4">Explainability</th>
-							</tr>
-							<tr>
-								<th>F<sub>j</sub></th>
-								<th>Property</th>
-								<th>Vote</th>
-								<th>E(j,C)</th>
-								<th>E(j,T)</th>
-								<th>E(j,U)</th>
-								<th>E(j,X)</th>
-								<th>$Ex(C)$</th>
-								<th>$Ex(T)$</th>
-								<th>$Ex(U)$</th>
-								<th>$Ex(X)$</th>
-							</tr>
-							<tr>
-								<td>F<sub>1</sub></td>
-								<td>Stroke</td>
-								<td>C</td>
-								<td>0.964</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>2</sub></td>
-								<td>Circle</td>
-								<td>C</td>
-								<td>0.114</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>3</sub></td>
-								<td>Crossing</td>
-								<td>C</td>
-								<td>0.056</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>4</sub></td>
-								<td>Ellipse</td>
-								<td>T</td>
-								<td></td>
-								<td>0.009</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>5</sub></td>
-								<td>Ell-Cir</td>
-								<td>C</td>
-								<td>0.131</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>6</sub></td>
-								<td>Endpoint</td>
-								<td>C</td>
-								<td>0.574</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>7</sub></td>
-								<td>Enc. Reg.</td>
-								<td>X</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>0.005</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-							</tr>
-							<tr>
-								<td>F<sub>8</sub></td>
-								<td>Line</td>
-								<td>U</td>
-								<td></td>
-								<td></td>
-								<td>0.244</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>9</sub></td>
-								<td>Con. Hull</td>
-								<td>C</td>
-								<td>0.603</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>10</sub></td>
-								<td>Corner</td>
-								<td>C</td>
-								<td>0.369</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>1.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>F<sub>11</sub></td>
-								<td>Unexp.</td>
-								<td>C</td>
-								<td>0.989</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>0.0</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3" class="smallest">Weight / $\sum{E(j,c)X_j}$</td>
-								<td>3.801</td>
-								<td>0.009</td>
-								<td>0.244</td>
-								<td>0.005</td>
-								<td>2.812</td>
-								<td>0.009</td>
-								<td>0.244</td>
-								<td>0.005</td>
-							</tr>
-							<tr>
-								<td colspan="3">Confidence/Expl</td>
-								<td>73.6%</td>
-								<td>0.02%</td>
-								<td>6.02%</td>
-								<td>0.01%</td>
-								<td>74.0%</td>
-								<td>100%</td>
-								<td>100%</td>
-								<td>100%</td>
-							</tr>
-						</table>
-					</section>
-
-				</section>
-
-				<section>
-					<h7>MNIST Aggregate Results</h7>
-
-
-				</section>
-
-				
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<section>
-					<h1>TODO</h1>
-				</section>
-
-				<section>
-					<h3>CIA Impact Model</h3>
-
-					<hr>
-
-					<div class="container">
+						<h5>Property Based Architecture<br>MNIST Aggregate Results</h5>
+						<hr>
+	
+						<div class="container">
+	
 						<div class="col" style="border-right:1px solid #000;height:300px">
-							<ul class="mid">
-								<li>Hardware Trojan compromises:
-								</li>
-								<ul>
-									<li>Confidentiality</li>
-									<li>Integrity</li>
-									<li>Availability</li>
-								</ul>
-								of a hardware IP block
-							</ul>
+	
+						<h7>Accuracy</h7>
+	
+						<table class="smaller" style="border: none;">
+							<tr>
+								<td style="border: none;"></td>
+								<th colspan="3" style="text-align: center;">Architecture</th>
+							</tr>
+							<tr>
+								<th>ML Model Type</th>
+								<th>1 Unexpl.</th>
+								<th>10 Expl.</th>
+								<th>10 Expl.<br>1 Unexpl.</th>
+							</tr>
+							<tr>
+								<td>MLP</td>
+								<td>98.3</td>
+								<td>96.2</td>
+								<td>97.9</td>
+							</tr>
+							<tr>
+								<td>SVM</td>
+								<td>97.9</td>
+								<td>95.4</td>
+								<td>97.3</td>
+							</tr>
+							<tr>
+								<td>CNN</td>
+								<td>99.4</td>
+								<td>97.3</td>
+								<td>98.7</td>
+							</tr>
+							<tr style="border-bottom: 2px solid black;">
+								<td>Resnet50</td>
+								<td>98.9</td>
+								<td>97.6</td>
+								<td>98.8</td>
+							</tr>
+							<!--style="border-bottom: 2px solid black;"-->
+							</table> 
+	
 						</div>
-
+	
 						<div class="col">
-							<img src="./images/cia-model.svg" background="white">
-						</div>
-					</div>
-
-					<aside class="notes">
-						<p>HW trojan used to weaken the intellectual property of a hardware design</p>
-						<p>HW trojan does this by compromising the confidentiality, integrity, availability of a system</p>
-						<p>Confidentiality HW trojan could leak sensitive information from the system</p>
-						<p>Availability HW trojan could disrupt the regular operation of HW</p>
-						<p>Integrity HW trojan could intentionally corrupt information in the system</p>
-				</section>
-
-				<section>
-					<h3>Rare Event Hardware Trojan</h3>
-					
-					<hr>
-
-					<img src="./images/trojan-model.svg" background="white">
-
-					<aside class="notes">
-						<p>Rare Event Confidentiality HW trojan in this diagram designed to leak sensitive information on primary output</p>
-						<p>Dashed lines on left represent additional levels of logic gates</p>
-						<p>To make the trojan difficult to detect, intentionally rare input patterns trigger the trojan payload</p>
-						<p>Example for n inputs only 1 in 2^n input patterns trigger the trojan</p>
-						<p>Trigger results in the mux leaking sensitive information on primary out</p>
-					</aside>
-				</section>
-
-				<section>
-					<h2>Problem</h2>
-					<ul class="mid">
-						<li>Static trojan detection using netlist features</li>
-						<ol>
-							<li>LGFi - Logic gate fanin</li>
-							<li>FFi - Flip-flop input</li>
-							<li>FFo - Flip-flop output</li>
-							<li>PI - Primary input</li>
-							<li>PO - Primary output</li>
-						</ol>
-						<li>Highly imbalanced dataset</li>
-						<li>ML trained to make decisions</li>
-						<li>Trust in the decisions is lacking - <b>Need Explanations</b></li>
-					</ul>
-					<aside class="notes">
-						<p>The problem we approach in this work is the static detection of HW trojans from gate level netlists</p>
-						<p>We do so using the following five features.</p>
-						<p>LGFi - number of logic gate inputs two levels from a net</p>
-						<p>FFi - the number of levels to the nearest flip-flop input</p>
-						<p>FFo - the number of logic levels to the nearest flip-flop output</p>
-						<p>PI - The logic level from a primary input</p>
-						<p>PO - The logic level to a primary output</p>
-						<p>Highly imbalanced dataset 250:1 (normal:trojan nets)</p>
-						<p>Machine learning used to make decisions</p>
-						<p>Trust in decision making is lacking.  We need explanations to establish trust</p>
-					</aside>
-				</section>
-
-				<section>
-					<h2>Contributions</h2>
-					<ul class="mid">
-						<li>Flow for processing netlists and extracting features</li>
-						<li>Property-based explainable architecture</li>
-						<li>Case-based explainable architecture</li>
-						<li>Results of explainable architecture</li>
-						<li>Contrast and comparison of explainable architectures</li>
-					</ul>
-					<aside class="notes">
-						<p></p>
-					</aside>
-				</section>
-
-				<section>
-					<h3>Data Processing</h3>
-
-					<hr>
-
-					<div class="container">
-						
-						<div class="col">
-							<img src="./images/data-processing.svg" background="white" height="400">
-						</div>
-
-						<div class="col" style="border-left:1px solid #000;height:480px">
-							<p class="mid">Training and Test</p>
-							<ul class="mid">
-								<li>15 Trust-hub netlists - 52k entries</li>
-								<li>80% used for training</li>
-								<li>20% used for test</li>
-							</ul>
+						<h7>Average Explainability</h7>
+	
+						<table class="smaller" style="border: none;">
+							<tr>
+								<td style="border: none;"></td>
+								<th colspan="3" style="text-align: center;">Architecture</th>
+							</tr>
+							<tr>
+								<th>ML Model Type</th>
+								<th>1 Unexpl.</th>
+								<th>10 Expl.</th>
+								<th>10 Expl.<br>1 Unexpl.</th>
+							</tr>
+							<tr>
+								<td>MLP</td>
+								<td>98.3</td>
+								<td>96.2</td>
+								<td>97.9</td>
+							</tr>
+							<tr>
+								<td>SVM</td>
+								<td>97.9</td>
+								<td>95.4</td>
+								<td>97.3</td>
+							</tr>
+							<tr>
+								<td>CNN</td>
+								<td>99.4</td>
+								<td>97.3</td>
+								<td>98.7</td>
+							</tr>
+							<tr style="border-bottom: 2px solid black;">
+								<td>Resnet50</td>
+								<td>98.9</td>
+								<td>97.6</td>
+								<td>98.8</td>
+							</tr>
+							<!--style="border-bottom: 2px solid black;"-->
+							</table>
+	
+							</div>
+							</div>
+	
 							<hr>
-							<p class="mid">Data Shape</p>
-							<ul class="mid">
-								<li>Max - &lt;LGFi, ffi, ffo, PI, PO&gt;<br>&lt;42, 10, 15, 10, 15&gt;</li>
-								<li>Duplicates - 96% ~ 41:2</li>
-								<li>Trojan: Non-Trojan - 1:250</li>
-							</ul>
+	
+							<div class="container">
+								<div class="col" style="border-right:1px solid #000;height:200px">
+									<p class="smaller">Unexplainable (Unexp.)</p>
+									<img src="./images/unexp.svg" height="75">
+								</div>
+								<div class="col" style="border-right:1px solid #000;height:200px">
+									<p class="smaller">Explainable (Expl.)</p>
+									<img src="./images/exp.svg" height="100">
+								</div>
+								<div class="col">
+									<p class="smaller">Explainable + Unexplainable</p>
+									<img src="./images/exp-unexp.svg" height="100f">
+								</div>
+							</div>
+					</section>
+
+					<section>
+						<h3>MNIST Explainable Results: Digit <img src="./images/4_4_0.png" width="56" height="56"></h3>
+
+						<table class="smaller">
+							<tr>
+								<th rules="none" colspan="3"></th>
+								<th colspan="3">Effectiveness</th>
+								<th colspan="3">Explainability</th>
+							</tr>
+							<tr>
+								<th>F<sub>j</sub></th>
+								<th>Property</th>
+								<th>Vote</th>
+								<th>E(j,0)</th>
+								<th>E(j,4)</th>
+								<th>E(j,9)</th>
+								<th>$Ex(0)$</th>
+								<th>$Ex(4)$</th>
+								<th>$Ex(9)$</th>
+							</tr>
+							<tr>
+								<td>F<sub>1</sub></td>
+								<td>Stroke</td>
+								<td>4</td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>2</sub></td>
+								<td>Circle</td>
+								<td>0</td>
+								<td>0.039</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>3</sub></td>
+								<td>Crossing</td>
+								<td>0</td>
+								<td>0.018</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>4</sub></td>
+								<td>Ellipse</td>
+								<td>0</td>
+								<td>0.004</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>5</sub></td>
+								<td>Ell-Cir</td>
+								<td>0</td>
+								<td>0.069</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>6</sub></td>
+								<td>Endpoint</td>
+								<td>4</td>
+								<td></td>
+								<td>0.974</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>7</sub></td>
+								<td>Enc. Reg.</td>
+								<td>0</td>
+								<td>0.021</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>8</sub></td>
+								<td>Line</td>
+								<td>9</td>
+								<td></td>
+								<td></td>
+								<td>0.496</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+							</tr>
+							<tr>
+								<td>F<sub>9</sub></td>
+								<td>Con. Hull</td>
+								<td>4</td>
+								<td></td>
+								<td>0.826</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>10</sub></td>
+								<td>Corner</td>
+								<td>4</td>
+								<td></td>
+								<td>0.538</td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>11</sub></td>
+								<td>Unexp.</td>
+								<td>4</td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td>0.0</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="3" class="smallest">Weight / $\sum{E(j,c)X_j}$</td>
+								<td>0.151</td>
+								<td>4.337</td>
+								<td>0.496</td>
+								<td>0.151</td>
+								<td>3.337</td>
+								<td>0.496</td>
+							</tr>
+							<tr>
+								<td colspan="3">Confidence/Expl</td>
+								<td>3.03%</td>
+								<td>87.0%</td>
+								<td>9.96%</td>
+								<td>100.0%</td>
+								<td>76.9%</td>
+								<td>100%</td>
+							</tr>
+						</table>
+					</section>
+
+					<section>
+						<h7>PBE - Response for Digit <img src="./images/4_4_0.png" width="56" height="56"></h7>
+
+						<ul class="mid">
+							<li>
+								Confidence is high, 87%, for interpreting this
+								character as a four due to the stroke, endpoint,
+								convex hull, and corner properties.
+								Explainability was 76.9%. The FDR shows when
+								selecting a four, 1.9% of the time we are
+								incorrect.  The most frequent mistakes are that
+								the digit is a nine 0.9% and a seven 0.3% of the
+								cases.
+							</li>
+							<li>
+								Confidence is low, 9.96%, for interpreting this
+								character as a nine due to the line property.
+								Explainability was 100%. The FDR shows when
+								selecting a nine, 2.6% of the time we are
+								incorrect.  The most frequent mistakes are that
+								the digit is a four 1.4% of the time and an
+								eight 0.5% of the cases.
+							</li>
+							<li>
+								Confidence is low, 3.03% for interpreting this
+								character as a zero due to the ellipse-circle,
+								circle, fill, crossing, and ellipse properties.
+								Explainability was 100%. he FDR shows when
+								selecting a zero, 1.4% of the time we are
+								incorrect. The most frequent mistake is that the
+								digit is an eight 0.6% of the time.
+							</li>
+
+						</ul>
+
+					</section>
+
+					<section>
+
+						<h7>EMNIST Aggregate Results</h7>
+						<hr>
+
+						<div class="mid">
+						Unexplainable<br>
+
+						<img src="./images/unexpl-emnist.png" height="250">
+
+						<br>Explainable<br>
+
+						<img src="./images/expl-emnist.png" height="220">
+
 						</div>
 
-					</div>
-					<aside class="notes">
-						<p>Diagram depicts the flow of data processing from the verilog netlists</p>
-						<p>Circuitgraph is used to parse the netlists</p>
-						<p>A directed graph is constructed</p>
-						<p>five features are extracted</p>
-						<p>Processed 15 of the trust-hum netlists to gather 52,000 samples representing nets in the netlist</p>
-						<p>A random 80% used for training and 20% used to test</p>
-					</aside>
-				</section>
 
-				<section>
-					<h4>Property-Based Explainable Architecture</h4>
 
-					<div class="r-stack">
+					</section>
 
-						<img
-						class="fragment fade-out"
-						data-fragment-index="0"
-						src="./images/general-property-based-xai-arch.svg" background="white" height="350"/>
 
-						<img
-						class="fragment current-visible"
-						data-fragment-index="0"
-						src="./images/property-based-xai-arch.svg" background="white" height="350"/>
-
-					</div>
-
-					<p class="mid">Property = grouping of features</p>
-
-					<aside class="notes">
-						<p>Depicts a general property based explainable architecture</p>
-						<p>Property is a grouping of features that can help explain decision</p> 
-						<p>Input from left</p>
-						<p>First phase is where combination property transforms of the features occurs</p>
-						<p>along with Machine learning analysis to make local decisions</p>
-						<p>Decision making process considers local decisions and suggests a global answer</p>
-						<p>XAI block considers property decisions and provides justification in terms of properties contributing to the decision</p>
-						<p>Knowledgebase is used to gauge effectiveness of properties.</p>
-						<p>A particular implementation of the architecture for 5 properties is depicted.  Note 31 properties.</p>
-					</aside>
-				</section>
-
-				<section>
 					<section>
-						<h4>Property Explainable Example</h4>
-						
-						<p class="mid">Sample</p>
+						<h7>EMNIST Explainable Results: Character <img src="./images/test-C-1.png" width="56" height="56"></h7>
 
-						<img src="./images/example.png" height="80">
+						<table class="smaller">
+							<tr>
+								<th rules="none" colspan="3"></th>
+								<th colspan="4">Effectiveness</th>
+								<th colspan="4">Explainability</th>
+							</tr>
+							<tr>
+								<th>F<sub>j</sub></th>
+								<th>Property</th>
+								<th>Vote</th>
+								<th>E(j,C)</th>
+								<th>E(j,T)</th>
+								<th>E(j,U)</th>
+								<th>E(j,X)</th>
+								<th>$Ex(C)$</th>
+								<th>$Ex(T)$</th>
+								<th>$Ex(U)$</th>
+								<th>$Ex(X)$</th>
+							</tr>
+							<tr>
+								<td>F<sub>1</sub></td>
+								<td>Stroke</td>
+								<td>C</td>
+								<td>0.964</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>2</sub></td>
+								<td>Circle</td>
+								<td>C</td>
+								<td>0.114</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>3</sub></td>
+								<td>Crossing</td>
+								<td>C</td>
+								<td>0.056</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>4</sub></td>
+								<td>Ellipse</td>
+								<td>T</td>
+								<td></td>
+								<td>0.009</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>5</sub></td>
+								<td>Ell-Cir</td>
+								<td>C</td>
+								<td>0.131</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>6</sub></td>
+								<td>Endpoint</td>
+								<td>C</td>
+								<td>0.574</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>7</sub></td>
+								<td>Enc. Reg.</td>
+								<td>X</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>0.005</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+							</tr>
+							<tr>
+								<td>F<sub>8</sub></td>
+								<td>Line</td>
+								<td>U</td>
+								<td></td>
+								<td></td>
+								<td>0.244</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>9</sub></td>
+								<td>Con. Hull</td>
+								<td>C</td>
+								<td>0.603</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>10</sub></td>
+								<td>Corner</td>
+								<td>C</td>
+								<td>0.369</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1.0</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>F<sub>11</sub></td>
+								<td>Unexp.</td>
+								<td>C</td>
+								<td>0.989</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>0.0</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="3" class="smallest">Weight / $\sum{E(j,c)X_j}$</td>
+								<td>3.801</td>
+								<td>0.009</td>
+								<td>0.244</td>
+								<td>0.005</td>
+								<td>2.812</td>
+								<td>0.009</td>
+								<td>0.244</td>
+								<td>0.005</td>
+							</tr>
+							<tr>
+								<td colspan="3">Confidence/Expl</td>
+								<td>73.6%</td>
+								<td>0.02%</td>
+								<td>6.02%</td>
+								<td>0.01%</td>
+								<td>74.0%</td>
+								<td>100%</td>
+								<td>100%</td>
+								<td>100%</td>
+							</tr>
+						</table>
+					</section>
+
+				</section>
+
+				
+
+				
+
+
+
+
+
+
+
+
+
+
+				<section>
+					
+					<section>
+						<h3> Hardware Trojan Results</h3>
+					</section>
+				
+					<section>
+						<h3>Data Processing</h3>
+
+						<hr>
+
+						<div class="container">
+							
+							<div class="col">
+								<img src="./images/data-processing.svg" background="white" height="400">
+							</div>
+
+							<div class="col" style="border-left:1px solid #000;height:480px">
+								<p class="mid">Training and Test</p>
+								<ul class="mid">
+									<li>15 Trust-hub netlists - 52k entries</li>
+									<li>80% used for training</li>
+									<li>20% used for test</li>
+								</ul>
+								<hr>
+								<p class="mid">Data Shape</p>
+								<ul class="mid">
+									<li>Max - &lt;LGFi, ffi, ffo, PI, PO&gt;<br>&lt;42, 10, 15, 10, 15&gt;</li>
+									<li>Duplicates - 96% ~ 41:2</li>
+									<li>Trojan: Non-Trojan - 1:250</li>
+								</ul>
+							</div>
+
+						</div>
+						<aside class="notes">
+							<p>Diagram depicts the flow of data processing from the verilog netlists</p>
+							<p>Circuitgraph is used to parse the netlists</p>
+							<p>A directed graph is constructed</p>
+							<p>five features are extracted</p>
+							<p>Processed 15 of the trust-hum netlists to gather 52,000 samples representing nets in the netlist</p>
+							<p>A random 80% used for training and 20% used to test</p>
+						</aside>
+					</section>
+
+					<section>
+						<h4>Property-Based Explainable Architecture</h4>
+
+						<div class="r-stack">
+
+							<img
+							class="fragment fade-out"
+							data-fragment-index="0"
+							src="./images/general-property-based-xai-arch.svg" background="white" height="350"/>
+
+							<img
+							class="fragment current-visible"
+							data-fragment-index="0"
+							src="./images/property-based-xai-arch.svg" background="white" height="350"/>
+
+						</div>
+
+						<p class="mid">Property = grouping of features</p>
+
+						<aside class="notes">
+							<p>Depicts a general property based explainable architecture</p>
+							<p>Property is a grouping of features that can help explain decision</p> 
+							<p>Input from left</p>
+							<p>First phase is where combination property transforms of the features occurs</p>
+							<p>along with Machine learning analysis to make local decisions</p>
+							<p>Decision making process considers local decisions and suggests a global answer</p>
+							<p>XAI block considers property decisions and provides justification in terms of properties contributing to the decision</p>
+							<p>Knowledgebase is used to gauge effectiveness of properties.</p>
+							<p>A particular implementation of the architecture for 5 properties is depicted.  Note 31 properties.</p>
+						</aside>
+					</section>
+
+					<section>
+						<section>
+							<h4>Property Explainable Example</h4>
+							
+							<p class="mid">Sample</p>
+
+							<img src="./images/example.png" height="80">
+
+							<hr>
+
+							<p class="mid">Output</p>
+
+							<img src="./images/property-example.png">
+
+							
+							<aside class="notes">
+								<p>Property based explainable example from the test set is depicted in this slide</p>
+								<p>The particular values for the 5 features are depicted at the top</p>
+								<p>The sample is a trojan shown in the last column and value of 1</p>
+								<p>Output of the system is depicted in the bottom.</p>
+								<p>A trojan was predicted with 99.6% confidence</p>
+								<p>The properties contributing to the decision are listed in descending order of weight</p>
+								<p>Exlainability is low at 41%  We will see why from the next slide.  Note that all properties are fairly high</p>
+							</aside>
+						</section>
+
+						<section>
+							<h4>Properties</h4>
+							
+							
+							<img src="./images/properties.png" height="500">
+
+							
+							<aside class="notes">
+								<p>This table shows the 31 properties in the system and associated features</p>
+								<p>Identifier in the first column, features in second explainability in third</p>
+								<p>We argue that a property with few features is highly explainable and therefore has a high explability value</p>
+								<p>While many or all features have very low explainability</p>
+								<p>The explainability of 41% from the last slide is a result of combining properties with high feature counts and low explainability in the decision</p>
+							</aside>
+						</section>
+
+					</section>
+
+
+					<section>
+						<h4>Case-Based Explainable Architecture</h4>
+						<img src="./images/case-based-xai-arch.svg" background="white" height="300">
+						<aside class="notes">
+							<p>This diagram depicts the case based architecture</p>
+							<p>Consists of a training index that assists in rapid retrieval of similar cases from the training set</p>
+							<p>and an inference engine implemented as a Support Vector Machine</p>
+							<p>Note that the inference and training index are fairly isolated.  They operate in parallel with relation</p>
+							<p>The explanation block composes case based information by relating neighboring cases from training.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h4>Case Explainable Example</h4>
+						
+						<p>Sample</p>
+
+						<img src="./images/example.png" height="70">
 
 						<hr>
 
 						<p class="mid">Output</p>
 
-						<img src="./images/property-example.png">
+						<!--<div class="container">
+
+							<div class="col" width="100"> -->
+							<p class="medium">SVM - Trojan</p>
+							<!--</div> -->
+
+							<!--<div class="col"> -->
+							<img src="./images/case-example.png" height="250">
+							<!--</div> -->
+
+						<!--</div> -->
 
 						
 						<aside class="notes">
-							<p>Property based explainable example from the test set is depicted in this slide</p>
-							<p>The particular values for the 5 features are depicted at the top</p>
-							<p>The sample is a trojan shown in the last column and value of 1</p>
-							<p>Output of the system is depicted in the bottom.</p>
-							<p>A trojan was predicted with 99.6% confidence</p>
-							<p>The properties contributing to the decision are listed in descending order of weight</p>
-							<p>Exlainability is low at 41%  We will see why from the next slide.  Note that all properties are fairly high</p>
+							<p>This slide depicts the same test sample we saw earlier.</p>
+							<p>The inference engine recognized as a trojan.</p>
+							<p>The output of the case based system is below</p>
+							<p>Four neighboring groups were extracted and are listed by proximity, euclidean distance</p>
+							<p>Distance is the first column, feature values of the group is next, ratio of trojan "t" to non-trojan "n" is shown</p>
+							<p>The next two columns are trojan weight and non-trojan weight</p>
+							<p>A balancing factor is used to overcome the data imbalance</p>
+							<p>In addition to this information, the particular cases from training can be presented with their original context.</p>
 						</aside>
 					</section>
-
-					<section>
-						<h4>Properties</h4>
-						
-						
-						<img src="./images/properties.png" height="500">
-
-						
-						<aside class="notes">
-							<p>This table shows the 31 properties in the system and associated features</p>
-							<p>Identifier in the first column, features in second explainability in third</p>
-							<p>We argue that a property with few features is highly explainable and therefore has a high explability value</p>
-							<p>While many or all features have very low explainability</p>
-							<p>The explainability of 41% from the last slide is a result of combining properties with high feature counts and low explainability in the decision</p>
-						</aside>
-					</section>
-
-				</section>
-
-
-				<section>
-					<h4>Case-Based Explainable Architecture</h4>
-					<img src="./images/case-based-xai-arch.svg" background="white" height="300">
-					<aside class="notes">
-						<p>This diagram depicts the case based architecture</p>
-						<p>Consists of a training index that assists in rapid retrieval of similar cases from the training set</p>
-						<p>and an inference engine implemented as a Support Vector Machine</p>
-						<p>Note that the inference and training index are fairly isolated.  They operate in parallel with relation</p>
-						<p>The explanation block composes case based information by relating neighboring cases from training.</p>
-					</aside>
-				</section>
-
-				<section>
-					<h4>Case Explainable Example</h4>
-					
-					<p>Sample</p>
-
-					<img src="./images/example.png" height="70">
-
-					<hr>
-
-					<p class="mid">Output</p>
-
-					<!--<div class="container">
-
-						<div class="col" width="100"> -->
-						<p class="medium">SVM - Trojan</p>
-						<!--</div> -->
-
-						<!--<div class="col"> -->
-						<img src="./images/case-example.png" height="250">
-						<!--</div> -->
-
-					<!--</div> -->
-
-					
-					<aside class="notes">
-						<p>This slide depicts the same test sample we saw earlier.</p>
-						<p>The inference engine recognized as a trojan.</p>
-						<p>The output of the case based system is below</p>
-						<p>Four neighboring groups were extracted and are listed by proximity, euclidean distance</p>
-						<p>Distance is the first column, feature values of the group is next, ratio of trojan "t" to non-trojan "n" is shown</p>
-						<p>The next two columns are trojan weight and non-trojan weight</p>
-						<p>A balancing factor is used to overcome the data imbalance</p>
-						<p>In addition to this information, the particular cases from training can be presented with their original context.</p>
-					</aside>
 				</section>
 
 
@@ -1683,21 +1935,56 @@
 					<h2>Conclusion</h2>
 
 					<ul class="mid">
-						<li>Explainable properties difficult to elicit from low dimensional space</li>
+						<li>Explainable properties are difficult to elicit from low dimensional space</li>
 						<li>Marginal explainability in property-based architecture</li>
-						<li>Property-based is a system<br>vs. case-based has distinct inference and neighbor</li>
+						<li>Much more involved to implement the property based method</li>
 						<li>Case-based architecture had 94.7% correspondence with inference engine</li>
 						<li>Case-based outperformed the property-based architecture</li>
 					</ul>
 
 					<aside class="notes">
-						<p>Using only five features made it hard to extract explainable properties</p>
+						<p>Using only five features made it hard to extract explainable properties.  Explainable properties better suited for</p>
 						<p>Marginal explainability - low explainability metrics in property based architecture due to large number of features in property</p>
-						<p>Property base system had positives in that it behaved as a system.  Negative in case based was inference separate from cases and neighbor weighting</p>
+						<p>Property based method takes much more effort and time to implement.</p>
 						<p>Case-based architecture agreed with the SVM inference engine a very high percentage of time</p>
 						<p>Cases and references gave compelling rationale for decisions.  Better than combinations of features.</p>
 					</aside>
 					
+				</section>
+
+				<section>
+					<h2>Conclusion - Continued</h2>
+
+					<h7><a href="/#/4">Important User Questions Driving AI</a>:</h7>
+					<br>
+
+
+					<ul class="mid">
+						<li><a href="/#/25/2">Why did you do that?</a></li>
+						<li><a href="/#/25/3">Why not something else?</a></li>
+						<li><a href="/#/25/3">How confident are you?</a></li>
+						<li><a href="/#/25/2">What else did you consider?</a></li>
+						<li><a href="/#/25/2">Are there alternatives?</a></li>
+						<li><a href="/#/25/3">When do you fail?</a></li>
+					</ul>
+
+					<aside class="notes">
+						<p>Recall the important questions driving the need for XAI that XAI should answer...</p>
+						<p>How did these methods and architectures answer the questions?</p>
+					</aside>
+					
+				</section>
+
+				<section>
+					<h3>Future Work</h3>
+
+					<ul>
+						<li>More applications for the methods</li>
+						<li>Scaling the case-based method to larger datasets</li>
+						<li>Expanding the explainable interface for user
+						questions/interrogation - Large Language Models on the
+						knowledgebase or training index</li>
+					</ul>
 				</section>
 
 			</div>
