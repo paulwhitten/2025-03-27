@@ -1,0 +1,192 @@
+2025-03-12 Rehearsal
+
+
+Outline 
+
+Two diverse applications  will illustrate using two application.
+
+Results and methods
+
+Hardware Circuit Trojan Detection Results
+
+-----------------------------
+
+Problem 
+
+NN cannot explain how they inference
+remove mention of weights.
+
+
+
+Remove first and last column of the 
+concept map
+
+Need years on papers
+
+================
+
+AI taxonomy color the left leg.
+
+================
+
+AI taxonomy Architectures and Algorithms
+
+====================
+
+
+Color areas for focus of the work
+
+
+===========================
+
+FF NN
+
+Add:  gives an inference but not explainble
+
+================================
+
+Gives good resuts but does not explain.
+
+======================================
+
+Add years to slides in paren
+
+================================
+
+Slide for ChatGPT
+
+Chat GPT does not explain inference of ANN
+
+How to distinguish
+
+=================================
+
+Confusion matrix get rid of the Pearson example
+
+Groups of father and sons related.
+
+Relationship of son taking the father's vocation.
+High likelihood
+
+=====================================
+
+
+Metrics sensitive to imabnle of training set
+
+
+Right hand col is insenstive to imbalance.
+
+===================================
+
+Move AUC to Results
+
+
+=================================
+
+Handwroting first
+
+move trojan stuff together
+
+
+=======================
+
+
+Add an abstract version of the architecture earlier
+
+
+=======================================
+
+
+Motivation for equation on neighbors
+
+Weigh of neighbors
+
+Spell out correspndence
+
+
+===========================
+
+Remove the slide with 3 case based steps
+
+Remove the "Implement Case Based" from imp routine
+
+Make the color consistent to box
+
+==================================
+
+put explanation routine after case-based exp arch
+
+===========================================
+
+
+move the PBE data rationale to two slides
+
+
+============================================
+
+Trojan 
+
+Get rid of max
+
+Characterioze dataset
+
+MNIST Dens Balanced
+
+very imbalance
+
+Five features instead of Data Shape
+
+=================================
+
+MNIST 
+
+image dataset
+
+balanced data lots of features
+
+============================
+
+
+Newed to put imnalance in the conclusion
+
+Explainability factor should be in conclusions
+
+========================
+
+Conclusion should say case-based outperfromed property
+
+in both MNIST and 
+
+Questions
+
+We successfully addressed these with evidence in links.
+
+In conclusion 4 papers published.
+
+=========================
+
+Delete ANN model slide 
+
+Kill activation functions
+
+Get rid of resnet slide
+
+No SVM
+
+Put the AI Growth in the thesis but rmove from the presentation
+
+Kill CIA Impact model
+
+
+
+========================================
+
+
+
+
+
+
+
+
+
+
