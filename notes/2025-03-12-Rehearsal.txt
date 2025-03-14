@@ -147,7 +147,7 @@ balanced data lots of features
 ============================
 
 
-Newed to put imnalance in the conclusion
+Need to put imbalance in the conclusion
 
 Explainability factor should be in conclusions
 

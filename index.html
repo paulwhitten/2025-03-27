@@ -33,6 +33,12 @@
 			.large {
 				font-size: 35px;
 			}
+			.realbig {
+				font-size: 50px;
+			}
+			.huge {
+				font-size: 60px;
+			}
 			table, td, th, img {
 				border: 2px solid white;
 				border-collapse: collapse;
@@ -70,47 +76,67 @@
 
 				<!-- title slide -->
 				<section>
-					<h3>
+					<h1>
 						Explainable AI Architectures:
-					</h3>
-					<h4>
+					</h1>
+					<h2>
 						Methods, Applications, Examples, and Results
-					</h4>
+					</h2>
 
-					<p class="medium"><a href="https:case.edu">Case Western Reserve University</a></p>
+					<p class="large"><a href="https:case.edu">Case Western Reserve University</a></p>
 				
-					<p class="medium"><a href="https://engineering.case.edu/">Case School of Engineering</a></p>
+					<p class="large"><a href="https://engineering.case.edu/">Case School of Engineering</a></p>
 
-					<p class="medium"><a href="https://engineering.case.edu/electrical-computer-and-systems-engineering">Electrical, Computer, and Systems Engineering</a></p>
+					<p class="large"><a href="https://engineering.case.edu/electrical-computer-and-systems-engineering">Electrical, Computer, and Systems Engineering</a></p>
 					
-					<div class="medium"><a href=mailto:pcw@case.edu>Paul Whitten</a>
+					<div class="large"><a href=mailto:pcw@case.edu>Paul Whitten</a>
 					
-					<p class="medium"><a href="https://paulwhitten.github.io/xai_arch_presentation/">2025-03-27</a></p>
+					<p class="large"><a href="https://paulwhitten.github.io/xai_arch_presentation/">2025-03-27</a></p>
 
 				</section>
 
 				<section>
-					<h2>Outline</h2>
-					<ul>
+					<h1>Outline</h1>
+					<ul class="huge">
 						<li>Introduction</li>
 						<li>Problem</li>
 						<li>Contributions</li>
-						<li>Background</li>
-						<li>Property-Based Explainable Method</li>
-						<li>Case-Based Explainable Method</li>
-						<li>Handwritten Character Results</li>
-						<li>Hardware Trojan Results</li>
+						<li>Background and Related Work</li>
+						<li>Property-Based Explainable (PBE) Method</li>
+						<ul>
+							<li>PBE Handwritten Character Results</li>
+							<li>PBE Hardware Trojan Results</li>
+						</ul>
+						<li>Case-Based Explainable (CBE) Method</li>
+						<ul>
+							<li>CBE Handwritten Character Results</li>
+							<li>CBE Hardware Trojan Character Results</li>
+						</ul>
 						<li>Conclusion</li>
+						<li>Future Work</li>
 					</ul>
+
+					<aside class="notes">
+
+						<p>This is an outline of the presentation</p>
+						<p>First a brief introduction</p>
+						<p>Followed by a problem statement</p>
+						<p>Go over contributions</p>
+						<p>Brief discussion of background and related work</p>
+						<p>Discuss two explainable methods property based and case-based</p>
+						<p>The methods are applied to two diverse applications</p>
+						<p>Talk about conclusions</p>
+						<p>Discuss future work</p>
+					</aside>
 				</section>
 
 				<section>
-					<h2>Introduction</h2>
-					<ul>
+					<h1>Introduction</h1>
+					<ul class="huge">
 						<li>Artificial Intelligence (AI) and Machine Learning (ML) used widely<br>Applications: Business, Medicine, Transportation</li>
-						<li>Lack of trust in AI - ML is an opaque box</li>
-						<li>ML cannot effectively explain or justify decisions</li>
-						<li>Explainable AI (XAI) popularity</li>
+						<li>Lack of trust in AI - models are often an opaque box</li>
+						<li>Many AI systems cannot effectively explain or justify decisions</li>
+						<li>Explainable AI (XAI)</li>
 					</ul>
 					<aside class="notes">
 						<p>
@@ -120,58 +146,37 @@
 						<p>There is a lack of trust in AI as many models act as a black box.</p>
 						<p>ML cannot justify or explain decisions</p>
 						<p>
-							Evidenced by DARPA program for explainable AI (XAI) and extensive GDPR discussions arguing a right to explanations
-							XAI research increase in popularity over recent years.
+							In recent years XAI has gained in popularity. There
+							has been extensive research on XAI and GDPR
+							discussions arguing a right to explanations.
 						</p>
 					</aside>
 				</section>
 
 				<section>
-					<h2>Problem</h2>
-					<ul>
+					<h1>Problem</h1>
+					<ul class="huge">
 						<li>Neural Networks cannot explain their inferences</li>
 						<li>Therefore, there is a lack of trust in these systems</li>
 						<li>XAI systems are an attempt to explain the inference by a trained NN and increase trust in ML systems</li>
-						
 					</ul>
-					<!--
 
-					<li>Handwritten character recognition is used as a
-						benchmark for XAI.<br>Recognize a character class, c, which
-						is a particular digit or letter</li> 
-
-					<p>
-						MNIST and EMNIST
-						<td height="40"><img src="./images/mnist/0-2.png" width="40" height="40" style="border:0px;"></td>
-						<td height="40"><img src="./images/mnist/3_1_0.png" width="40" height="40" style="border:0px;"></td>
-						<td height="40"><img src="./images/2-2.png" width="40" height="40" style="border:0px;"></td>
-						<td height="40"><img src="./images/18_6_1.png" width="40" height="40" style="border:0px;"></td>
-						<td height="40"><img src="./images/8-3.png" width="40" height="40" style="border:0px;"></td>
-						and
-						<td height="40"><img src="./images/14_24_0.png" width="40" height="40" style="border:0px;"></td>
-						<td height="40"><img src="./images/6_26_0.png" width="40" height="40" style="border:0px;"></td>
-						<td height="40"><img src="./images/122_35_4.png" width="40" height="40" style="border:0px;"></td>
-						<td height="40"><img src="./images/21_14_0.png" width="40" height="40" style="border:0px;"></td>
-						<td height="40"><img src="./images/60_37_0.png" width="40" height="40" style="border:0px;"></td>
-					</p>
-					-->
 					<aside class="notes">
-						<p>neural network cannot explain inference.</p>
-						<p>XAI is an attempt to explain inference by trained neural netowrks</p>
-						<p>Use handwritten characters from MNIST and extended MNIST to benchmark results.</p>
-						<p>Problem is to recognize a character class, d</p>
+						<p>Neural networks and many other Machine Learning models cannot explain inferences that they make</p>
+						<p>This brings about a lack of trust in </p>
+						<p>XAI is an attempt to explain inference by trained neural netowrks and increase trust in ML systems.</p>
 					</aside>
 				</section>
 
 				<section>
-					<h3>Comparison</h3>
+					<h2>Comparison</h2>
 					<img src="./images/traditional_ml_xai_future.svg">
 
 					<aside class="notes">
 						<p>Traditional AI at the top of the diagram shows the traditional ML AI flow</p>
 						<p>A system is trained to provide a decision or recommendation</p>
 						<p>A user is left with important unanswered questions causing a lack of trust.</p>
-						<p>The bottom XAI digram is the hope for future XAI systems</p>
+						<p>The bottom XAI diagram is the hope for future XAI systems</p>
 						<p>An explainable model and explainable interface help to answer questions.</p>
 						<p>
 							The user is presented with explanations and data to assist rather than
@@ -181,51 +186,51 @@
 				</section>
 
 				<section>
-					<section>
-						<div class="container">
-							<div class="col" style="border-right:1px solid #000;height:700px">
+					<div class="container">
+						<div class="col" style="border-right:1px solid #000;height:1080px">
 
-								<h3>Contributions</h3>
-								<ul class="mid">
-									<li>Property-Based Explainable (PBE) Method and Architecture</li>
-									<li>Case-Based Explainable (CBE) Method and Architecture</li>
-									<li>Explainability metric - Ex<sub>c</sub></li>
-									<li>Combining explainable and unexplainable components</li>
-									<li>Metric for Effectiveness of a model - E(j, c)</li>
-									<li>A new metric for model performance - E<sub>PARS</sub></li>
-									<li>Communicating when a model can fail - FDR</li>
-									<li>Correspondence metric - Corr</li>
-								</ul>
-							</div>
-
-
-						<div class="col">
-							<img src="./images/method-intro-dot.svg" height="1080">
+							<h2>Contributions</h2>
+							<br>
+							<ul class="realbig">
+								<li>Property-Based Explainable (PBE) Method and Architecture</li>
+								<li>Case-Based Explainable (CBE) Method and Architecture</li>
+								<li>Explainability metric - Ex<sub>c</sub></li>
+								<li>Combining explainable and unexplainable components</li>
+								<li>Metric for Effectiveness of a model - E(j, c)</li>
+								<li>A new metric for model performance - E<sub>PARS</sub></li>
+								<li>Communicating when a model can fail - FDR</li>
+								<li>Correspondence metric - Corr</li>
+							</ul>
 						</div>
 
-						<aside class="notes">
-							<p>The diagram on the right shows a concept map of this work.</p>
-							<p>Listed on the left are some contributions</p>
-							<p>Two methods and explainable architectures are presented. Property and case based.</p>
-							<p>Each method has strengths with type of data and in applying the methods</p>
-							<p>Metrics for explainability of property based</p>
-							<p>Combining explainable components with unexplainable to improve performance</p>
-							<p>Metric to gauge the effectiveness of a model, j, for a particular class, c</p>
-							<p>The epars metric for such effectiveness that is resilient to data imbalance</p>
-							<p>Using data in the knowledgbase from training and testing such as the confusion matrix to show when a system may fail using the false discovery rate.</p>
-							<p>A correspondence metric used in the CBE to show when the training cases agree.</p>
-						</aside>
-					</section>
+
+					<div class="col">
+						<img src="./images/method-intro-dot.svg" height="1080">
+					</div>
+
+					<aside class="notes">
+						<p>The diagram on the right shows a concept map of this work.</p>
+						<p>Listed on the left are some contributions</p>
+						<p>Two methods and explainable architectures are presented. Property and case based.</p>
+						<p>Each method has strengths with type of data and in applying the methods</p>
+						<p>Metrics for explainability of property based</p>
+						<p>Combining explainable components with unexplainable to improve performance</p>
+						<p>Metric to gauge the effectiveness of a model, j, for a particular class, c</p>
+						<p>The EPARS metric for such effectiveness that is resilient to data imbalance</p>
+						<p>Using data in the knowledgbase from training and testing such as the confusion matrix to show when a system may fail using the false discovery rate.</p>
+						<p>A correspondence metric used in the CBE to show when the training cases agree.</p>
+					</aside>
+				</section>
 
 					<section>
-						<h3>Publications</h3>
-						<ul>
+						<h1>Publications</h1>
+						<ul class="realbig">
 							<li>Four IEEE Conference papers and presentations</li>
 							<ul>
-								<li>2021, <a href="https://doi.org/10.1109/NAECON49338.2021.9696413">Explainable Artificial Intelligence Methodology for Handwritten Applications</a></li>
-								<li>2023, <a href="https://doi.org/10.1109/CCWC57344.2023.10099288">Explainable Neural Network Recognition of Handwritten Characters</a></li>
-								<li>2024, <a href="https://doi.org/10.1109/ICMI60790.2024.10586116">An AI Architecture with the Capability to Explain Recognition Results</a></li>
-								<li>2024, <a href="https://doi.org/10.1109/NAECON61878.2024.10670684">An AI Architecture with the Capability to Classify and Explain Hardware Trojans</a></li>
+								<li>2021 - <a href="https://doi.org/10.1109/NAECON49338.2021.9696413">Explainable Artificial Intelligence Methodology for Handwritten Applications</a></li>
+								<li>2023 - <a href="https://doi.org/10.1109/CCWC57344.2023.10099288">Explainable Neural Network Recognition of Handwritten Characters</a></li>
+								<li>2024 - <a href="https://doi.org/10.1109/ICMI60790.2024.10586116">An AI Architecture with the Capability to Explain Recognition Results</a></li>
+								<li>2024 - <a href="https://doi.org/10.1109/NAECON61878.2024.10670684">An AI Architecture with the Capability to Classify and Explain Hardware Trojans</a></li>
 								<li>Working papers for journal submission</li>
 							</ul>
 						</ul>
@@ -233,27 +238,24 @@
 							<p></p>
 						</aside>
 					</section>
-
-					<section>
-						<img src="./images/method-intro-dot.svg" height="1080">
-					</section>
-				</section>
-
-				<!--<section>-->
 					
 					<section>
-						<h3>Background and Related Work</h3>
+						<h1>Background and Related Work</h1>
 						<br>
 						
 					</section>
 
 					<section>
- 						<img src="./images/ai_taxonomy.svg">
+
+						<h2>AI Taxonomy - Capability and Functionality</h2>
+
+ 						<img src="./images/ai_taxonomy.svg" height="700">
 
 						<aside class="notes">
 							<p>This diagram presents a taxonomy of AI based on capability and function</p>
 							<p>Capabilities are weak,  strong, and super</p>
 							<p>Weak can perform purpose built tasks</p>
+							<p>The areas under weak that are shaded are the type of AI covered in this research</p>
 							<p>General can perform at or near human levels</p>
 							<p>Super can perform above human levels of cognition</p>
 							<p>Among the weak or also known as Narrow AI there is additional functionality based on reactive or limited memory functionality</p>
@@ -266,257 +268,202 @@
 
 					<section>
 
-						<img src="./images/ai_taxonomy_algorithms.svg">
+						<h2>AI Taxonomy - Algorithms and Architectures</h2>
+
+						<img src="./images/ai_taxonomy_algorithms.svg" height="800">
 
 						<aside class="notes">
-							<p>AI can further be decomposed by algorithm type</p>
+							<p>AI can further be decomposed by algorithm or architecture type</p>
 							<p>Symbolic AI - expert systems and agents</p>
 							<p>Learning systems - Supervised, Unsupervised, Reinforcement</p>
 							<p>Supervised learning involves adding feedback to the learning process</p>
 							<p>Unsupervised uses no feedback</p>
 							<p>Reinforcement learning involves providing a notion of rewards if positive or punishments if negative. </p>
-							<p>This work primarily focuses on Supervised learning methods.</p>
+							<p>This work primarily focuses on Supervised learning methods tat you see highlighted in the taxonomy.</p>
 						</aside>
 					</section>
 
 					<section>
-						<h3>Artificial Neuron Model</h3>
-						<img src="./images/modern_neuron_model.svg">
+						<h1>Multi-layer Feed Forward Neural Network</h1>
+						<img src="./images/multi_layer_ff_nn.svg" height="700">
+
+						<p>Inference but no explanation</p>
+						
 						<aside class="notes">
-							<p>Evolution of the artificial neuron occurred over time from 1943 McCollough Pitts and Rosenblatt perceptrons</p>
-							<p>Input signals come in from the left as x</p>
-							<p>Associated with each input is a weight, w</p>
-							<p>The product of weight and input are summed in summing junction as s</p>
-							<p>Activation function receives the s and performs a calculation of output</p>
-							<p>Types of activation functions can vary based on desired characteristics.</p> 
+							<p>This is a multi-layer neural network</p>
+							<p>Input comes in at the left</p>
+							<p>Output is at the right</p>
+							<p>A network like this may perform simple binary classification</p>
+							<p>Hidden layers are not connected to inputs or outputs</p>
+							<p>This neural network and others like it can perform inference but provide no explanation</p>
 						</aside>
 					</section>
 
 					<section>
-						<h3>Activation Functions</h3>
-						<hr>
-						<div class="container">
-
-							<div class="col" style="border-right:1px solid #000;height:500px">
-								<h4>Sigmoid</h4>
-								<br>
-
-								<div class="medium">
-									\[
-										\sigma(x) = \frac{1}{1 + e^{-x}}
-									\]
-								</div>
-
-								<img src="./images/sigmoid.png">
-
-
-							</div>
-
-							<div class="col" style="border-right:1px solid #000;height:500px">
-								<h4>Hyperbolic Tangent</h4>
-
-								<div class="medium">
-									\[
-										tanh(x) = \frac{e^x - e^{-x}}{e^x+e^{-x}}
-									\]
-									<br>
-								</div>
-
-								<img src="./images/tanh.png">
-
-							</div>
-
-							<div class="col">
-								<h4>Rectified Linear Unit</h4>
-								
-								<div class="medium">
-									\[
-										relu(x) =
-										\begin{cases}
-											0,& x \leq 0 \\
-											x,& x > 0
-										\end{cases}
-									\]
-								</div>
-
-								<img src="./images/relu.png">
-
-							</div>
-
-							<aside class="notes">
-								<p>Activation function thought of as a squashing function reducing the sum to between 0 and 1 or -1 and 1</p>
-								<p>Non-linear activation can be used to learn complex relationships in data </p>
-								<p>Differentiable functions for gradient based solving methods</p>
-								<p>Sigmoid used historically.  Good for binary classification.</p>
-								<p>Tanh can converge faster, steeper gradient and rang -1 to +1</p>
-								<p>RELU lends to better optimization simpler math operations</p>
-							</aside>
-
-						</div>
-					</section>
-
-
-					<section>
-						<h3>Multi-layer Feed Forward Neural Network</h3>
-						<img src="./images/multi_layer_ff_nn.svg">
-					</section>
-
-					<section>
-						<h3>LeNet-5 CNN Neural Network</h3>
+						<h1>1995 - LeNet-5 CNN Neural Network</h1>
 						<img src="./images/LeNet-5_architecture.svg.png">
 
+						<p>Major improvement in inference performance but still no explanation</p>
+
 						<aside class="notes">
-							<p>Convolutional net uses local connections in convolutionional layers rather than fully connected</p>
+							<p>The neural network architecture depicted here is LeNet-5</p>
+							<p>Convolutional neiral network uses local connections in convolutionional layers rather than fully connected</p>
 							<p>Like convolving a kernel across an image</p>
-							<p>Kernels are designed to detect particular feature in the image</p>
+							<p>Kernels are designed to detect particular feature in the image and activate a neuron in subsequent layers</p>
+							<p>At the time this architecture outperformed other models but still could not explain. </p>
 						</aside>
 					</section>
 
 					<section>
-						<h3>ResNet</h3>
-						<img src="./images/resnet.svg" height="600">
+						<h1>2015 - ResNet</h1>
+						<img src="./images/resnet.svg" height="800">
+
+						<p>Outstanding performance but cannot explain results</p>
 
 						<aside class="notes">
-							<p>Resnet from 2015 with growth of deep learning</p>
-							<p>Deep learning suffered from the input being mostly lost after several layers</p>
+							<p>Growth of deep learning the depth of neural networks was increasing</p>
+							<p>Deep learning suffered from a degradation of accuracy as networks gre deeper</p>
 							<p>Deep residual learning introduced skip layers to reintroduce the input at subsequent layers</p>
+							<p>ResNet was constructed for image processing and won the ImageNet visual recognition challenge</p>
+							<p>Despite the outstanding results, ResNet does not explain</p>
 						</aside>
 					</section>
 
 					<section>
-						<h3>Support Vector Machines</h3>
-
-						TODO
-					</section>
-
-					<section>
-						<h3>Exponential Growth of XAI</h3>
-
-						<img src="./images/popularity_phrase_xai.png">
-
-						<aside class="notes">
-							<b>This chart shows yearly results of searching the term "explainable artificial intelligence" for the indicated years since 2010</b>
-							<b>Note the log y scale</b>
-							<b>14,700 results for 2024</b>
-							<b>9,500 for 2023</b>
-							<b>6000 for 2022</b>
-							<b>Back to 10 in 2010</b>
-						</aside>
-					</section>
-
-					<section>
-						<h3>
+						<h2>
 							XAI Research
-						</h3>
-						<ul class="mid">
+						</h2>
+						<ul class="realbig">
 							<li>1999 - Case-Based Explanation of Non-Case-Based Learning Methods - Caruana et al.</li>
 							<li>2018 - Explainable neural networks based on additive index models - Vaughan et al.</li>
-							<li>2016 - Why should I Trust you - LIME - Marco Tulio Ribeiro et al.</li>
 						</ul>
-						<hr>
-						<p class="mid">
-							LIME superpixel mask for classification as a Bernese mountain dog
-						</p>
-						<img src="./images/lime_image1.png"> <img src="./images/lime_image1_mask.png">
+
+						<img src="./images/xNNarch.png" height="500">
+
 						<aside class="notes">
 							<p>In this 1999 work, medical researchers pose using case based explanations.</p>
 							<p>Provided distance metrics in learned model from activation of hidden units</p>
-							<p>In Vaughan's 2018 work involved layering distinct NNs trained on transforms of the inputs. A layer then505
+							<p>In Vaughan's 2018 work involved projecting inputs to distinct, layered, and unconnected NNs. A layer then
 								combines the outputs of the distinct NNs to perform a prediction</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>XAI Research - LIME</h2>
+
+						<p class="realbig">2016 - Why should I Trust you - LIME - Marco Tulio Ribeiro et al.</p>
+						<hr>
+						<p class="realbig">
+							LIME superpixel mask for classification as a Bernese mountain dog
+						</p>
+						<img src="./images/lime_image1.png" height="300"> <img src="./images/lime_image1_mask.png" height="300">
+						<hr>
+						<p class="realbig">LIME on Handwritten Digits</p>
+						<div class=container>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-0.png" height="80">
+								<img src="./images/lime/pos-neg-0.png" height="80">
+							</div>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-2.png" height="80">
+								<img src="./images/lime/pos-neg-2.png" height="80">
+							</div>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-14.png" height="80">
+								<img src="./images/lime/pos-neg-14.png" height="80">
+							</div>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-4.png" height="80">
+								<img src="./images/lime/pos-neg-4.png" height="80">
+							</div>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-6.png" height="80">
+								<img src="./images/lime/pos-neg-6.png" height="80">
+							</div>
+							<div class="col">
+								<img src="./images/lime/orig-19.png" height="80">
+								<img src="./images/lime/pos-neg-19.png" height="80">
+							</div>
+						</div>
+						<hr>
+						<div class=container>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-7.png" height="80">
+								<img src="./images/lime/pos-neg-7.png" height="80">
+							</div>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-9.png" height="80">
+								<img src="./images/lime/pos-neg-9.png" height="80">
+							</div>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-12.png" height="80">
+								<img src="./images/lime/pos-neg-12.png" height="80">
+							</div>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-16.png" height="80">
+								<img src="./images/lime/pos-neg-16.png" height="80">
+							</div>
+							<div class="col" style="border-right:1px solid #000;height:90px">
+								<img src="./images/lime/orig-8.png" height="80">
+								<img src="./images/lime/pos-neg-8.png" height="80">
+							</div>
+							<div class="col">
+								<img src="./images/lime/orig-15.png" height="80">
+								<img src="./images/lime/pos-neg-15.png" height="80">
+							</div>
+						</div>
+
+						<aside class="notes">
 							<p>LIME is an important work for local interpretable model agnostic explanations.</p>
 							<p>
 								In LIME an image is divided into superpixels and for an input sample the data is perturbed
 								to ascertain the superpixels important for the classification.
 							</p>
+							<p>
+								Example of the important superpixels for detecting an image as a Bernese Mountain dog
+							</p>
+							<p>
+								Examples of LIME on handwritten digits.  These
+								are from the first 20 samples in MNIST. We have
+								12 image pairs that show the original image and
+								then the important superpixels highlighted in
+								pink
+							</p>
+							<p>
+								In some cases the entire image was important.
+								Note the inconsistency in what is important for
+								the same digit class. In some like digits
+								different regions were important.
+							</p>
+							<p>These are not the types of explanations that would build trust.</p>
 						</aside>
+
 					</section>
 
 					<section>
-						<h3>XAI Research - Continued</h3>
-						<ul class="mid">
+						<h2>XAI Research - Continued</h2>
+						<ul class="realbig">
 							<li>2017 - A Unified Approach to Interpreting Model Predictions Lundberg et al. - SHAP</li>
 							<img src="./images/shap_MNIST_Example_3_0.png">
 						</ul>
 						<aside class="notes">
 							<p>Shapley Additive Explanations - SHAP in 2018 Lundberg.</p>
 							<p>Using Shapley values from cooperative game theory as measures of marginal feature importance.</p>
-							<p>Image shows five samples the original image on the left</p>
-							<p>The ten decimal digits are in columns. The red color shows positive, matching pixels in the image for feature importance.</p>
-							<p>Blue color shows negative or detracting values for pixels.</p>
-							<p>More red in the image shows where the match and the pixels that matter.</p>
-							<p>Notes: Shapely values from marginal contribution of each feature from cooperative game theory</p>
+							<p>The figure shows five samples in rows with the the original image on the left</p>
+							<p>The ten decimal digits are in columns. The red color shows positive (shapley values), matching pixels in the image for feature importance.</p>
+							<p>Blue color shows negative or detracting shapley values for pixels.</p>
+							<p>More red in the image shows where there is a match and the particular pixels that matter.</p>
+							<p>Visual explanation better than LIME</p>
 						</aside>
 					</section>
 
 					<section>
-						<h3>Confusion Matrix</h3>
+						<h2>Confusion Matrix - One Versus Others</h2>
 
-						<div class="mid">
-							<table  style="border: none; text-align: center;">
-								<tr>
-									<th style="border: none;"></th>
-									<th style="width:75px; border: none;"></th>
-									<th scope="row" colspan="4" style="background-color: lightgray; text-align: center;">Occupation<br>of Father</th>
-								</tr>
-							<tr>
-								<th style="border: none;"></th>
-								<th style="border: none;"></th>
-								<th style="background-color: papayawhip; width:75px;">Army</th>
-								<th style="background-color: papayawhip; width:75px;">Art</th>
-								<th style="background-color: papayawhip; width:75px;">Law</th>
-								<th style="background-color: papayawhip; width:75px;">Medicine</th>
-							</tr>
-							<tr>
-								<th scope="col" rowspan="4" style="background-color: lightgray;">Occupation<br>of Son</th>
-								<th style="background-color: papayawhip;">Army</th>
-								<td style="text-align: center;">26</td>
-								<td style="text-align: center;">2</td>
-								<td style="text-align: center;">3</td>
-								<td style="text-align: center;">0</td>
-							</tr>
-							<tr>
-								<th style="background-color: papayawhip; width:75px;">Art</th>
-								<td style="text-align: center;">0</td>
-								<td style="text-align: center;">51</td>
-								<td style="text-align: center;">5</td>
-								<td style="text-align: center;">4</td>
-							</tr>
-							<tr>
-								<th style="background-color: papayawhip; width:75px;">Law</th>
-								<td style="text-align: center;">3</td>
-								<td style="text-align: center;">1</td>
-								<td style="text-align: center;">18</td>
-								<td style="text-align: center;">0</td>
-							</tr>
-							<tr style="border-bottom: 2px solid black;">
-								<th style="background-color: papayawhip; width:75px;">Medicine</th>
-								<td style="text-align: center;">0</td>
-								<td style="text-align: center;">0</td>
-								<td style="text-align: center;">1</td>
-								<td style="text-align: center;">20</td>
-							</tr>
-							</table>
-						</div>
 
-						<aside class="notes">
-							<p>Confusion matrix introduced in 1904 by Karl Pearson as a contingency matrix.</p>
-							<p>Visual representation of performance of a classifier.</p>
-							<p>This confusion matrix is adapted from Pearson's work to show how the occupation of a father predicts the vocation of a son</p>
-							<p>Predicted classes are vocations and are typically in columns</p>
-							<p>The actual classes are the vocations in rows</p>
-							<p>Cells in the matrix indicate counts</p>
-							<p>The negative diagonal at the confluence of the same class indicates a successful prediction</p>
-							<p>An confusion matrix for an ideal classifier should have counts in the diagonal and no counts elsewhere</p>
-						</aside>
+								<br>
 
-					</section>
-
-					<section>
-						<h3>Performance Metrics - Confusion Matrix - One Versus Others</h3>
-						<div class="container">
-							<div class="col">
-
-								<table  style="border: none;">
+								<table style="border: none;" class="realbig">
 									<tr>
 										<th style="border: none;"></th>
 										<th style="width:25px; border: none;"></th>
@@ -561,10 +508,7 @@
 								</tr>
 								</table>
 
-							</div>
-
-							<div class="col">
-								<br><br><br><br>
+								<br>
 								<table class="mid">
 									<tr>
 										<th style="background-color: lightgray;">Legend</th>
@@ -582,16 +526,18 @@
 										<td style="background-color: yellow;">False Negatives (FN)</td>
 									</tr>
 								</table>
-							</div>
-						</div>
 
 						<aside class="notes">
+							<p>Confusion matrix is a way of capturing performance of a prediction it captures where a predictor gets confused as well as where it succeeds</p>
+							<p>By performance I refer to how well it predicts</p>
 							<p>The confusion matrix here has four classes a through d</p>
-							<p>This particular confusion matrix is focused on class b and using one versus others</p>
-							<p>True Positives are a correct result in predicting the positive b result</p>
+							<p>Counts are typically stored in the cells</p>
+							<p>This particular confusion matrix is focused on class b and using one versus others approach</p>
+							<p>True Positives are a correct result in predicting the b</p>
 							<p>True Negatives are a correct result of predicting something other than b</p>
 							<p>False Positives are an incorrect result of mistakenly predicting other classes as a b</p>
 							<p>False Negatives are an incorrect result of predicting an actual b as something else</p>
+							<p>Confusion matrix is often used in metrics to gauge performance of ML models. We also relay heavily on the confusion matrix in PDB</p>
 						</aside>
 
 					</section>
@@ -599,15 +545,15 @@
 					<section>
 
 						<section>
-							<h3>Performance Metrics - Continued</h3>
+							<h1>Performance Metrics</h1>
 
 							<div class="container">
 
-								<div class="col" style="border-right:1px solid #000;height:600px">
+								<div class="col" style="border-right:1px solid #000;height:900px">
 
 									<br><br>
 
-									<ul class="large">
+									<ul class="realbig">
 										<li>Accuracy = $\frac{TP+TN}{TP+TN+FP+FN}$</li>
 										<br>
 										<li>Precision = $\frac{TP}{TP+FP}$</li>
@@ -616,7 +562,7 @@
 										<br>
 										<li>Specificity = $\frac{TN}{TN+FP}$</li>
 										<br>
-										<li>FDR = $\frac{FP}{FP+TP}$</li>
+										<li>False Discovery Rate (FDR) = $\frac{FP}{FP+TP}$</li>
 									</ul>
 
 									<!--
@@ -674,19 +620,21 @@
 
 								<div class="col">
 
-									<p class="large">Imbalance Ratio (IR)</p>
+									<br>
 
-									<div class="mid">
+									<p class="realbig">Imbalance Ratio (IR)</p>
+
+									<div class="realbig">
 									\[
 										IR = \frac{N_{maj}}{N_{min}}
 									\]
 									</div>
 
-									<p class="mid">If IR > 1 the data set is imbalanced</p>
+									<p class="realbig">If IR > 1 the data set is imbalanced</p>
 
 									<hr>
 
-									<ul class="large">
+									<ul class="realbig">
 										<li>AUC</li>
 										<p></p>
 										<li>F1-Score</li>
@@ -701,13 +649,18 @@
 							</div>
 
 							<aside class="notes">
+								<p>This slide depicts the metrics we used to gauge performance</p>
+								<p>The metrics on the left are sensitive to imbalanced data</p>
+								<p>False Discovery Rate or FDR give us a way of characterizing the predictions we get wrong and is useful in telling how a model fails in its predictions.</p>
+								<p>Imbalance ratio tells us how well the data is balanced.  It is the cardinality of majority class over cardinality of minority class</p>
+								<p>If the imbalance ratio is greater than 1, the data is said to be imbalanced and there are metrics that are resilient to data imbalance</p>
+								<p>The metrics on the right are resilient to imbalanced data</p>
+								<hr>
 								<p>Accuracy represents correct results over all samples</p>
 								<p>Precision tells us of all the predictions for a class, how many were correct.</p>
 								<p>Recall aka sensitivity tells us how many items of an actual class were correctly identified</p>
 								<p>Specificity indicates how well correct negative values are identified from all negative values.</p>
 								<p>False Discovery Rate or FDR give us a way of characterizing the predictions we get wrong and is useful in telling how we have been shown to fail.</p>
-								<p>Imbalance ratio tells us how well the data is balanced.  It is the cardinality of majority class over cardinality of minority class</p>
-								<p>If the imbalance ratio is greater than 1, the data is said to be imbalanced and there are metrics that are resilient to data imbalance</p>
 								<p>AUC - receiver operating characteristic curve.  ROC is plot of TPR (recall) against FPR</p>
 								<p>F-1 score is the harmonic mean of recall and precision. Harmonic mean reciprocal of arithmetic mean</p>
 								<p>Cohen's Kappa was first used to characterize agreement between observers of a psychological experiment.</p>
@@ -716,412 +669,276 @@
 							</aside>
 						</section>
 
-						<section>
-							<h7>AUC</h7>
-
-							<img src="./images/skel-fill_auc_4.png" height="300">
-							<img src="./images/ellipse-circle_auc_4.png" height="300">
-							<img src="./images/chull_auc_4.png" height="300">
-
-						</section>
-
 
 					</section>
 
 
-					<section>
-						<h3>Handwritten Character Datasets</h3>
 
-						<hr>
+				<!--<section>  Property Based Method -->
 
-						<p>Widely used for <b>BENCHMARKING</b> ML architectures</p>
+				<section>
 
-						<ul>
-							<li>
-								MNIST - 70,000 decimal digits contributed by students and census bureau workers<br>
-								<img src="./images/mnist_samples/0-0.png" width="60"> <img src="./images/mnist_samples/1-0.png" width="60">
-								<img src="./images/mnist_samples/2-0.png" width="60"> <img src="./images/mnist_samples/3-0.png" width="60">
-								<img src="./images/mnist_samples/4-0.png" width="60"> <img src="./images/mnist_samples/5-0.png" width="60">
-								<img src="./images/mnist_samples/6-0.png" width="60"> <img src="./images/mnist_samples/7-0.png" width="60">
-								<img src="./images/mnist_samples/8-0.png" width="60"> <img src="./images/mnist_samples/9-0.png" width="60">
+					<h1>Property-Based Explainable Method</h1>
 
-							</li>
-							<li>
-								EMNIST - Over 800,000 handwritten characters digits, uppercase characters, lowercase characters<br>
-								<img src="./images/emnist_samples/10-0.png" width="60"> <img src="./images/emnist_samples/11-0.png" width="60">
-								<img src="./images/emnist_samples/12-0.png" width="60"> <img src="./images/emnist_samples/13-0.png" width="60">
-								<img src="./images/emnist_samples/14-0.png" width="60"> <img src="./images/emnist_samples/15-0.png" width="60">
-								<img src="./images/emnist_samples/16-0.png" width="60"> <img src="./images/emnist_samples/17-0.png" width="60">
-								<img src="./images/emnist_samples/18-0.png" width="60"> <img src="./images/emnist_samples/19-0.png" width="60"><br>
-								<img src="./images/emnist_samples/36-0.png" width="60"> <img src="./images/emnist_samples/37-0.png" width="60">
-								<img src="./images/emnist_samples/38-0.png" width="60"> <img src="./images/emnist_samples/39-0.png" width="60">
-								<img src="./images/emnist_samples/40-0.png" width="60"> <img src="./images/emnist_samples/41-0.png" width="60">
-								<img src="./images/emnist_samples/42-0.png" width="60"> <img src="./images/emnist_samples/43-0.png" width="60">
-								<img src="./images/emnist_samples/44-0.png" width="60"> <img src="./images/emnist_samples/45-0.png" width="60">
-							</li>
-						</ul>
-						
-						<aside class="notes">
-							<p>Modified National Institute of Standards and Technology database</p>
-							<p>Extended Modified National Institute of Standards and Technology database</p>
-							<p>Best error rates in 2004 of ML on MNIST were around 0.4%</p>
-							<p>Current best error rates on MNIST are about 0.2%</p>
-						</aside>
+				</section>
 
-					</section>
+				<section>
+					<h2>Property-Based Explainable Method</h2>
 
-					<section> <!--Background Hardware Trojan-->
+					<hr>
 
-						<section>
-							<h3>Background Hardware Trojans</h3>
-						</section>
+					<div class="huge">
+						<p><b>Intent:</b> Produce a system that can explain
+						decisions to a user in plain terms by reasoning about the
+						system's decisions in relation to explainable
+						properties.</p>
 
-						<section>
-							<h3>CIA Impact Model</h3>
-		
-							<hr>
-		
-							<div class="container">
-								<div class="col" style="border-right:1px solid #000;height:300px">
-									<ul class="mid">
-										<li>Hardware Trojan compromises:
-										</li>
-										<ul>
-											<li>Confidentiality</li>
-											<li>Integrity</li>
-											<li>Availability</li>
-										</ul>
-										of a hardware IP block
-									</ul>
-								</div>
-		
-								<div class="col">
-									<img src="./images/cia-model.svg" background="white">
-								</div>
-							</div>
-		
-							<aside class="notes">
-								<p>HW trojan used to weaken the intellectual property of a hardware design</p>
-								<p>HW trojan does this by compromising the confidentiality, integrity, availability of a system</p>
-								<p>Confidentiality HW trojan could leak sensitive information from the system</p>
-								<p>Availability HW trojan could disrupt the regular operation of HW</p>
-								<p>Integrity HW trojan could intentionally corrupt information in the system</p>
-						</section>
-		
-						<section>
-							<h3>Rare Event Hardware Trojan</h3>
-							
-							<hr>
-		
-							<img src="./images/trojan-model.svg" background="white">
-		
-							<aside class="notes">
-								<p>Rare Event Confidentiality HW trojan in this diagram designed to leak sensitive information on primary output</p>
-								<p>Dashed lines on left represent additional levels of logic gates</p>
-								<p>To make the trojan difficult to detect, intentionally rare input patterns trigger the trojan payload</p>
-								<p>Example for n inputs only 1 in 2^n input patterns trigger the trojan</p>
-								<p>Trigger results in the mux leaking sensitive information on primary out</p>
-							</aside>
-						</section>
-		
-						<section>
-							<h2>Problem</h2>
-							<ul class="mid">
-								<li>Static trojan detection using netlist features</li>
-								<ol>
-									<li>LGFi - Logic gate fanin</li>
-									<li>FFi - Flip-flop input</li>
-									<li>FFo - Flip-flop output</li>
-									<li>PI - Primary input</li>
-									<li>PO - Primary output</li>
-								</ol>
-								<li>Highly imbalanced dataset</li>
-								<li>ML trained to make decisions</li>
-								<li>Trust in the decisions is lacking - <b>Need Explanations</b></li>
-							</ul>
-							<aside class="notes">
-								<p>The problem we approach in this work is the static detection of HW trojans from gate level netlists</p>
-								<p>We do so using the following five features.</p>
-								<p>LGFi - number of logic gate inputs two levels from a net</p>
-								<p>FFi - the number of levels to the nearest flip-flop input</p>
-								<p>FFo - the number of logic levels to the nearest flip-flop output</p>
-								<p>PI - The logic level from a primary input</p>
-								<p>PO - The logic level to a primary output</p>
-								<p>Highly imbalanced dataset 250:1 (normal:trojan nets)</p>
-								<p>Machine learning used to make decisions</p>
-								<p>Trust in decision making is lacking.  We need explanations to establish trust</p>
-							</aside>
-						</section>
-					</section> <!--Background Hardware Trojan-->
+						<p>
+							<b>Explainable Property:</b>
 
-
-				<!--</section>-->
-
-
-				<section> <!-- Property Based Method -->
-
-					<section>
-
-						<h3>Property-Based Explainable Method</h3>
-
-					</section>
-
-					<section>
-						<h3>Property-Based Explainable Method</h3>
-	
-						<hr>
-	
-						<div class="large">
-							<p><b>Intent:</b> Produce a system that can explain
-							decisions to a user in plain terms by reasoning about the
-							system's decisions in relation to explainable
-							properties.</p>
-	
-							<p>
-								<b>Explainable Property:</b>
-	
-									An attribute of an input sample that may
-									differentiate between classes and provide rationale
-									for a classification decision to a user.
-							</p>
-							<p>
-								<b>Property Transform:</b>
-	
-								a property transformation is a function to modify an
-								input sample to bring out an explainable property in the
-								resulting output. A property transformation aims to
-								highlight or exemplify explainable properties in the
-								input.
-							</p>
-						</div>
-	
-					</section>
-
-					<section>
-
-						<h7>Property-Based Explainable Method - Flow</h7>
-
-						<img src="./images/pbe-flow-lr.png">
-
-					</section>
-					
-
-					<section>
-						<h5>Property-Based Explainability MNIST</h5>
-						<h7>Properties and Transforms</h7>
-						
-						<div class="container">
-							<div class="col">
-							<table class="smaller">
-								<tr>
-									<th>Property</th>
-									<th>Transform</th>
-									<th>Image</th>
-									<th>Trans.</th>
-								</tr>
-								<tr>
-									<td>Stroke</td>
-									<td>Skeleton</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/4-11.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/4-11-skel.png" width="40" height="40"></td>
-								</tr>
-								<tr>
-									<td>Circle</td>
-									<td>Hough Circle</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/6-17.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/6-17-circle.png" width="40" height="40"></td>
-								</tr>
-								<tr>
-									<td>Circle</td>
-									<td>Hough Ellipse</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/0-3.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/0-3-ellipse.png" width="40" height="40"></td>
-								</tr>
-								<tr>
-									<td>Circle</td>
-									<td>Multiple Circle and Ellipse</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/8-4.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/8-4-ellipse-circle.png" width="40" height="40"></td>
-								</tr>
-								<tr>
-									<td>Crossings</td>
-									<td>Intersection</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/4-2.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/4-2-crossing.png" width="40" height="40"></td>
-								</tr>
-							</table>
-							</div>
-	
-							<div class="col">
-							<table class="smaller">
-								<tr>
-									<th>Property</th>
-									<th>Transform</th>
-									<th>Image</th>
-									<th>Trans.</th>
-								</tr>
-								<tr>
-									<td>Endpoints</td>
-									<td>Endpoints</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/2-2.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/2-2-endpoint.png" width="40" height="40"></td>
-								</tr>
-								<tr>
-									<td>Enclosed Region</td>
-									<td>Flood Fill</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/0-2.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/0-2-fill.png" width="40" height="40"></td>
-								</tr>
-								<tr>
-									<td>Enclosed Region</td>
-									<td>Convex Hull</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/0-0-12.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/0-0-12-ch.png" width="40" height="40"></td>
-								</tr>
-								<tr>
-									<td>Line</td>
-									<td>Hough Line</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/7-20.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/7-20-line.png" width="40" height="40"></td>
-								</tr>
-								<tr>
-									<td>Corner</td>
-									<td>Harris Corner</td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/3-18.png" width="40" height="40"></td>
-									<td height="40"><img src="./images/mnist_prop_trans_examples/3-18-corner.png" width="40" height="40"></td>
-								</tr>
-							</table>
-							</div>
-						</div>
-	
-						<aside class="notes">
-							<p>This slide details MNIST transform examples</p>
-							<p>Table divided into two columns for better layout in slide.</p>
-							<p>first column is the property name, second is transform.  Last two columns are the original input
-								and finally th transformed input</p>
-							<p>Several of the transforms are simple digital image processing techniques</p>
-							<p>Stroke property, path followed by the writing implement, achieved by taking the morphological skeleton, one pixel wide
-								connected representation</p>
-							<p>A few transforms related to circles due to matching some digits - small circles like 6 and 9 , multiple circles like 8 - ellipse for zero</p>
-							<p>Crossings/intersection which uses the skeleton and takes any points with more than 2 neighbors</p>
-							<p>Endpoints which is also based on the skeleton and takes points with 1 neighbor.</p>
-							<p>Enclosed regions which use 2 transforms flood fill and convex hull</p>
-							<p>Lines in images via the hough line</p>
-							<p>Inflection points or corners with the harris corner detection algorithm</p>
-						</aside>
-	
-					</section>
-
-					<section>
-						<h7>Transform Training Data</h7>
-						<img src="./images/property-trans-training-db-dot.svg">
-					</section>
-
-					<section>
-						<h7>Train ML Models</h7>
-						<br>
-						<img src="./images/property-ml-training-dot.svg" height="500">
-					</section>
-
-					<section>
-						<h7>Build Knowledgebase</h7>
-						<br>
-						<img src="./images/property-ml-kb-dot.svg" height="500">
-					</section>
-
-					<section>
-						<h3>Voting Scheme</h3>
-
-						<ul class="large">
-							<li>
-								<b>Effectiveness:</b>
-								Characterizes how well an inference engine performs.
-								The effectiveness of an inference engine, $j$, to
-								correctly recognize an item of class $c$ is
-								expressed as $E(j,c)$.
-							</li>
-							<p></p>
-							<li>
-								<b>Voting:</b>
-								Selecting among potentially conflicting opinions from
-								inference engines.
-							</li>
+								An attribute of an input sample that may
+								differentiate between classes and provide rationale
+								for a classification decision to a user.
 						</p>
+						<p>
+							<b>Property Transform:</b>
 
-						<aside class="notes">
-							<p>A good choice of effectiveness metric depends on how balanced the data is. Good choices of effectiveness metrics are
-								those resilient to data imbalance</p>
-							<p>Effectiveness metrics can be calculated from data stored in the knowledgebase from processing the training data.</p>
-							<p>Use a probabilistic voting scheme based on effectiveness</p>
-						</aside>
+							a property transformation is a function to modify an
+							input sample to bring out an explainable property in the
+							resulting output. A property transformation aims to
+							highlight or exemplify explainable properties in the
+							input.
+						</p>
+					</div>
 
-					</section>
+				</section>
 
-					<section>
-						<h3>Voting Scheme - Continued</h3>
+				<section>
 
-						<h7>Weighted Effectiveness, $WE(c)$ for a class $c$</h7>
-						 \[
-						 	WE(c)=\sum_j E(j, c)
-						 \]
-						 <h7>Confidence, $Conf(c)$, for a class $c$</h7>
-						 \[
-						 	Conf(c)=\frac{WE(c)}{\sum\limits_kWE(k)}
-						 \]
+					<h4>Property-Based Explainable Method - Flow</h4>
 
-						 <aside class="notes">
-							<p>Weighted effectiveness for a class c is the sum of effectiveness of the inference engines that voted for c</p>
-							<p>Confidence for a class c is the weighted effectiveness of c over the weighted effectiveness for all classes that received a vote</p>
-							<p>The class with the greatest confidence wins the vote.</p>
-						 </aside>
+					<img src="./images/pbe-flow-lr.png" height="1200">
 
-					</section>
+				</section>
+				
 
-					<section>
-						<h3>Explainability</h3>
+				<section>
+					<h2>Property-Based Explainability MNIST</h2>
+					<h4>Properties and Transforms</h4>
+					
+					<div class="container">
+						<div class="col">
+						<table class="large">
+							<tr>
+								<th>Property</th>
+								<th>Transform</th>
+								<th>Image</th>
+								<th>Trans.</th>
+							</tr>
+							<tr>
+								<td>Stroke</td>
+								<td>Skeleton</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/4-11.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/4-11-skel.png" width="50" height="50"></td>
+							</tr>
+							<tr>
+								<td>Circle</td>
+								<td>Hough Circle</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/6-17.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/6-17-circle.png" width="50" height="50"></td>
+							</tr>
+							<tr>
+								<td>Circle</td>
+								<td>Hough Ellipse</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/0-3.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/0-3-ellipse.png" width="50" height="50"></td>
+							</tr>
+							<tr>
+								<td>Circle</td>
+								<td>Multiple Circle and Ellipse</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/8-4.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/8-4-ellipse-circle.png" width="50" height="50"></td>
+							</tr>
+							<tr>
+								<td>Crossings</td>
+								<td>Intersection</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/4-2.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/4-2-crossing.png" width="50" height="50"></td>
+							</tr>
+						</table>
+						</div>
 
-						<ul class="mid">
-							<li>Some properties and transforms have lacking performance</li>
-							<li>Addition of unexplainable inference to improve performance</li>
-							<li>Need a means of quantifying explainability, $Ex(c)$, for a class $c$</li>
-							<li>Each property transform, $j$, has a an explainbility metric $0 \le X_j \le 1$ </li>
-						</ul>
+						<div class="col">
+						<table class="large">
+							<tr>
+								<th>Property</th>
+								<th>Transform</th>
+								<th>Image</th>
+								<th>Trans.</th>
+							</tr>
+							<tr>
+								<td>Endpoints</td>
+								<td>Endpoints</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/2-2.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/2-2-endpoint.png" width="50" height="50"></td>
+							</tr>
+							<tr>
+								<td>Enclosed Region</td>
+								<td>Flood Fill</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/0-2.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/0-2-fill.png" width="50" height="50"></td>
+							</tr>
+							<tr>
+								<td>Enclosed Region</td>
+								<td>Convex Hull</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/0-0-12.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/0-0-12-ch.png" width="50" height="50"></td>
+							</tr>
+							<tr>
+								<td>Line</td>
+								<td>Hough Line</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/7-20.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/7-20-line.png" width="50" height="50"></td>
+							</tr>
+							<tr>
+								<td>Corner</td>
+								<td>Harris Corner</td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/3-18.png" width="50" height="50"></td>
+								<td height="40"><img src="./images/mnist_prop_trans_examples/3-18-corner.png" width="50" height="50"></td>
+							</tr>
+						</table>
+						</div>
+					</div>
 
+					<aside class="notes">
+						<p>This slide details MNIST transform examples</p>
+						<p>Table divided into two columns for better layout in slide.</p>
+						<p>first column is the property name, second is transform.  Last two columns are the original input
+							and finally th transformed input</p>
+						<p>Several of the transforms are simple digital image processing techniques</p>
+						<p>Stroke property, path followed by the writing implement, achieved by taking the morphological skeleton, one pixel wide
+							connected representation</p>
+						<p>A few transforms related to circles due to matching some digits - small circles like 6 and 9 , multiple circles like 8 - ellipse for zero</p>
+						<p>Crossings/intersection which uses the skeleton and takes any points with more than 2 neighbors</p>
+						<p>Endpoints which is also based on the skeleton and takes points with 1 neighbor.</p>
+						<p>Enclosed regions which use 2 transforms flood fill and convex hull</p>
+						<p>Lines in images via the hough line</p>
+						<p>Inflection points or corners with the harris corner detection algorithm</p>
+					</aside>
+
+				</section>
+
+				<section>
+					<h2>Transform Training Data</h2>
+					<br>
+					<img src="./images/property-trans-training-db-dot.svg" height="800">
+				</section>
+
+				<section>
+					<h2>Train ML Models</h2>
+					<br>
+					<img src="./images/property-ml-training-dot.svg" height="800">
+				</section>
+
+				<section>
+					<h4>Build Knowledgebase</h4>
+					<br>
+					<img src="./images/property-ml-kb-dot.svg" height="800">
+				</section>
+
+				<section>
+					<h3>Voting Scheme</h3>
+
+					<ul class="large">
+						<li>
+							<b>Effectiveness:</b>
+							Characterizes how well an inference engine performs.
+							The effectiveness of an inference engine, $j$, to
+							correctly recognize an item of class $c$ is
+							expressed as $E(j,c)$.
+						</li>
+						<p></p>
+						<li>
+							<b>Voting:</b>
+							Selecting among potentially conflicting opinions from
+							inference engines.
+						</li>
+					</p>
+
+					<aside class="notes">
+						<p>A good choice of effectiveness metric depends on how balanced the data is. Good choices of effectiveness metrics are
+							those resilient to data imbalance</p>
+						<p>Effectiveness metrics can be calculated from data stored in the knowledgebase from processing the training data.</p>
+						<p>Use a probabilistic voting scheme based on effectiveness</p>
+					</aside>
+
+				</section>
+
+				<section>
+					<h3>Voting Scheme - Continued</h3>
+
+					<h7>Weighted Effectiveness, $WE(c)$ for a class $c$</h7>
 						\[
-						Ex(c)=\frac{\sum{E(j,c)X_j}}{\sum{E(j,c)}}
+						WE(c)=\sum_j E(j, c)
+						\]
+						<h7>Confidence, $Conf(c)$, for a class $c$</h7>
+						\[
+						Conf(c)=\frac{WE(c)}{\sum\limits_kWE(k)}
 						\]
 
 						<aside class="notes">
-							<p>Some property transforms have mediocre results.</p>
-							<p>An unexplainable component (no property no transform) can be added to the system to improve performance</p>
-							<p>Explainability of a property and transform with associated inference engine  j is an assigned metric X_j based on relation to an explainable property.</p>
-							<p>Explainability of a class c is the sum of product of effectiveness and explainability of the transform for the properties voting for c over the sum of all effectiveness for properties voting for c</p>
+						<p>Weighted effectiveness for a class c is the sum of effectiveness of the inference engines that voted for c</p>
+						<p>Confidence for a class c is the weighted effectiveness of c over the weighted effectiveness for all classes that received a vote</p>
+						<p>The class with the greatest confidence wins the vote.</p>
 						</aside>
-						
-					</section>
 
-					<section>
+				</section>
 
-						<h5>Explanation Routine - XAI Block</h5>
+				<section>
+					<h3>Explainability</h3>
 
-						<ul>
-							<li>Assemble the textual rationale composed of</li>
-							<li>The winning vote with confidence and explainability</li>
-							<li>Present alternatives voted for with confidence and axplainability</li>
-							<li>Common failures based on historical FDR</li>
-						</ul>
+					<ul class="mid">
+						<li>Some properties and transforms have lacking performance</li>
+						<li>Addition of unexplainable inference to improve performance</li>
+						<li>Need a means of quantifying explainability, $Ex(c)$, for a class $c$</li>
+						<li>Each property transform, $j$, has a an explainbility metric $0 \le X_j \le 1$ </li>
+					</ul>
 
-					</section>
+					\[
+					Ex(c)=\frac{\sum{E(j,c)X_j}}{\sum{E(j,c)}}
+					\]
 
-					<section>
+					<aside class="notes">
+						<p>Some property transforms have mediocre results.</p>
+						<p>An unexplainable component (no property no transform) can be added to the system to improve performance</p>
+						<p>Explainability of a property and transform with associated inference engine  j is an assigned metric X_j based on relation to an explainable property.</p>
+						<p>Explainability of a class c is the sum of product of effectiveness and explainability of the transform for the properties voting for c over the sum of all effectiveness for properties voting for c</p>
+					</aside>
+					
+				</section>
 
-						<h7>Property-Based Explainable Architecture</h7>
-	
-						<img src="./images/xai-pipeline.svg">
-	
-					</section>
+				<section>
 
-				</section> <!-- Property Based Method -->
+					<h5>Explanation Routine - XAI Block</h5>
+
+					<ul>
+						<li>Assemble the textual rationale composed of</li>
+						<li>The winning vote with confidence and explainability</li>
+						<li>Present alternatives voted for with confidence and axplainability</li>
+						<li>Common failures based on historical FDR</li>
+					</ul>
+
+				</section>
+
+				<section>
+
+					<h7>Property-Based Explainable Architecture</h7>
+
+					<img src="./images/xai-pipeline.svg">
+
+				</section>
+
+				<!--</section>  Property Based Method -->
 
 				<section> <!-- Case Based Method -->
 
@@ -1243,6 +1060,47 @@
 
 					<section>
 						<h3>Handwritten Character Results</h3>
+					</section>
+
+					<section>
+						<h3>Handwritten Character Datasets</h3>
+
+						<hr>
+
+						<p>Widely used for <b>BENCHMARKING</b> ML architectures</p>
+
+						<ul>
+							<li>
+								MNIST - 70,000 decimal digits contributed by students and census bureau workers<br>
+								<img src="./images/mnist_samples/0-0.png" width="60"> <img src="./images/mnist_samples/1-0.png" width="60">
+								<img src="./images/mnist_samples/2-0.png" width="60"> <img src="./images/mnist_samples/3-0.png" width="60">
+								<img src="./images/mnist_samples/4-0.png" width="60"> <img src="./images/mnist_samples/5-0.png" width="60">
+								<img src="./images/mnist_samples/6-0.png" width="60"> <img src="./images/mnist_samples/7-0.png" width="60">
+								<img src="./images/mnist_samples/8-0.png" width="60"> <img src="./images/mnist_samples/9-0.png" width="60">
+
+							</li>
+							<li>
+								EMNIST - Over 800,000 handwritten characters digits, uppercase characters, lowercase characters<br>
+								<img src="./images/emnist_samples/10-0.png" width="60"> <img src="./images/emnist_samples/11-0.png" width="60">
+								<img src="./images/emnist_samples/12-0.png" width="60"> <img src="./images/emnist_samples/13-0.png" width="60">
+								<img src="./images/emnist_samples/14-0.png" width="60"> <img src="./images/emnist_samples/15-0.png" width="60">
+								<img src="./images/emnist_samples/16-0.png" width="60"> <img src="./images/emnist_samples/17-0.png" width="60">
+								<img src="./images/emnist_samples/18-0.png" width="60"> <img src="./images/emnist_samples/19-0.png" width="60"><br>
+								<img src="./images/emnist_samples/36-0.png" width="60"> <img src="./images/emnist_samples/37-0.png" width="60">
+								<img src="./images/emnist_samples/38-0.png" width="60"> <img src="./images/emnist_samples/39-0.png" width="60">
+								<img src="./images/emnist_samples/40-0.png" width="60"> <img src="./images/emnist_samples/41-0.png" width="60">
+								<img src="./images/emnist_samples/42-0.png" width="60"> <img src="./images/emnist_samples/43-0.png" width="60">
+								<img src="./images/emnist_samples/44-0.png" width="60"> <img src="./images/emnist_samples/45-0.png" width="60">
+							</li>
+						</ul>
+						
+						<aside class="notes">
+							<p>Modified National Institute of Standards and Technology database</p>
+							<p>Extended Modified National Institute of Standards and Technology database</p>
+							<p>Best error rates in 2004 of ML on MNIST were around 0.4%</p>
+							<p>Current best error rates on MNIST are about 0.2%</p>
+						</aside>
+
 					</section>
 
 					<section>
@@ -1572,8 +1430,6 @@
 
 						</div>
 
-
-
 					</section>
 
 
@@ -1778,11 +1634,88 @@
 
 
 
-
-
-
+				<section>
+					<h3>Background Hardware Trojans</h3>
+				</section>
 
 				<section>
+					<h3>CIA Impact Model</h3>
+
+					<hr>
+
+					<div class="container">
+						<div class="col" style="border-right:1px solid #000;height:300px">
+							<ul class="mid">
+								<li>Hardware Trojan compromises:
+								</li>
+								<ul>
+									<li>Confidentiality</li>
+									<li>Integrity</li>
+									<li>Availability</li>
+								</ul>
+								of a hardware IP block
+							</ul>
+						</div>
+
+						<div class="col">
+							<img src="./images/cia-model.svg" background="white">
+						</div>
+					</div>
+
+					<aside class="notes">
+						<p>HW trojan used to weaken the intellectual property of a hardware design</p>
+						<p>HW trojan does this by compromising the confidentiality, integrity, availability of a system</p>
+						<p>Confidentiality HW trojan could leak sensitive information from the system</p>
+						<p>Availability HW trojan could disrupt the regular operation of HW</p>
+						<p>Integrity HW trojan could intentionally corrupt information in the system</p>
+				</section>
+
+				<section>
+					<h3>Rare Event Hardware Trojan</h3>
+					
+					<hr>
+
+					<img src="./images/trojan-model.svg" background="white">
+
+					<aside class="notes">
+						<p>Rare Event Confidentiality HW trojan in this diagram designed to leak sensitive information on primary output</p>
+						<p>Dashed lines on left represent additional levels of logic gates</p>
+						<p>To make the trojan difficult to detect, intentionally rare input patterns trigger the trojan payload</p>
+						<p>Example for n inputs only 1 in 2^n input patterns trigger the trojan</p>
+						<p>Trigger results in the mux leaking sensitive information on primary out</p>
+					</aside>
+				</section>
+
+				<section>
+					<h2>Problem</h2>
+					<ul class="mid">
+						<li>Static trojan detection using netlist features</li>
+						<ol>
+							<li>LGFi - Logic gate fanin</li>
+							<li>FFi - Flip-flop input</li>
+							<li>FFo - Flip-flop output</li>
+							<li>PI - Primary input</li>
+							<li>PO - Primary output</li>
+						</ol>
+						<li>Highly imbalanced dataset</li>
+						<li>ML trained to make decisions</li>
+						<li>Trust in the decisions is lacking - <b>Need Explanations</b></li>
+					</ul>
+					<aside class="notes">
+						<p>The problem we approach in this work is the static detection of HW trojans from gate level netlists</p>
+						<p>We do so using the following five features.</p>
+						<p>LGFi - number of logic gate inputs two levels from a net</p>
+						<p>FFi - the number of levels to the nearest flip-flop input</p>
+						<p>FFo - the number of logic levels to the nearest flip-flop output</p>
+						<p>PI - The logic level from a primary input</p>
+						<p>PO - The logic level to a primary output</p>
+						<p>Highly imbalanced dataset 250:1 (normal:trojan nets)</p>
+						<p>Machine learning used to make decisions</p>
+						<p>Trust in decision making is lacking.  We need explanations to establish trust</p>
+					</aside>
+				</section>
+
+				<!--<section>-->
 					
 					<section>
 						<h3> Hardware Trojan Results</h3>
@@ -1860,17 +1793,17 @@
 
 					<section>
 						<section>
-							<h4>Property Explainable Example</h4>
+							<h2>Property Explainable Example</h2>
 							
-							<p class="mid">Sample</p>
+							<p class="realbig">Sample</p>
 
-							<img src="./images/example.png" height="80">
+							<img src="./images/example.png" height="150">
 
 							<hr>
 
-							<p class="mid">Output</p>
+							<p class="realbig">Output</p>
 
-							<img src="./images/property-example.png">
+							<img src="./images/property-example.png" height="300">
 
 							
 							<aside class="notes">
@@ -1885,10 +1818,10 @@
 						</section>
 
 						<section>
-							<h4>Properties</h4>
+							<h2>Properties</h2>
 							
 							
-							<img src="./images/properties.png" height="500">
+							<img src="./images/properties.png" height="800">
 
 							
 							<aside class="notes">
@@ -1950,7 +1883,7 @@
 							<p>In addition to this information, the particular cases from training can be presented with their original context.</p>
 						</aside>
 					</section>
-				</section>
+				<!--</section>-->
 
 
 				<section>
@@ -2007,6 +1940,17 @@
 						questions/interrogation - Large Language Models on the
 						knowledgebase or training index</li>
 					</ul>
+				</section>
+
+				<section></section>
+
+				<section>
+					<h7>AUC</h7>
+
+					<img src="./images/skel-fill_auc_4.png" height="500">
+					<img src="./images/ellipse-circle_auc_4.png" height="500">
+					<img src="./images/chull_auc_4.png" height="500">
+
 				</section>
 
 			</div>
