@@ -192,14 +192,14 @@
 							<h2>Contributions</h2>
 							<br>
 							<ul class="realbig">
-								<li>Property-Based Explainable (PBE) Method and Architecture</li>
-								<li>Case-Based Explainable (CBE) Method and Architecture</li>
-								<li>Explainability metric - Ex<sub>c</sub></li>
-								<li>Combining explainable and unexplainable components</li>
-								<li>Metric for Effectiveness of a model - E(j, c)</li>
-								<li>A new metric for model performance - E<sub>PARS</sub></li>
+								<li>PBE Method and Architecture</li>
+								<li>CBE Method and Architecture</li>
+								<li>Explainability metric - $Ex(c)$</li>
+								<li>Combining explainability with unexplainability</li>
+								<li>Metric for Effectiveness of a model - $E(j, c)$</li>
+								<li>A new metric for model performance - $E_{PARS}$</li>
 								<li>Communicating when a model can fail - FDR</li>
-								<li>Correspondence metric - Corr</li>
+								<li>Correspondence metric - $Corr$</li>
 							</ul>
 						</div>
 
@@ -307,7 +307,7 @@
 
 						<aside class="notes">
 							<p>The neural network architecture depicted here is LeNet-5</p>
-							<p>Convolutional neiral network uses local connections in convolutionional layers rather than fully connected</p>
+							<p>Convolutional neural network uses local connections in convolutionional layers rather than fully connected</p>
 							<p>Like convolving a kernel across an image</p>
 							<p>Kernels are designed to detect particular feature in the image and activate a neuron in subsequent layers</p>
 							<p>At the time this architecture outperformed other models but still could not explain. </p>
@@ -537,7 +537,7 @@
 							<p>True Negatives are a correct result of predicting something other than b</p>
 							<p>False Positives are an incorrect result of mistakenly predicting other classes as a b</p>
 							<p>False Negatives are an incorrect result of predicting an actual b as something else</p>
-							<p>Confusion matrix is often used in metrics to gauge performance of ML models. We also relay heavily on the confusion matrix in PDB</p>
+							<p>Confusion matrix is often used in metrics to gauge performance of ML models. We also relay heavily on the confusion matrix in PBE</p>
 						</aside>
 
 					</section>
@@ -949,22 +949,6 @@
 
 				<!--</section>  Property Based Method -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				<!--<section>-->
 
 					<section>
@@ -1329,9 +1313,7 @@
 								incorrect. The most frequent mistake is that the
 								digit is an eight 0.6% of the time.
 							</li>
-
 						</ul>
-
 					</section>
 
 					<section>
@@ -1547,23 +1529,182 @@
 
 				<!--</section>-->
 
+				<section>
+					<h1>Hardware Trojans</h1>
+				</section>
 
+				<section>
+					<h2>Rare Event Hardware Trojan</h2>
+					
+					<hr>
 
+					<img src="./images/trojan-model.svg" background="white" height="400">
 
+					<aside class="notes">
+						<p>Rare Event Confidentiality HW trojan in this diagram designed to leak sensitive information on primary output</p>
+						<p>Dashed lines on left represent additional levels of logic gates</p>
+						<p>To make the trojan difficult to detect, intentionally rare input patterns trigger the trojan payload</p>
+						<p>Example for n inputs only 1 in 2^n input patterns trigger the trojan</p>
+						<p>Trigger results in the mux leaking sensitive information on primary out</p>
+					</aside>
+				</section>
 
+				<section data-visibility="hidden">
+					<h2>Problem</h2>
+					<ul class="realbig">
+						<li>Static trojan detection using netlist features</li>
+						<ol>
+							<li>LGFi - Logic gate fanin</li>
+							<li>FFi - Flip-flop input</li>
+							<li>FFo - Flip-flop output</li>
+							<li>PI - Primary input</li>
+							<li>PO - Primary output</li>
+						</ol>
+						<li>Highly imbalanced dataset</li>
+						<li>ML trained to make decisions</li>
+						<li>Trust in the decisions is lacking - <b>Need Explanations</b></li>
+					</ul>
+					<aside class="notes">
+						<p>The problem we approach in this work is the static detection of HW trojans from gate level netlists</p>
+						<p>We do so using the following five features.</p>
+						<p>LGFi - number of logic gate inputs two levels from a net</p>
+						<p>FFi - the number of levels to the nearest flip-flop input</p>
+						<p>FFo - the number of logic levels to the nearest flip-flop output</p>
+						<p>PI - The logic level from a primary input</p>
+						<p>PO - The logic level to a primary output</p>
+						<p>Highly imbalanced dataset 250:1 (normal:trojan nets)</p>
+						<p>Machine learning used to make decisions</p>
+						<p>Trust in decision making is lacking.  We need explanations to establish trust</p>
+					</aside>
+				</section>
 
+				<!--<section>-->
+					
+				<section data-visibility="hidden">
+					<h3> Hardware Trojan Results</h3>
+				</section>
+			
+				<section>
+					<h2>Data Processing</h2>
 
+					<hr>
 
+					<div class="container">
+						
+						<div class="col">
+							<img src="./images/data-processing.svg" background="white" height="700">
+						</div>
 
+						<div class="col" style="border-left:1px solid #000;height:760px">
+							
+							
+							<p class="realbig">Dataset Characterization</p>
+							<ul class="realbig">
+								<li>15 Trust-hub netlists - 52k entries</li>
+								<li>Five Features</li>
+								<li>Two Classes: Trojan and Non-Trojan</li>
+								<li>Highly Imbalanced data</li>
+								<li>Trojan: Non-Trojan - 1:250</li>
+								<li>Many Duplicates</li>
+							</ul>
+							<hr>
+							<p class="realbig">Training and Test</p>
+							<ul class="realbig">
+								
+								<li>80% used for training</li>
+								<li>20% used for test</li>
+							</ul>
+						</div>
 
+					</div>
+					<aside class="notes">
+						<p>Diagram depicts the flow of data processing from the verilog netlists</p>
+						<p>Circuitgraph is used to parse the netlists</p>
+						<p>A directed graph is constructed</p>
+						<p>features are extracted</p>
+						<p>Characterizing the data...</p>
+						<p>Processed 15 of the trust-hub netlists to gather 52,000 samples representing nets in the netlist</p>
+						<p>It has only five integer features so very dense in feature space.  Because it is dense there are many duplicates</p>
+						<p>Data is highly imbalanced with a 1:250 ratio of trojan to non</p>
+						<p>A random 80% used for training and 20% used to test</p>
+					</aside>
+				</section>
 
+				<section>
+					<h2>PBE Architecture - Trojans</h2>
 
+					<div class="r-stack">
 
+						<img
+						class="fragment fade-out"
+						data-fragment-index="0"
+						src="./images/general-property-based-xai-arch.svg" background="white" height="700"/>
 
+						<img
+						class="fragment current-visible"
+						data-fragment-index="0"
+						src="./images/property-based-xai-arch.svg" background="white" height="600"/>
 
+					</div>
 
+					<p class="mid">Property = grouping of features</p>
 
+					<aside class="notes">
+						<p>Depicts a general property based explainable architecture</p>
+						<p>Property is a grouping of features that can help explain decision</p> 
+						<p>Input from left</p>
+						<p>First phase is where combination property transforms of the features occurs</p>
+						<p>along with Machine learning analysis to make local decisions</p>
+						<p>Decision making process considers local decisions and suggests a global answer</p>
+						<p>XAI block considers property decisions and provides justification in terms of properties contributing to the decision</p>
+						<p>Knowledgebase is used to gauge effectiveness of properties.</p>
+						<p>A particular implementation of the architecture for 5 properties is depicted.  Note 31 properties.</p>
+					</aside>
+				</section>
 
+				<section>
+					<section>
+						<h2>PBE Example</h2>
+						
+						<p class="realbig">Sample</p>
+
+						<img src="./images/example.png" height="150">
+
+						<hr>
+
+						<p class="realbig">Output</p>
+
+						<img src="./images/property-example.png" height="300">
+
+						
+						<aside class="notes">
+							<p>Property based explainable example from the test set is depicted in this slide</p>
+							<p>The particular values for the 5 features are depicted at the top</p>
+							<p>The sample is a trojan shown in the last column and value of 1</p>
+							<p>Output of the system is depicted in the bottom.</p>
+							<p>A trojan was predicted with 99.6% confidence</p>
+							<p>The 15 properties contributing to the decision are listed in descending order of weight</p>
+							<p>Exlainability is low at 41%  We will see why from the next slide.  Note that all properties are fairly high</p>
+						</aside>
+					</section>
+
+					<section>
+						<h2>Properties</h2>
+						
+						
+						<img src="./images/properties.png" height="800">
+
+						
+						<aside class="notes">
+							<p>This table shows the 31 properties in the system and associated features</p>
+							<p>Identifier in the first column, features in second explainability in third</p>
+							<p>We argue that a property with few features is highly explainable and therefore has a high explability value</p>
+							<p>While many or all features have very low explainability</p>
+							<p>The explainability of 41% from the last slide is a result of combining properties with high feature counts and low explainability in the decision</p>
+						</aside>
+					</section>
+
+				</section>
 
 
 				<!--<section>  Case Based Method -->
@@ -1674,7 +1815,7 @@
 
 				<section>
 
-					<h3>Case-Based Explainable Architecture</h3>
+					<h3>CBE Architecture - Handwriting Results</h3>
 
 					<br><br>
 
@@ -1682,198 +1823,37 @@
 
 				</section>
 
-				<!--</section>  Case Based Method -->
-			
-
-				
-
-				
-
-
-
-
-
-
 				<section>
-					<h1>Hardware Trojans</h1>
-				</section>
 
-				<section>
-					<h2>Rare Event Hardware Trojan</h2>
-					
+					<h2>CBE Architecture - Results for Digit <img src="./images/4_4_0.png" width="65" height="65"></h2>
+
+					<div class="container">
+
+						<div class="col" style="border-right:1px solid #000;height:660px">
+							<img src="./images/knn_case_based_mnist_example.png" height="600">
+						</div>
+
+						<div class="col">
+							<br>
+							<img src="./images/case_based_mnist_ex1_knn.png">
+						</div>
+
+					</div>
+
 					<hr>
 
-					<img src="./images/trojan-model.svg" background="white" height="400">
-
-					<aside class="notes">
-						<p>Rare Event Confidentiality HW trojan in this diagram designed to leak sensitive information on primary output</p>
-						<p>Dashed lines on left represent additional levels of logic gates</p>
-						<p>To make the trojan difficult to detect, intentionally rare input patterns trigger the trojan payload</p>
-						<p>Example for n inputs only 1 in 2^n input patterns trigger the trojan</p>
-						<p>Trigger results in the mux leaking sensitive information on primary out</p>
-					</aside>
-				</section>
-
-				<section data-visibility="hidden">
-					<h2>Problem</h2>
-					<ul class="realbig">
-						<li>Static trojan detection using netlist features</li>
-						<ol>
-							<li>LGFi - Logic gate fanin</li>
-							<li>FFi - Flip-flop input</li>
-							<li>FFo - Flip-flop output</li>
-							<li>PI - Primary input</li>
-							<li>PO - Primary output</li>
-						</ol>
-						<li>Highly imbalanced dataset</li>
-						<li>ML trained to make decisions</li>
-						<li>Trust in the decisions is lacking - <b>Need Explanations</b></li>
-					</ul>
-					<aside class="notes">
-						<p>The problem we approach in this work is the static detection of HW trojans from gate level netlists</p>
-						<p>We do so using the following five features.</p>
-						<p>LGFi - number of logic gate inputs two levels from a net</p>
-						<p>FFi - the number of levels to the nearest flip-flop input</p>
-						<p>FFo - the number of logic levels to the nearest flip-flop output</p>
-						<p>PI - The logic level from a primary input</p>
-						<p>PO - The logic level to a primary output</p>
-						<p>Highly imbalanced dataset 250:1 (normal:trojan nets)</p>
-						<p>Machine learning used to make decisions</p>
-						<p>Trust in decision making is lacking.  We need explanations to establish trust</p>
-					</aside>
-				</section>
-
-				<!--<section>-->
+					<p>SVM Prediction: four </p>
 					
-					<section data-visibility="hidden">
-						<h3> Hardware Trojan Results</h3>
-					</section>
+					<p>Correspondence = 92.3%</p>
+
+					<p>Alternatives: nine with 7.7% correspondence</p> 
+
+				</section>
+
+				<!--</section>  Case Based Method -->
 				
 					<section>
-						<h2>Data Processing</h2>
-
-						<hr>
-
-						<div class="container">
-							
-							<div class="col">
-								<img src="./images/data-processing.svg" background="white" height="700">
-							</div>
-
-							<div class="col" style="border-left:1px solid #000;height:760px">
-								
-								
-								<p class="realbig">Dataset Characterization</p>
-								<ul class="realbig">
-									<li>15 Trust-hub netlists - 52k entries</li>
-									<li>Five Features</li>
-									<li>Two Classes: Trojan and Non-Trojan</li>
-									<li>Highly Imbalanced data</li>
-									<li>Trojan: Non-Trojan - 1:250</li>
-									<li>Many Duplicates</li>
-								</ul>
-								<hr>
-								<p class="realbig">Training and Test</p>
-								<ul class="realbig">
-									
-									<li>80% used for training</li>
-									<li>20% used for test</li>
-								</ul>
-							</div>
-
-						</div>
-						<aside class="notes">
-							<p>Diagram depicts the flow of data processing from the verilog netlists</p>
-							<p>Circuitgraph is used to parse the netlists</p>
-							<p>A directed graph is constructed</p>
-							<p>features are extracted</p>
-							<p>Characterizing the data...</p>
-							<p>Processed 15 of the trust-hub netlists to gather 52,000 samples representing nets in the netlist</p>
-							<p>It has only five integer features so very dense in feature space.  Because it is dense there are many duplicates</p>
-							<p>Data is highly imbalanced with a 1:250 ratio of trojan to non</p>
-							<p>A random 80% used for training and 20% used to test</p>
-						</aside>
-					</section>
-
-					<section>
-						<h2>PBE Architecture - Trojans</h2>
-
-						<div class="r-stack">
-
-							<img
-							class="fragment fade-out"
-							data-fragment-index="0"
-							src="./images/general-property-based-xai-arch.svg" background="white" height="700"/>
-
-							<img
-							class="fragment current-visible"
-							data-fragment-index="0"
-							src="./images/property-based-xai-arch.svg" background="white" height="600"/>
-
-						</div>
-
-						<p class="mid">Property = grouping of features</p>
-
-						<aside class="notes">
-							<p>Depicts a general property based explainable architecture</p>
-							<p>Property is a grouping of features that can help explain decision</p> 
-							<p>Input from left</p>
-							<p>First phase is where combination property transforms of the features occurs</p>
-							<p>along with Machine learning analysis to make local decisions</p>
-							<p>Decision making process considers local decisions and suggests a global answer</p>
-							<p>XAI block considers property decisions and provides justification in terms of properties contributing to the decision</p>
-							<p>Knowledgebase is used to gauge effectiveness of properties.</p>
-							<p>A particular implementation of the architecture for 5 properties is depicted.  Note 31 properties.</p>
-						</aside>
-					</section>
-
-					<section>
-						<section>
-							<h2>PBE Example</h2>
-							
-							<p class="realbig">Sample</p>
-
-							<img src="./images/example.png" height="150">
-
-							<hr>
-
-							<p class="realbig">Output</p>
-
-							<img src="./images/property-example.png" height="300">
-
-							
-							<aside class="notes">
-								<p>Property based explainable example from the test set is depicted in this slide</p>
-								<p>The particular values for the 5 features are depicted at the top</p>
-								<p>The sample is a trojan shown in the last column and value of 1</p>
-								<p>Output of the system is depicted in the bottom.</p>
-								<p>A trojan was predicted with 99.6% confidence</p>
-								<p>The 15 properties contributing to the decision are listed in descending order of weight</p>
-								<p>Exlainability is low at 41%  We will see why from the next slide.  Note that all properties are fairly high</p>
-							</aside>
-						</section>
-
-						<section>
-							<h2>Properties</h2>
-							
-							
-							<img src="./images/properties.png" height="800">
-
-							
-							<aside class="notes">
-								<p>This table shows the 31 properties in the system and associated features</p>
-								<p>Identifier in the first column, features in second explainability in third</p>
-								<p>We argue that a property with few features is highly explainable and therefore has a high explability value</p>
-								<p>While many or all features have very low explainability</p>
-								<p>The explainability of 41% from the last slide is a result of combining properties with high feature counts and low explainability in the decision</p>
-							</aside>
-						</section>
-
-					</section>
-
-
-					<section>
-						<h4>CBE Architecture Results</h4>
+						<h4>CBE Architecture - Hardware Trojan Results</h4>
 						<img src="./images/case-based-xai-arch.svg" background="white" height="500">
 						<aside class="notes">
 							<p></p>
@@ -2003,12 +1983,7 @@
 				//height: 900,
 				hash: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ],
-
-				slideNumber: true,
-
-
+				//Laser pointer
 				notes_pointer: {
 					pointer: {
 						size: 15,  // in pixels (scaled like the rest of reveal.js)
@@ -2020,10 +1995,14 @@
 					}
 				},
 
-
 				dependencies: [
 					{src: 'plugins/reveal.js-notes-pointer/notes-pointer.js', async: true}
-				]
+				],
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ],
+
+				slideNumber: true,
 
 			});
 		</script>
