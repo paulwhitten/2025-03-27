@@ -159,12 +159,14 @@
 						<li>Neural Networks cannot explain their inferences</li>
 						<li>Therefore, there is a lack of trust in these systems</li>
 						<li>XAI systems are an attempt to explain the inference by a trained NN and increase trust in ML systems</li>
+						<li>An explanation should be in plain terms</li>
 					</ul>
 
 					<aside class="notes">
 						<p>Neural networks and many other Machine Learning models cannot explain inferences that they make</p>
 						<p>This brings about a lack of trust in </p>
-						<p>XAI is an attempt to explain inference by trained neural netowrks and increase trust in ML systems.</p>
+						<p>XAI is an attempt to explain inference by trained neural networks and increase trust in ML systems.</p>
+						<p>User should be able to interpret the explanation</p>
 					</aside>
 				</section>
 
@@ -293,6 +295,7 @@
 							<p>This is a multi-layer neural network</p>
 							<p>Input comes in at the left</p>
 							<p>Output is at the right</p>
+							<p>Fully connected layers.  Each neuron connected to neurons in the next layer.</p>
 							<p>A network like this may perform simple binary classification</p>
 							<p>Hidden layers are not connected to inputs or outputs</p>
 							<p>This neural network and others like it can perform inference but provide no explanation</p>
@@ -307,7 +310,7 @@
 
 						<aside class="notes">
 							<p>The neural network architecture depicted here is LeNet-5</p>
-							<p>Convolutional neural network uses local connections in convolutionional layers rather than fully connected</p>
+							<p>It is a convolutional neural network that uses local connections in convolutionional layers rather than fully connected</p>
 							<p>Like convolving a kernel across an image</p>
 							<p>Kernels are designed to detect particular feature in the image and activate a neuron in subsequent layers</p>
 							<p>At the time this architecture outperformed other models but still could not explain. </p>
@@ -321,9 +324,10 @@
 						<p>Outstanding performance but cannot explain results</p>
 
 						<aside class="notes">
-							<p>Growth of deep learning the depth of neural networks was increasing</p>
-							<p>Deep learning suffered from a degradation of accuracy as networks gre deeper</p>
-							<p>Deep residual learning introduced skip layers to reintroduce the input at subsequent layers</p>
+							<p>With growth of deep learning in 2015 the depth of neural networks was increasing to 20 - 30 layers.</p>
+							<p>Learning at this depth suffered from a degradation of accuracy as networks grew deeper. Due to the vanishing gradient problem.</p>
+							<p>Deep residual learning (ResNet) introduced skip layers to reintroduce the input at subsequent layers to overcome this problem</p>
+							<p>Deep Residual networks wwere able to be constructed to depths of 50 to over 100 layers</p>
 							<p>ResNet was constructed for image processing and won the ImageNet visual recognition challenge</p>
 							<p>Despite the outstanding results, ResNet does not explain</p>
 						</aside>
@@ -342,8 +346,8 @@
 
 						<aside class="notes">
 							<p>In this 1999 work, medical researchers pose using case based explanations.</p>
-							<p>Provided distance metrics in learned model from activation of hidden units</p>
-							<p>In Vaughan's 2018 work involved projecting inputs to distinct, layered, and unconnected NNs. A layer then
+							<p>Used activation values of hidden units in the model during training to represent a point in space. New samples with like points in space were considered like cases</p>
+							<p>Vaughan's 2018 work involved projecting inputs to distinct, layered, and unconnected NNs. A layer then
 								combines the outputs of the distinct NNs to perform a prediction</p>
 						</aside>
 					</section>
@@ -537,7 +541,7 @@
 							<p>True Negatives are a correct result of predicting something other than b</p>
 							<p>False Positives are an incorrect result of mistakenly predicting other classes as a b</p>
 							<p>False Negatives are an incorrect result of predicting an actual b as something else</p>
-							<p>Confusion matrix is often used in metrics to gauge performance of ML models. We also relay heavily on the confusion matrix in PBE</p>
+							<p>Confusion matrix is often used in metrics to gauge performance of ML models. We also rely heavily on the confusion matrix in PBE</p>
 						</aside>
 
 					</section>
@@ -715,15 +719,28 @@
 
 				<section>
 
-					<h3>PBE Method - Flow</h3>
+					<h3>PBE Method - Steps</h3>
 
 					<img src="./images/pbe-flow-lr.png">
+
+					<aside class="notes">
+
+					</aside>
 				</section>
 
 				<section>
 					<h3>PBE Architecture - Goal of Method</h3>
 
 					<img src="./images/pbe_arch_general.svg">
+
+					<aside class="notes">
+						<p>This is the PBE architecture.</p>
+						<p>Composed from artifacts produced in following the PBE method.</p>
+						<p>Each property and transform has an inference engine, trained model that provides an opinion</p>
+						<p>We call these distinct opinions incident on the decision making process pre-decision flows.</p>
+						<p>Decision making process selects among the opinions.</p>
+						<p>Output of the system is decision, confidence, explanation, explainability, when the system has been shown to fail, alternatives.</p>
+					</aside>
 
 				</section>
 				
@@ -857,18 +874,19 @@
 
 					<ul class="REALBIG">
 						<li>
+							<b>Voting:</b>
+							Selecting among potentially conflicting opinions from
+							inference engines.
+						</li>
+						<p></p>
+						<li>
 							<b>Effectiveness:</b>
 							Characterizes how well an inference engine performs.
 							The effectiveness of an inference engine, $j$, to
 							correctly recognize an item of class $c$ is
 							expressed as $E(j,c)$.
 						</li>
-						<p></p>
-						<li>
-							<b>Voting:</b>
-							Selecting among potentially conflicting opinions from
-							inference engines.
-						</li>
+						
 					</ul>
 
 					<hr>
@@ -876,6 +894,8 @@
 					<img src="./images/property-voter-dot.png">
 
 					<aside class="notes">
+						<p>Voting involves selection among potentially conflicting opinions from the flows</p>
+						<p>Selecting among flow opinions is based on metrics gauging effectiveness of the</p>
 						<p>A good choice of effectiveness metric depends on how balanced the data is. Good choices of effectiveness metrics are
 							those resilient to data imbalance</p>
 						<p>Effectiveness metrics can be calculated from data stored in the knowledgebase from processing the training data.</p>
@@ -1745,7 +1765,7 @@
 				<section>
 				<section>
 
-					<h3>CBE Method - Flow</h3>
+					<h3>CBE Method - Steps</h3>
 
 					<br><br>
 
@@ -1754,6 +1774,8 @@
 				</section>
 
 				<section>
+
+					<h2>CBE - Steps Detail</h2>
 
 					<div class="container">
 
