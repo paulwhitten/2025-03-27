@@ -1545,6 +1545,51 @@
 							</tr>
 						</table>
 					</section>
+
+					<section>
+
+						<h2>Metrics and PBE</h2>
+
+						<hr>
+
+						<div class="container">
+
+							<div class="col" style="border-right:1px solid #000;height:900px">
+
+								<p class="realbig">
+									$E_{PARS}$ as Effectiveness
+								</p>
+
+								<br><br>
+
+								<p class="large">
+									\[
+										E_{PARS} = P \cdot ACC \cdot R \cdot S \\
+									\]
+								</p>
+
+								<p class="large">
+									$\frac{TN {\cdot} TP^3+TN^2 {\cdot} TP^2}{(TN{+}FP)(TP{+}FP)(TP{+}FN)(TP{+}TN{+}FP{+}FN)}$
+								</p>
+
+							</div>
+
+							<div class="col">
+								<p class="large">Performance of Metrics as Effectiveness on Handwriting</p>
+								<img src="./images/metrics_table.png" height="800">
+							</div>
+
+						</div>
+
+						<aside class="notes">
+							<p>Experimenting with combinations of simple metrics, we came across the product of precision, accuracy, recall and specificity</p>
+							<p>You see the expansion of EPARS here on the left.</p>
+							<p>The right shows a table representing the performance aggregate accuracy of the PBE system using various effectiveness metrics.</p>
+						</aside>
+
+
+					</section>
+
 					</section>
 
 				<!--</section>-->
