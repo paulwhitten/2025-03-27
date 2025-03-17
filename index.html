@@ -327,7 +327,7 @@
 							<p>With growth of deep learning in 2015 the depth of neural networks was increasing to 20 - 30 layers.</p>
 							<p>Learning at this depth suffered from a degradation of accuracy as networks grew deeper. Due to the vanishing gradient problem.</p>
 							<p>Deep residual learning (ResNet) introduced skip layers to reintroduce the input at subsequent layers to overcome this problem</p>
-							<p>Deep Residual networks wwere able to be constructed to depths of 50 to over 100 layers</p>
+							<p>Deep Residual networks were able to be constructed to depths of 50 to over 100 layers</p>
 							<p>ResNet was constructed for image processing and won the ImageNet visual recognition challenge</p>
 							<p>Despite the outstanding results, ResNet does not explain</p>
 						</aside>
@@ -349,13 +349,17 @@
 							<p>Used activation values of hidden units in the model during training to represent a point in space. New samples with like points in space were considered like cases</p>
 							<p>Vaughan's 2018 work involved projecting inputs to distinct, layered, and unconnected NNs. A layer then
 								combines the outputs of the distinct NNs to perform a prediction</p>
+							<p>
+								Using such an architecture, the work showed that the distinct NNs could learn functions h1(x) through hk(x) that when combined
+								gave the desired function that modeled the desired f(x)
+							</p>
 						</aside>
 					</section>
 
 					<section>
 						<h2>XAI Research - LIME</h2>
 
-						<p class="realbig">2016 - Why should I Trust you - LIME - Marco Tulio Ribeiro et al.</p>
+						<p class="realbig">2016 - Why should I Trust you - Marco Tulio Ribeiro et al. - LIME</p>
 						<hr>
 						<p class="realbig">
 							LIME superpixel mask for classification as a Bernese mountain dog
@@ -420,15 +424,15 @@
 						<aside class="notes">
 							<p>LIME is an important work for local interpretable model agnostic explanations.</p>
 							<p>
-								In LIME an image is divided into superpixels and for an input sample the data is perturbed
-								to ascertain the superpixels important for the classification.
+								In LIME an image is divided into superpixels and for an input sample and prediction, the data is perturbed
+								to ascertain the superpixels important for the classification.  They change superpixels that alter the prediction.
 							</p>
 							<p>
 								Example of the important superpixels for detecting an image as a Bernese Mountain dog
 							</p>
 							<p>
 								Examples of LIME on handwritten digits.  These
-								are from the first 20 samples in MNIST. We have
+								are from the first 20 samples in the MNIST test set. We have
 								12 image pairs that show the original image and
 								then the important superpixels highlighted in
 								pink
@@ -452,19 +456,17 @@
 						</ul>
 						<aside class="notes">
 							<p>Shapley Additive Explanations - SHAP in 2018 Lundberg.</p>
-							<p>Using Shapley values from cooperative game theory as measures of marginal feature importance.</p>
+							<p>This method uses Shapley values from cooperative game theory as measures of marginal feature importance.</p>
 							<p>The figure shows five samples in rows with the the original image on the left</p>
-							<p>The ten decimal digits are in columns. The red color shows positive (shapley values), matching pixels in the image for feature importance.</p>
+							<p>The ten decimal digits are represented in columns. The red color shows positive (shapley values), matching pixels in the image for feature importance.</p>
 							<p>Blue color shows negative or detracting shapley values for pixels.</p>
 							<p>More red in the image shows where there is a match and the particular pixels that matter.</p>
-							<p>Visual explanation better than LIME</p>
+							<p>Visual explanation better than LIME but still only a visual representation</p>
 						</aside>
 					</section>
 
 					<section>
 						<h2>Confusion Matrix - One Versus Others</h2>
-
-
 								<br>
 
 								<table style="border: none;" class="realbig">
@@ -1084,27 +1086,27 @@
 							</tr>
 							<tr>
 								<td>MLP</td>
-								<td>98.3</td>
-								<td>96.2</td>
-								<td>97.9</td>
+								<td>0.0</td>
+								<td>100</td>
+								<td>67.2</td>
 							</tr>
 							<tr>
 								<td>SVM</td>
-								<td>97.9</td>
-								<td>95.4</td>
-								<td>97.3</td>
+								<td>0.0</td>
+								<td>100</td>
+								<td>76.8</td>
 							</tr>
 							<tr>
 								<td>CNN</td>
-								<td>99.4</td>
-								<td>97.3</td>
-								<td>98.7</td>
+								<td>0.0</td>
+								<td>100</td>
+								<td>75.5</td>
 							</tr>
 							<tr style="border-bottom: 2px solid black;">
 								<td>Resnet50</td>
-								<td>98.9</td>
-								<td>97.6</td>
-								<td>98.8</td>
+								<td>0.0</td>
+								<td>100</td>
+								<td>69.9</td>
 							</tr>
 							<!--style="border-bottom: 2px solid black;"-->
 							</table>
@@ -1128,6 +1130,22 @@
 									<img src="./images/exp-unexp.svg" height="200">
 								</div>
 							</div>
+
+							<aside class="notes">
+								<p>These tables show the aggregate performance of PBE on MNIST</p>
+								<p>Left shows accuracy of different architectures in columns</p>
+								<p>The architectures are depicted along the bottom in diagrams</p>
+								<p>The first architecture is 1 ML model that is not explainable as a benchmark</p>
+								<p>The second architecture shows 10 fully explainable flows</p>
+								<p>The third has 10 explainable and 1 unexplainable flow</p>
+								<p>In terms of accuracy, the explainable system performs the worst, a couple percentage points below benchmark</p>
+								<p>Adding an unexplainable component we see gets us back near performance of the benchmark</p>
+								<p>The table on the right shows average explainability for the winning class</p>
+								<p>Benchark is not explainable.</p>
+								<p>Fully explainable system is 100%</p>
+								<p>Because the mix of explainable and unexplainable, explanability is diminshed.</p>
+							</aside>
+
 					</section>
 
 					<section>
@@ -1290,6 +1308,23 @@
 								<td>100%</td>
 							</tr>
 						</table>
+
+						<aside class="notes">
+							<p>This table is an explainability matrix for a sample, the digit four a the top.</p>
+							<p>We have columns indicating the flow, property transform and the vote of that property transform.</p>
+							<p>There are votes for the digit four, zero and nine</p>
+							<p>Next we show effectiveness. There will be three columns for effectiveness because of the three votes.</p>
+							<p>Again effectiveness is the ability for the flow that voted to predict a particular class.  It is a metric in the knowledgebase</p>
+							<p>Effectiveness of the votes for the digit four were relatively high compared to the low effectiveness for the zero</p>
+							<p>Effectiveness for the nine vote was medium</p>
+							<p>Effectiveness per class or column is summed to get a Weighted effectiveness</p>
+							<p>Confidence is the weighted effectiveness of a class over weighted effectiveness of all classes voted for</p>
+							<p>We see the four has the highest confidence and wins with 87% confidence</p>
+							<p>Explainability is shown in the next three columns</p>
+							<p>The explainability metric for each flow X_j is shown in the cells for the class the flow voted for</p>
+							<p>We then calculate the effectiveness weighted effectiveness from taking the product of effectiveness and explainability</p>
+							<p>The explainability of the answer for four is diminished because the unexplainable flow voted for it</p>
+						</aside>
 					</section>
 
 					<section>
@@ -1545,6 +1580,7 @@
 							</tr>
 						</table>
 					</section>
+					</section>
 
 					<section>
 
@@ -1590,8 +1626,6 @@
 
 					</section>
 
-					</section>
-
 				<!--</section>-->
 
 				<section>
@@ -1611,6 +1645,8 @@
 						<p>To make the trojan difficult to detect, intentionally rare input patterns trigger the trojan payload</p>
 						<p>Example for n inputs only 1 in 2^n input patterns trigger the trojan</p>
 						<p>Trigger results in the mux leaking sensitive information on primary out</p>
+						<p>We apply the methods to explainably detect HW trojans</p>
+						<p>The problem we approach in this work is the static detection of HW trojans from gate level netlists using Trust-Hub trojan benchmark data</p>
 					</aside>
 				</section>
 
@@ -1715,15 +1751,12 @@
 					<p class="mid">Property = grouping of features</p>
 
 					<aside class="notes">
-						<p>Depicts a general property based explainable architecture</p>
+						<p>Applying the property based method to five hardware trojan features, immediately we were faced with the problem of what a meaningful property was</p>
+						<p>We tried to overcome the problem with using combinations of features</p>
+						<p>This diagram depicts a general property based explainable architecture for a low dimensionality feature space</p>
 						<p>Property is a grouping of features that can help explain decision</p> 
-						<p>Input from left</p>
 						<p>First phase is where combination property transforms of the features occurs</p>
-						<p>along with Machine learning analysis to make local decisions</p>
-						<p>Decision making process considers local decisions and suggests a global answer</p>
-						<p>XAI block considers property decisions and provides justification in terms of properties contributing to the decision</p>
-						<p>Knowledgebase is used to gauge effectiveness of properties.</p>
-						<p>A particular implementation of the architecture for 5 properties is depicted.  Note 31 properties.</p>
+						<p>A particular implementation of the architecture for 5 properties is depicted.  Note 31 properties the combinations of five features.</p>
 					</aside>
 				</section>
 
@@ -1743,13 +1776,14 @@
 
 						
 						<aside class="notes">
-							<p>Property based explainable example from the test set is depicted in this slide</p>
+							<p>An example from the test set is depicted in this slide</p>
 							<p>The particular values for the 5 features are depicted at the top</p>
 							<p>The sample is a trojan shown in the last column and value of 1</p>
-							<p>Output of the system is depicted in the bottom.</p>
+							<p>Output of the PBE system is depicted in the bottom.</p>
 							<p>A trojan was predicted with 99.6% confidence</p>
 							<p>The 15 properties contributing to the decision are listed in descending order of weight</p>
-							<p>Exlainability is low at 41%  We will see why from the next slide.  Note that all properties are fairly high</p>
+							<p>Note the properties are high property number 15 and above.</p>
+							<p>Exlainability is low at 41%  We will see why from the next slide.</p>
 						</aside>
 					</section>
 
@@ -2056,9 +2090,6 @@
 						size: 15,  // in pixels (scaled like the rest of reveal.js)
 						color: 'rgba(255, 0, 0, 0.8)',  // something valid for css background-color
 						key: 'A'
-					},
-					notes: {
-						key: 'S'
 					}
 				},
 
@@ -2069,7 +2100,7 @@
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ],
 
-				slideNumber: true,
+				slideNumber: true
 
 			});
 		</script>
