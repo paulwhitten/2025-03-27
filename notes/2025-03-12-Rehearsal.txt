@@ -71,7 +71,7 @@ High likelihood
 =====================================
 
 
-Metrics sensitive to imabnle of training set
+Metrics sensitive to imbalance of training set
 
 
 Right hand col is insenstive to imbalance.
@@ -83,7 +83,7 @@ Move AUC to Results
 
 =================================
 
-Handwroting first
+Handwriting first
 
 move trojan stuff together
 

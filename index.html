@@ -1377,16 +1377,41 @@
 						<h3>EMNIST Aggregate Results</h3>
 						<hr>
 
-						<div class="realbig">
-						Unexplainable<br>
+						<div class="container" >
 
-						<img src="./images/unexpl-emnist.png" height="350">
+							<div class="col" style="border-right:1px solid #000;height:900px">
 
-						<br>Explainable<br>
+								<h5>Unexplainable Benchmark</h5>
 
-						<img src="./images/expl-emnist.png" height="350">
+								<img src="./images/unexpl-emnist.png" height="300">
+
+								<h5>Explainable</h5>
+
+								<img src="./images/expl-emnist.png" height="300">
+
+							</div>
+
+							<div class="col">
+
+								<h5>Explainable + Unexplainable</h5>
+
+								<img src="./images/expl-unexpl-emnist.png" height="300">
+
+								<h5>Explainable + Unexplainable</h5>
+
+								<img src="./images/expl-unexpl-explainabilit-emnist.png" height="300">
+
+							</div>
 
 						</div>
+
+						<aside class="notes">
+							<p>This slide shows the aggregate extended mnist results</p>
+							<p>The top left is a benchmark unexplainable single ML model.</p>
+							<p>Lower left is a PBE architecture with 10 explainable flows. Note the considerable impact to accuracy especially some of the multi-layer perceptron results which are 20 points less</p>
+							<p>The upper right shows the improvement when adding one unexplainable component to the PBE. Numbers approach the benchmark.</p>
+							<p>The lower right shows the impact to explainablility of single unexplainable component to the PBE architecture.</p>
+						</aside>
 
 					</section>
 
