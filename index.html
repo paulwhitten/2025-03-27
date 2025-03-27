@@ -1845,21 +1845,19 @@
 
 					<hr>
 
-					<div class="realbig">
+					<div class="huge">
 						<p>
-							<b>Intent:</b> Produce a system that can explain
-						decisions to a user by providing evidence about like training cases.</p>
+							<b>Intent:</b> Explain decisions by providing evidence about similar training cases.</p>
 
 						<p>
 							<b>Inspiration:</b> Work by Caruana et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2232607/">Case-based explanation of non-case-based learning methods</a>.
-							In providing an answer
 						</p>
 
 						<p>
-							Consider training samples as cases. Similar cases that the model was trained on should support a decision.
+							Consider training samples as cases precedent. Similar training cases should support a decision.
 						</p>
 						<p>
-							Not explaining the model behavior but what was used to train the model that is like an input.
+							PBE is not explaining the model behavior, but what was used to train the model that is similar to an input.
 						</p>
 
 					</div>
@@ -1953,9 +1951,17 @@
 
 					<h3>CBE Architecture - Handwriting Results</h3>
 
-					<br><br>
+					<br>
+
+					<p class="Huge">Aggregate - Correspopndence - 97.7%</p>
 
 					<img src="./images/cbe-arch.svg" height="600">
+
+					<aside class="notes">
+						<p>CBBE results using a SVM</p>
+						<p>Aggregate results correxpondence was in agreement with the SVM 97.7% of the time</p>
+						<p>Will not focus on accuracy becasue the PBE method has no loss from transfrom and can use highest perfroming model.</p>
+					</aside>
 
 				</section>
 
@@ -2033,28 +2039,40 @@
 					</section>
 				<!--</section>-->
 
+				<section>
+					<h1>Conclusions</h1>
+				</section>
+
 
 				<section>
-					<h1>Conclusion</h1>
+					<h1>Conclusions - Method Strengths</h1>
 
 					<ul class="huge">
-						<li>Explainable properties are difficult to elicit from low dimensional space</li>
-						<li>Marginal explainability in property-based architecture</li>
-						<li>Much more involved to implement the property based method</li>
-						<li>Case-based architecture had 94.7% correspondence with inference engine</li>
-						<li>Case-based outperformed the property-based architecture on handwriting and Trojans</li>
-						<li>Four conference papers published</li>
+						<li>PBE worked well on explainaing handwritten digits</li>
+						<li>PBE well suited for high dimensional datasets</li>
+						<li>CBE worked well on explaining both handwriting and HW trojans</li>
+						<li>CBE accuracy could be among best</li>
 					</ul>
 
 					<aside class="notes">
-						<p>Using only five features made it hard to extract explainable properties.  Explainable properties better suited for</p>
-						<p>Marginal explainability - low explainability metrics in property based architecture due to large number of features in property</p>
-						<p>Property based method takes much more effort and time to implement.</p>
-						<p>Case-based architecture agreed with the SVM inference engine a very high percentage of time</p>
-						<p>Cases and references gave compelling rationale for decisions.  Better than combinations of features.</p>
-						<p>Four conference papers published</p>
+						<p>PBE had explanations that were related to explainble properties. Overall performed well.</p>
+						<p>PBE also well suited for high dimensional data like images, good for representational learning applications.</p>
+						<p>CBE worked well on handwriting and trojans, it explained both well with precedents/cases from training</p>
+						<p>CBE can use an isolated inference engine that performs really well in terms of accuracy</p>
 					</aside>
-					
+				</section>
+
+				<section>
+
+					<h1>Conclusions - Weaknesses</h1>
+
+					<ul class="huge">
+						<li>Explainable properties are difficult to elicit from low dimensional space</li>
+						<li>Marginal explainability in PBE architecture with trojans</li>
+						<li>Much more involved to implement the PBE method</li>
+						<li>Takes longer for CBE to execute due to searcing for neighbor cases</li>
+					</ul>
+
 				</section>
 
 				<section>
@@ -2082,6 +2100,23 @@
 						<p>How did these methods and architectures answer the questions?</p>
 					</aside>
 					
+				</section>
+
+				<section>
+						<h1>Final Conclusions</h1>
+						<ul class="huge">
+							<li>CBE outperformed PBE - better accuracy and explanations</li>
+							<li>Examples of how to answer all of the importent user questions</li>
+							<li>Research in four published papers with contributions</li>
+							<ul>
+								<li>Two explainable methods</li>
+								<li>Effectiveness and new E<sub>PARS</sub> metric</li>
+								<li>Confidence of PBE decisions</li>
+								<li>Quantifying exlainability with mix of explainability and unexplainability</li>
+								<li>Correspondence between neighbors in CBE</li>
+								<li>When the system can fail with FDR</li>
+							</ul>
+						</ul>
 				</section>
 
 				<section>
